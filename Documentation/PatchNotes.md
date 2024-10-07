@@ -1,4 +1,10 @@
 **Patch Notes**
+V4.0 
+October 1-7th 2024
+- Refactoring of the entire code base to move away from google sheets for data storage to csvs
+- A parser which will automatically parse data exponentially decreasing the time necessary to input new races
+- Lots of new ideas on the horizon
+
 V3.3.6
 - Badges introduced for seasonal and all time stats
 - There are three badges with 10 levels each
