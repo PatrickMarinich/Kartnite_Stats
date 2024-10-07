@@ -22,6 +22,8 @@ Inside of the player_profile folder, there is a program file wkhtmltopdf.exe, wh
 All File paths are now relative to their respective locations witin the file tree, so if files are moved around these have to be changed. It also means that if you are running the 
 code in vscode or another IDE, then the current directory must be set to where the main function lives so that file paths are correct.
 
+Unfortunatly wkhtmltopdf needs absolute file paths for the images to be properly found. In Constants.py, set the PATH_EXT variable to the rest of the filepath as needed to solve this. If a change to wkhtmltopdf then I will update as appropriate
+
 # Contributions
 ## Pat
 placeholder....

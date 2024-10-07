@@ -621,18 +621,18 @@ def coverPage(player,seasonalTotalPoints,seasonalAverage,seasonalTotalRaces,seas
   print('<br>')
 
   print("<div class=\"center\">")
-  print('<img src=', swPath, 'alt=\"Seasonal Wins\" width=\"130\" height=\"130\">' )
-  print('<img src=', sgpPath, 'alt=\"Seaonsal GP Wins\" width=\"130\" height=\"130\">' )
-  print('<img src=', sbPath, 'alt=\"Seasonal Blues\" width=\"130\" height=\"130\">')
+  print('<img src=', PATH_EXT+swPath, 'alt=\"Seasonal Wins\" width=\"130\" height=\"130\">' )
+  print('<img src=', PATH_EXT+sgpPath, 'alt=\"Seaonsal GP Wins\" width=\"130\" height=\"130\">' )
+  print('<img src=', PATH_EXT+sbPath, 'alt=\"Seasonal Blues\" width=\"130\" height=\"130\">')
 
   #horizontal bar
   print('<span style="display:inline-block; width: 85px;"></span>')
   #print("<div class=\"vbar\">")
   #print("</div>")
 
-  print('<img src=', awPath, 'alt=\"Seasonal Wins\" width=\"130\" height=\"130\">' )
-  print('<img src=', agpPath, 'alt=\"Seaonsal GP Wins\" width=\"130\" height=\"130\">' )
-  print('<img src=', abPath, 'alt=\"Seasonal Blues\" width=\"130\" height=\"130\">' )
+  print('<img src=', PATH_EXT+awPath, 'alt=\"Seasonal Wins\" width=\"130\" height=\"130\">' )
+  print('<img src=', PATH_EXT+agpPath, 'alt=\"Seaonsal GP Wins\" width=\"130\" height=\"130\">' )
+  print('<img src=', PATH_EXT+abPath, 'alt=\"Seasonal Blues\" width=\"130\" height=\"130\">' )
 
   print("</div>")
 
@@ -986,12 +986,10 @@ def KVRHistoryPage(player,dfKVR):
   #get the embedded HTML for the plot
   make_line_plot(dfKVR,player)
   
-  #Windows needs to use exact path :( , maybe realitive pathing will work in the future with wkhtmltopdf windows
+
   path = 'KVRHistory.png'
-  #path = 'C:\Users\patri\Github_Directories\Kartnite\Mario-Kart-Stats-Project\Kartnite_Python\KVRHistory.png'
-  #path = '.\\Kartnite_Python\\KVRHistory.png'
   
-  print('<img src=', path, 'alt=\"KVR History\" width=\"1000\" height=\"800\">' )
+  print('<img src=', PATH_EXT+path, 'alt=\"KVR History\" width=\"1000\" height=\"800\">' )
   print('</div>')
 
   #make table of all players KVR HERE
@@ -1102,12 +1100,10 @@ def GPStatsPage(player,dfSeasonGP,dfAllTimeGP):
   #get the embedded HTML for the plot
   make_GP_pie_charts(dfSeasonGP,dfAllTimeGP,player)
   
-  #Windows needs to use exact path :( , maybe realitive pathing will work in the future with wkhtmltopdf windows
   path = 'GPWins.png'
-  #path = 'C:\Users\patri\Github_Directories\Kartnite\Mario-Kart-Stats-Project\Kartnite_Python\KVRHistory.png'
-  #path = '.\\Kartnite_Python\\KVRHistory.png'
   
-  print('<img src=', path, 'alt=\"GP STATS\" width=\"1000\" height=\"1250\">' )
+
+  print('<img src=', PATH_EXT+path, 'alt=\"GP STATS\" width=\"1000\" height=\"1250\">' )
   print('</div>')
 
   print('<div class = \"bar\"> </div>')
@@ -1277,10 +1273,24 @@ def convertHTMLtoPDF(filename):
   
   #Convert
   output = 'Kartnite Stats - ' + today + '.pdf'
-  pdfkit.from_file(currFile, output_path=output, configuration=config,options={"enable-local-file-access": ""})
+  pdfkit.from_file(currFile, output_path=output, configuration=config,options={"enable-local-file-access": "",'--keep-relative-links': ''},verbose=True)
   print('Conversion Complete...')
 
   return output
+
+
+def decode(word,shift):
+    txt = ""
+    for letter in word:
+        if letter == '.' or letter == '@':
+            txt += letter
+            continue
+        stayInAlphabet = ord(letter)-shift
+        if stayInAlphabet < ord('a'):
+            stayInAlphabet += 26   
+        txt += (chr(stayInAlphabet))
+    return txt
+
 
 #this is for emailing the created PDF to the player that it was generated for
 import yagmail
@@ -1288,15 +1298,22 @@ def sendReport(player,userEmail,userPass,message,pdfFile):
 
   print('Creating Email....')
   #A dictonary of Players Names and their prefered Email addresses
-  emails = {'Pat' : 'patrick.marinich@gmail.com',
-            'Kevin' : 'kevinfrancisjr@gmail.com',
-            'Chris' : 'chrispauldragone@gmail.com',
-            'Demitri' : 'dforand20@gmail.com',
-            'Joe' : 'frallerjo@gmail.com',
-            'Karla' : 'karlavsetzer@gmail.com',
-            'Callum' : 'Goaliecal50@gmail.com',
-            'Shane' : 'shanemdunphy@hotmail.com'}
-
+  # emails = {'Pat' : 'patrick.marinich@gmail.com',
+  #           'Kevin' : 'kevinfrancisjr@gmail.com',
+  #           'Chris' : 'chrispauldragone@gmail.com',
+  #           'Demitri' : 'dforand20@gmail.com',
+  #           'Joe' : 'frallerjo@gmail.com',
+  #           'Karla' : 'karlavsetzer@gmail.com',
+  #           'Callum' : 'Goaliecal50@gmail.com',
+  #           'Shane' : 'shanemdunphy@hotmail.com'}
+  emails = {'Pat' : 'grkiztb.drizezty@xdrzc.tfd',
+'Kevin' : 'bvmzewiretzjai@xdrzc.tfd',
+'Chris' : 'tyizjgrlcuirxfev@xdrzc.tfd',
+'Demitri' : 'uwfireuCA@xdrzc.tfd',
+'Joe' : 'wirccviaf@xdrzc.tfd',
+'Karla' : 'bricrmjvkqvi@xdrzc.tfd',
+'Callum' : 'XfrczvtrcFA@xdrzc.tfd',
+'Shane' : 'jyrevdulegyp@yfkdrzc.tfd'}
   #the user inputs their email infromation, to send the email
   user = yagmail.SMTP(user=userEmail, password=userPass)
 
@@ -1305,6 +1322,6 @@ def sendReport(player,userEmail,userPass,message,pdfFile):
   today = date.isoformat(today)
 
   #uses the dictionary to get the email for the reciepient
-  user.send(to=emails[player], subject=('Kartnite Stats from: ' +  today), contents=message,attachments = pdfFile)
+  user.send(to=decode(emails[player],17), subject=('Kartnite Stats from: ' +  today), contents=message,attachments = pdfFile)
 
   print('Report Delievered To ', player, '!')
