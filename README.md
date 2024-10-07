@@ -26,4 +26,28 @@ Unfortunatly wkhtmltopdf needs absolute file paths for the images to be properly
 
 # Contributions
 ## Pat
-placeholder....
+### Functionality
+- Inputting and Saving Race Data
+- Editing Race Data
+- Automatic Data inputter
+- Ability to track GP Wins,Shock dodges, blue shells
+- Created all viewable leaderboards
+- Created the Season system
+- All Time and Seasonal Stat Tracking
+- HTML Generation
+- PDF Conversion
+- Emailing PDFs to Players 
+- Created the Awards System
+- Grpahics for GP Stats and KVR Chart
+- Seasonal and All Time Badges
+- Converted from Google Sheets to CSV
+- Documentation 
+### Custom Stats
+Check Documentation for more infromation
+- Track MVP -> A way to determine who is the best player on a given track 
+- Kart Score -> A increasing score which determines how a player is playing in a season
+- Normalized Kart Score -> A score which determines how a player is playing across all seasons
+- Kart Rating -> A percentage based stat to detrmine how much a player is winning
+- Kart Versus Rating -> An ELO-like ranking system
+- Misc-Score -> A score which aims to intrepret the extra events in a race (Blue Shells, Shocks)
+- Seeding Power Points -> A value which overall determines the ranking of each player
