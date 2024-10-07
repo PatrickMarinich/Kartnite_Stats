@@ -1,3 +1,9 @@
+#Patrick Marinich
+#October 2024
+
+#This is the script which will take the races inputted into the current_inputs.txt, parse the data, and update the csvs with the new infromation. 
+#RUN THIS IF THERE IS NEW RACES LOCATED IN CURRENT_INPUTS.txt OTHERWISE THERE IS NO NEED TO RUN THIS (and it will do nothing *hopefully*)
+
 import math
 import random
 import pandas as pd
