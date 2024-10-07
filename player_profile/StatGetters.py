@@ -2,10 +2,7 @@ import pandas as pd
 from Constants import *
 #This file will contain all of the methods that get different stats
 #this will include all track stat getters, player stat getters, and seasonal and all time stat getters
-
 #All of these stats are calculated here, and they are called within the I/O file or the Player Profile if nessassary
-
-
 
 #This function gets all of the data for a specific track, includes things such as total race count,
 #and a track ownership leaderboard
@@ -295,20 +292,6 @@ def getPlayerStats(dfScores,dfRaceCount, dfWins,dfShock, dfKartScore, dfBlue, Pl
 
 def getSeedings(dfKartScore,dfScores,dfRaceCount,dfWins,dfShock,dfBlue,TrackIndex,display=True):
     
-    #kartData = sh.worksheet('Total Scores').get_all_values()
-    #RaceCount = sh.worksheet('Race Count').get_all_values()
-    #Wins = sh.worksheet('GP Wins').get_all_values()
-    #Shock = sh.worksheet('Shock Dodges').get_all_values()
-    #KartScore = sh.worksheet('Owned Score').get_all_values()
-    #Blue = sh.worksheet('Blue Shells').get_all_values()
-
-    #dfKartScore = pd.DataFrame(KartScore[1:], columns = KartScore[0])
-    #dfScores = pd.DataFrame(kartData[1:], columns=kartData[0])
-    #dfRaceCount = pd.DataFrame(RaceCount[1:], columns = RaceCount[0])
-    #dfWins = pd.DataFrame(Wins[1:], columns = Wins[0])
-    #dfShock = pd.DataFrame(Shock[1:], columns = Shock[0])
-    #dfBlue = pd.DataFrame(Blue[1:], columns = Blue[0])
-
     #determine the score for each player within the data
     dfNoTracks = dfScores[dfScores.columns.difference(["Tracks x Players"])]
     #leaderboard object
@@ -358,8 +341,6 @@ def getSeedings(dfKartScore,dfScores,dfRaceCount,dfWins,dfShock,dfBlue,TrackInde
 
 
 
-
-
 #----------------ALL TIME PLAYER STATS-----------------
 
 
@@ -369,6 +350,7 @@ def getSeedings(dfKartScore,dfScores,dfRaceCount,dfWins,dfShock,dfBlue,TrackInde
 #This function will get the data from the two different sheets and combine them into 
 #a place where a given player can see all of their stats
 
+#THIS FUNCTION IS DEPRECIATED, CURRENTLY UNUSED AND OUTDATED
 def getAllTimeStats(season,allTime,player,TrackIndex):
 
 
@@ -500,39 +482,7 @@ def getAllTimeLeaderboads(dfSeasonOwnedScore,dfSeasonScores,dfSeasonRaceCount,df
    
     if display == True:
       print('Loading Data....')
-    # #seasonal stats
-    # kartData = season.worksheet('Total Scores').get_all_values()
-    # RaceCount = season.worksheet('Race Count').get_all_values()
-    # Wins = season.worksheet('GP Wins').get_all_values()
-    # Shock = season.worksheet('Shock Dodges').get_all_values()
-    # OwnedScore = season.worksheet('Owned Score').get_all_values()
-    # Blue = season.worksheet('Blue Shells').get_all_values()
-    # #alltime stats
-    # kartDataAllTime = allTime.worksheet('Total Scores').get_all_values()
-    # RaceCountAllTime = allTime.worksheet('Race Count').get_all_values()
-    # WinsAllTime = allTime.worksheet('GP Wins').get_all_values()
-    # ShockAllTime = allTime.worksheet('Shock Dodges').get_all_values()
-    # OwnedScoreAllTime = allTime.worksheet('Owned Score').get_all_values()
-    # BlueAllTime = allTime.worksheet('Blue Shells').get_all_values()
-    # SeedingAllTime = allTime.worksheet('All-Time Seeding').get_all_values()
-    # if display == True:
-    #   print('Combining Old and New Data....')
-    # #the dataframes from each of the sheets (seasonal)
-    # dfSeasonOwnedScore = pd.DataFrame(OwnedScore[1:], columns = OwnedScore[0])
-    # dfSeasonScores = pd.DataFrame(kartData[1:], columns=kartData[0])
-    # dfSeasonRaceCount = pd.DataFrame(RaceCount[1:], columns = RaceCount[0])
-    # dfSeasonWins = pd.DataFrame(Wins[1:], columns = Wins[0])
-    # dfSeasonShock = pd.DataFrame(Shock[1:], columns = Shock[0])
-    # dfSeasonBlue = pd.DataFrame(Blue[1:], columns = Blue[0])
-    # #all time
-    # dfAllTimeOwnedScore = pd.DataFrame(OwnedScoreAllTime[1:], columns = OwnedScoreAllTime[0])
-    # dfAllTimeScores = pd.DataFrame(kartDataAllTime[1:], columns=kartDataAllTime[0])
-    # dfAllTimeRaceCount = pd.DataFrame(RaceCountAllTime[1:], columns = RaceCountAllTime[0])
-    # dfAllTimeWins = pd.DataFrame(WinsAllTime[1:], columns = WinsAllTime[0])
-    # dfAllTimeShock = pd.DataFrame(ShockAllTime[1:], columns = ShockAllTime[0])
-    # dfAllTimeBlue = pd.DataFrame(BlueAllTime[1:], columns = BlueAllTime[0])
-    # dfAllTimeSeeding = pd.DataFrame(SeedingAllTime[1:], columns =SeedingAllTime[0])
-    
+
     if display == True:
       print('Doing Calculations...')
     
@@ -758,7 +708,6 @@ def getKartRating(dfScores,dfRaces,dfWins,player,TrackIndex):
 
 ##creates a line plot of a players KVR history over the last 50 races 
 import matplotlib.pyplot as plt
-import mpld3
 def make_line_plot(df, column):
     plt.clf()
     # Remove the first two rows
@@ -774,9 +723,9 @@ def make_line_plot(df, column):
     plt.ylabel('KVR Value')
     name = 'KVRHistory.png'
     
-    #plt.savefig('Mario-Kart-Stats-Project\Kartnite_Python\KVRHistory.png')
-    plt.savefig('C:\\Users\\patri\\Github_Directories\\Kartnite\\Mario-Kart-Stats-Project\\Kartnite_Python\\KVRHistory.png')
-    #plt.savefig('Mario-Kart-Stats-Project\\Kartnite_Python\\KVRHistory.png')
+  
+    plt.savefig('KVRHistory.png')
+  
     
     return name
    
@@ -901,7 +850,7 @@ def make_GP_pie_charts(dfS,dfA,player):
 
   #plt.show()
   #saves to a file to be used by the pdf maker
-  plt.savefig('C:\\Users\\patri\\Github_Directories\\Kartnite\\Mario-Kart-Stats-Project\\Kartnite_Python\\GPWins.png')
+  plt.savefig('GPWins.png')
     
 
 #These are the KVR Helper Stats

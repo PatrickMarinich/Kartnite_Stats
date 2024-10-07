@@ -1,8 +1,8 @@
-#this file will contain any constants that are used in other files, typically constants that are not directally used in a singulat
+#this file will contain any constants that are used in other files, typically constants that are not directally used in a singular
 #function will be used here as of now it is just a file to hold the player awards, but other things may be held here in the future
 
 #---CREDITS and other info-------
-VERSION = 'v3.3.5'
+VERSION = 'v4.0'
 CONTRIBUTORS = 'Patrick Marinich'
 #------------------------------------
 

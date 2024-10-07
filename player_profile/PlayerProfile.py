@@ -1265,7 +1265,6 @@ def trackStatsPage(dfSeasonScores,dfSeasonRaces,dfAllScores,dfAllRaces,TrackInde
 #this function converts the html file into a pdf so it can be viewed nicely
 def convertHTMLtoPDF(filename):
   print('Converting to PDF...')
-  #path = 'Mario-Kart-Stats-Project\\Kartnite_Python\\wkhtmltopdf.exe' #sys.path[0]
   path = 'wkhtmltopdf.exe'
   config = pdfkit.configuration(wkhtmltopdf=path)
 

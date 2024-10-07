@@ -18,17 +18,6 @@ def RunKartniteStats(version, contributors):
   VERSION_NUMBER = version
   CONTRIBUTORS = contributors
 
-
-
-  #imports
-  import pandas as pd
-  #from google.colab import auth
-  
-  #gc = gspread.oauth()
-
-  # Puts the google sheet into a python object, we will be calling the sh object after a selection is made
-  #sh = gc.open_by_url('https://docs.google.com/spreadsheets/d/1G0z4XeBjG7Q_Zk_uPtV4v8BPkVT8GD9pmsuk7VIwFKc/edit#gid=1608384215')
-
   #Track Dictionary, all track names and nicknames go here
   #track indexes are starting at 0 in the mushroom cup ending at 31 at N64 Bowsers castle, +32 for Lava Lake
   TrackIndex = {"Luigi Circuit":0,
@@ -174,16 +163,14 @@ def RunKartniteStats(version, contributors):
     email = input('Enter Your Email:')
     password = input('Password: ')
     message = input('Message for the email:')
-    #all_time = gc.open_by_url('https://docs.google.com/spreadsheets/d/1nolol4P63e7WY-wRPnogcePkWuPPE3JF6QBRgXgF8gE/edit#gid=524408434')
-    
-    #allows for all players reports to be generated at once
+
+    #allows for all players (who are interested) reports to be generated at once
     if players == 'all' or players == 'All' or players == 'ALL':
       racers = ['Pat', 'Kevin', 'Demitri', 'Chris', 'Joe','Shane']
       for player in racers:
         HTML = createPlayerProfile(player,TrackIndex)
         generatedFile = convertHTMLtoPDF(HTML)
         sendReport(player,email,password,message,generatedFile)
-        #time.sleep(60)
     else:
         player = players
         HTML = createPlayerProfile(player,TrackIndex)
