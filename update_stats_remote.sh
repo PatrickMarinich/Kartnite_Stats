@@ -20,9 +20,8 @@ then
     echo 'Running Input Script';
 
     #runs the program to input the stats
-    echo `cd input`
-    echo `python3 input_stats.py`;
-    echo `cd ..`
+    echo `python3 input/input_stats_remote.py`;
+
 
     #now that the stats are inputted, then push the updated stats
     echo `git add stats_csv/seasonal_stats`;
