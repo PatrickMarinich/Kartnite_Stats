@@ -25,6 +25,7 @@ then
 
     #now that the stats are inputted, then push the updated stats
     echo `git add stats_csv/seasonal_stats`;
+    echo `git add recent_inputs/current_inputs.txt`;
     echo `git commit -m 'Remote Stats Update' `;
     echo `git push`;
 
