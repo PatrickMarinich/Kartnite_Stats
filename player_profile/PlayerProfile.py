@@ -78,24 +78,24 @@ def createPlayerProfile(player,TrackIndex):
 
   #rather than doin all that.... load in the csvs!!
   #seasonal
-  dfSeasonOwnedScore = pd.read_csv('..\\stats_csv\\seasonal_stats\\Seasonal Kartnite Stats - Owned Score.csv')
-  dfSeasonScores =  pd.read_csv('..\\stats_csv\\seasonal_stats\\Seasonal Kartnite Stats - Total Scores.csv')
-  dfSeasonRaceCount =  pd.read_csv('..\\stats_csv\\seasonal_stats\\Seasonal Kartnite Stats - Race Count.csv')
-  dfSeasonWins =  pd.read_csv('..\\stats_csv\\seasonal_stats\\Seasonal Kartnite Stats - GP Wins.csv')
-  dfSeasonShock =  pd.read_csv('..\\stats_csv\\seasonal_stats\\Seasonal Kartnite Stats - Shock Dodges.csv')
-  dfSeasonBlue =   pd.read_csv('..\\stats_csv\\seasonal_stats\\Seasonal Kartnite Stats - Blue Shells.csv')
-  dfKVR =  pd.read_csv('..\\stats_csv\\seasonal_stats\\Seasonal Kartnite Stats - KVR Stats.csv')
-  dfSeasonPlacement =  pd.read_csv('..\\stats_csv\\seasonal_stats\\Seasonal Kartnite Stats - Placement Stats.csv')
+  dfSeasonOwnedScore = pd.read_csv('stats_csv/seasonal_stats/Seasonal Kartnite Stats - Owned Score.csv')
+  dfSeasonScores =  pd.read_csv('stats_csv/seasonal_stats/Seasonal Kartnite Stats - Total Scores.csv')
+  dfSeasonRaceCount =  pd.read_csv('stats_csv/seasonal_stats/Seasonal Kartnite Stats - Race Count.csv')
+  dfSeasonWins =  pd.read_csv('stats_csv/seasonal_stats/Seasonal Kartnite Stats - GP Wins.csv')
+  dfSeasonShock =  pd.read_csv('stats_csv/seasonal_stats/Seasonal Kartnite Stats - Shock Dodges.csv')
+  dfSeasonBlue =   pd.read_csv('stats_csv/seasonal_stats/Seasonal Kartnite Stats - Blue Shells.csv')
+  dfKVR =  pd.read_csv('stats_csv/seasonal_stats/Seasonal Kartnite Stats - KVR Stats.csv')
+  dfSeasonPlacement =  pd.read_csv('stats_csv/seasonal_stats/Seasonal Kartnite Stats - Placement Stats.csv')
 
   # #all time
-  dfAllTimeOwnedScore =  pd.read_csv('..\\stats_csv\\all_time\\All-Time Kartnite Stats - Owned Score.csv')
-  dfAllTimeScores =  pd.read_csv('..\\stats_csv\\all_time\\All-Time Kartnite Stats - Total Scores.csv')
-  dfAllTimeRaceCount =  pd.read_csv('..\\stats_csv\\all_time\\All-Time Kartnite Stats - Race Count.csv')
-  dfAllTimeWins =  pd.read_csv('..\\stats_csv\\all_time\\All-Time Kartnite Stats - GP Wins.csv')
-  dfAllTimeShock =  pd.read_csv('..\\stats_csv\\all_time\\All-Time Kartnite Stats - Shock Dodges.csv')
-  dfAllTimeBlue =  pd.read_csv('..\\stats_csv\\all_time\\All-Time Kartnite Stats - Blue Shells.csv')
-  dfAllTimeSeeding =  pd.read_csv('..\\stats_csv\\all_time\\All-Time Kartnite Stats - All-Time Seeding.csv')
-  dfAllTimePlacement = pd.read_csv('..\\stats_csv\\all_time\\All-Time Kartnite Stats - Placement Stats.csv')
+  dfAllTimeOwnedScore =  pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - Owned Score.csv')
+  dfAllTimeScores =  pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - Total Scores.csv')
+  dfAllTimeRaceCount =  pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - Race Count.csv')
+  dfAllTimeWins =  pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - GP Wins.csv')
+  dfAllTimeShock =  pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - Shock Dodges.csv')
+  dfAllTimeBlue =  pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - Blue Shells.csv')
+  dfAllTimeSeeding =  pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - All-Time Seeding.csv')
+  dfAllTimePlacement = pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - Placement Stats.csv')
 
   print('Doing Calculations...')
  
@@ -466,9 +466,9 @@ def coverPage(player,seasonalTotalPoints,seasonalAverage,seasonalTotalRaces,seas
   print('<br>')
   print('<div class=\"bar\"> </div>')
 
-  #add the badges under the last bar 
+  #add the player_profile/Badges under the last bar 
 
-  #getting the seasonal and all time badges
+  #getting the seasonal and all time player_profile/Badges
   swPath = ""
   awPath = ""
   sgpPath = ""
@@ -477,144 +477,144 @@ def coverPage(player,seasonalTotalPoints,seasonalAverage,seasonalTotalRaces,seas
   abPath = ""
   #seasonal wins
   if seasonaltop1 > 4999:
-    swPath = "Badges\\RaceWins\\Win5kRaces.png"
+    swPath = "player_profile/Badges/RaceWins/Win5kRaces.png"
   elif seasonaltop1 > 2499:
-    swPath = "Badges\\RaceWins\\Win2.5kRaces.png"
+    swPath = "player_profile/Badges/RaceWins/Win2.5kRaces.png"
   elif seasonaltop1 > 999:
-    swPath = "Badges\\RaceWins\\Win1kRaces.png"
+    swPath = "player_profile/Badges/RaceWins/Win1kRaces.png"
   elif seasonaltop1 > 499:
-    swPath = "Badges\\RaceWins\\Win500Races.png"
+    swPath = "player_profile/Badges/RaceWins/Win500Races.png"
   elif seasonaltop1 > 249:
-    swPath = "Badges\\RaceWins\\Win250Races.png"
+    swPath = "player_profile/Badges/RaceWins/Win250Races.png"
   elif seasonaltop1 > 99:
-    swPath = "Badges\\RaceWins\\Win100Races.png"
+    swPath = "player_profile/Badges/RaceWins/Win100Races.png"
   elif seasonaltop1 > 49:
-    swPath = "Badges\\RaceWins\\Win50Races.png"
+    swPath = "player_profile/Badges/RaceWins/Win50Races.png"
   elif seasonaltop1 > 9:
-    swPath = "Badges\\RaceWins\\Win10Races.png"
+    swPath = "player_profile/Badges/RaceWins/Win10Races.png"
   elif seasonaltop1 > 0:
-    swPath = "Badges\\RaceWins\\Win1Race1.png"
+    swPath = "player_profile/Badges/RaceWins/Win1Race1.png"
   #all time wins
   if allTimetop1 > 4999:
-    awPath = "Badges\\RaceWins\\Win5kRaces.png"
+    awPath = "player_profile/Badges/RaceWins/Win5kRaces.png"
   elif allTimetop1 > 2499:
-    awPath = "Badges\\RaceWins\\Win2.5kRaces.png"
+    awPath = "player_profile/Badges/RaceWins/Win2.5kRaces.png"
   elif allTimetop1 > 999:
-    awPath = "Badges\\RaceWins\\Win1kRaces.png"
+    awPath = "player_profile/Badges/RaceWins/Win1kRaces.png"
   elif allTimetop1 > 499:
-    awPath = "Badges\\RaceWins\\Win500Races.png"
+    awPath = "player_profile/Badges/RaceWins/Win500Races.png"
   elif allTimetop1 > 249:
-    awPath = "Badges\\RaceWins\\Win250Races.png"
+    awPath = "player_profile/Badges/RaceWins/Win250Races.png"
   elif allTimetop1 > 99:
-    awPath = "Badges\\RaceWins\\Win100Races.png"
+    awPath = "player_profile/Badges/RaceWins/Win100Races.png"
   elif allTimetop1 > 49:
-    awPath = "Badges\\RaceWins\\Win50Races.png"
+    awPath = "player_profile/Badges/RaceWins/Win50Races.png"
   elif allTimetop1 > 9:
-    awPath = "Badges\\RaceWins\\Win10Races.png"
+    awPath = "player_profile/Badges/RaceWins/Win10Races.png"
   elif allTimetop1 > 0:
-    awPath = "Badges\\RaceWins\\Win1Race1.png"
+    awPath = "player_profile/Badges/RaceWins/Win1Race1.png"
 
   #Gp Wins seasonal
   if int(dfSeasonWins.at[0,player]) > 999:
-    sgpPath = "Badges\\GPWins\\Win1000GPs.png"
+    sgpPath = "player_profile/Badges/GPWins/Win1000GPs.png"
   elif int(dfSeasonWins.at[0,player]) > 499:
-    sgpPath = "Badges\\GPWins\\Win500GPs.png"
+    sgpPath = "player_profile/Badges/GPWins/Win500GPs.png"
   elif int(dfSeasonWins.at[0,player]) > 249:
-    sgpPath = "Badges\\GPWins\\Win250GPs.png"
+    sgpPath = "player_profile/Badges/GPWins/Win250GPs.png"
   elif int(dfSeasonWins.at[0,player]) > 99:
-    sgpPath = "Badges\\GPWins\\Win100GPs.png"
+    sgpPath = "player_profile/Badges/GPWins/Win100GPs.png"
   elif int(dfSeasonWins.at[0,player]) > 49:
-    sgpPath = "Badges\\GPWins\\Win50GPs.png"
+    sgpPath = "player_profile/Badges/GPWins/Win50GPs.png"
   elif int(dfSeasonWins.at[0,player]) > 24:
-    sgpPath = "Badges\\GPWins\\Win25GPs.png"
+    sgpPath = "player_profile/Badges/GPWins/Win25GPs.png"
   elif int(dfSeasonWins.at[0,player]) > 9:
-    sgpPath = "Badges\\GPWins\\Win10GPs.png"
+    sgpPath = "player_profile/Badges/GPWins/Win10GPs.png"
   elif int(dfSeasonWins.at[0,player]) > 4:
-    sgpPath = "Badges\\GPWins\\Win5GPs.png"
+    sgpPath = "player_profile/Badges/GPWins/Win5GPs.png"
   elif int(dfSeasonWins.at[0,player]) > 0:
-    sgpPath = "Badges\\GPWins\\Win1GP.png"
+    sgpPath = "player_profile/Badges/GPWins/Win1GP.png"
     
   #all time gps
   if int(dfAllTimeWins.at[0,player]) > 999:
-    agpPath = "Badges\\GPWins\\Win1000GPs.png"
+    agpPath = "player_profile/Badges/GPWins/Win1000GPs.png"
   elif int(dfAllTimeWins.at[0,player]) > 499:
-    agpPath = "Badges\\GPWins\\Win500GPs.png"
+    agpPath = "player_profile/Badges/GPWins/Win500GPs.png"
   elif int(dfAllTimeWins.at[0,player]) > 249:
-    agpPath = "Badges\\GPWins\\Win250GPs.png"
+    agpPath = "player_profile/Badges/GPWins/Win250GPs.png"
   elif int(dfAllTimeWins.at[0,player]) > 99:
-    agpPath = "Badges\\GPWins\\Win100GPs.png"
+    agpPath = "player_profile/Badges/GPWins/Win100GPs.png"
   elif int(dfAllTimeWins.at[0,player]) > 49:
-    agpPath = "Badges\\GPWins\\Win50GPs.png"
+    agpPath = "player_profile/Badges/GPWins/Win50GPs.png"
   elif int(dfAllTimeWins.at[0,player]) > 24:
-    agpPath = "Badges\\GPWins\\Win25GPs.png"
+    agpPath = "player_profile/Badges/GPWins/Win25GPs.png"
   elif int(dfAllTimeWins.at[0,player]) > 9:
-    agpPath = "Badges\\GPWins\\Win10GPs.png"
+    agpPath = "player_profile/Badges/GPWins/Win10GPs.png"
   elif int(dfAllTimeWins.at[0,player]) > 4:
-    agpPath = "Badges\\GPWins\\Win5GPs.png"
+    agpPath = "player_profile/Badges/GPWins/Win5GPs.png"
   elif int(dfAllTimeWins.at[0,player]) > 0:
-    agpPath = "Badges\\GPWins\\Win1GP.png"
+    agpPath = "player_profile/Badges/GPWins/Win1GP.png"
     
   #seasonal blue
   if int(dfSeasonBlue.at[0,player]) > 4999:
-    sbPath = "Badges\\BlueShells\\5kBlues.png"
+    sbPath = "player_profile/Badges/BlueShells/5kBlues.png"
   elif int(dfSeasonBlue.at[0,player]) > 2499:
-    sbPath = "Badges\\BlueShells\\2.5kBlues.png"
+    sbPath = "player_profile/Badges/BlueShells/2.5kBlues.png"
   elif int(dfSeasonBlue.at[0,player]) > 999:
-    sbPath = "Badges\\BlueShells\\1kBlues.png"
+    sbPath = "player_profile/Badges/BlueShells/1kBlues.png"
   elif int(dfSeasonBlue.at[0,player]) > 499:
-    sbPath = "Badges\\BlueShells\\500Blues.png"
+    sbPath = "player_profile/Badges/BlueShells/500Blues.png"
   elif int(dfSeasonBlue.at[0,player]) > 249:
-    sbPath = "Badges\\BlueShells\\250Blues.png"
+    sbPath = "player_profile/Badges/BlueShells/250Blues.png"
   elif int(dfSeasonBlue.at[0,player]) > 99:
-    sbPath = "Badges\\BlueShells\\100Blues.png"
+    sbPath = "player_profile/Badges/BlueShells/100Blues.png"
   elif int(dfSeasonBlue.at[0,player]) > 49:
-    sbPath = "Badges\\BlueShells\\50Blues.png"
+    sbPath = "player_profile/Badges/BlueShells/50Blues.png"
   elif int(dfSeasonBlue.at[0,player]) > 24:
-    sbPath = "Badges\\BlueShells\\25Blues.png"
+    sbPath = "player_profile/Badges/BlueShells/25Blues.png"
   elif int(dfSeasonBlue.at[0,player]) > 9:
-    sbPath = "Badges\\BlueShells\\10Blues.png"
+    sbPath = "player_profile/Badges/BlueShells/10Blues.png"
   elif int(dfSeasonBlue.at[0,player]) > 0:
-    sbPath = "Badges\\BlueShells\\1Blue.png"
+    sbPath = "player_profile/Badges/BlueShells/1Blue.png"
 
   #all time blue
   if int(dfAllTimeBlue.at[0,player]) > 4999:
-    abPath = "Badges\\BlueShells\\5kBlues.png"
+    abPath = "player_profile/Badges/BlueShells/5kBlues.png"
   elif int(dfAllTimeBlue.at[0,player]) > 2499:
-    abPath = "Badges\\BlueShells\\2.5kBlues.png"
+    abPath = "player_profile/Badges/BlueShells/2.5kBlues.png"
   elif int(dfAllTimeBlue.at[0,player]) > 999:
-    abPath = "Badges\\BlueShells\\1kBlues.png"
+    abPath = "player_profile/Badges/BlueShells/1kBlues.png"
   elif int(dfAllTimeBlue.at[0,player]) > 499:
-    abPath = "Badges\\BlueShells\\500Blues.png"
+    abPath = "player_profile/Badges/BlueShells/500Blues.png"
   elif int(dfAllTimeBlue.at[0,player]) > 249:
-    abPath = "Badges\\BlueShells\\250Blues.png"
+    abPath = "player_profile/Badges/BlueShells/250Blues.png"
   elif int(dfAllTimeBlue.at[0,player]) > 99:
-    abPath = "Badges\\BlueShells\\100Blues.png"
+    abPath = "player_profile/Badges/BlueShells/100Blues.png"
   elif int(dfAllTimeBlue.at[0,player]) > 49:
-    abPath = "Badges\\BlueShells\\50Blues.png"
+    abPath = "player_profile/Badges/BlueShells/50Blues.png"
   elif int(dfAllTimeBlue.at[0,player]) > 24:
-    abPath = "Badges\\BlueShells\\25Blues.png"
+    abPath = "player_profile/Badges/BlueShells/25Blues.png"
   elif int(dfAllTimeBlue.at[0,player]) > 9:
-    abPath = "Badges\\BlueShells\\10Blues.png"
+    abPath = "player_profile/Badges/BlueShells/10Blues.png"
   elif int(dfAllTimeBlue.at[0,player]) > 0:
-    abPath = "Badges\\BlueShells\\1Blue.png"
+    abPath = "player_profile/Badges/BlueShells/1Blue.png"
 
 
 
   if swPath == "":
-    swPath = 'Badges\\noBadge.jpg'
+    swPath = 'player_profile/Badges/noBadge.jpg'
   if awPath == "":
-    awPath = 'Badges\\noBadge.jpg'
+    awPath = 'player_profile/Badges/noBadge.jpg'
   if sgpPath == "":
-    sgpPath = 'Badges\\noBadge.jpg'
+    sgpPath = 'player_profile/Badges/noBadge.jpg'
   if agpPath == "":
-    agpPath = 'Badges\\noBadge.jpg'
+    agpPath = 'player_profile/Badges/noBadge.jpg'
   if sbPath == "":
-    sbPath = 'Badges\\noBadge.jpg'
+    sbPath = 'player_profile/Badges/noBadge.jpg'
   if abPath == "":
-    abPath = 'Badges\\noBadge.jpg'
+    abPath = 'player_profile/Badges/noBadge.jpg'
 
 
-  #display the badges if applicable
+  #display the player_profile/Badges if applicable
   print("<div class=\"center\">")
   print('<h2> Seasonal Badges <span style="display:inline-block; width: 300px;"></span> All-Time Badges </h2>')
   print('</div>')
@@ -1261,7 +1261,7 @@ def trackStatsPage(dfSeasonScores,dfSeasonRaces,dfAllScores,dfAllRaces,TrackInde
 #this function converts the html file into a pdf so it can be viewed nicely
 def convertHTMLtoPDF(filename):
   print('Converting to PDF...')
-  path = 'wkhtmltopdf.exe'
+  path = '/usr/local/bin/wkhtmltopdf'
   config = pdfkit.configuration(wkhtmltopdf=path)
 
   # Returns the date for file name

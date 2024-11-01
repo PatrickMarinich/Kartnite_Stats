@@ -136,5 +136,5 @@ AWARD_LIST = {'Pat' : PAT_AWARDS,
 
 #file path extention for images
 #this is needed since wkhtmltopdf needs absolute paths for functionality :(
-PATH_EXT = "C:\\Users\\patri\\Github_Directories\\Kartnite\\Kartnite_Stats\\player_profile\\"
-
+#PATH_EXT = "C:\\Users\\patri\\Github_Directories\\Kartnite\\Kartnite_Stats\\player_profile\\"
+PATH_EXT = "/home/pat/KartniteStats/Kartnite_Stats/"

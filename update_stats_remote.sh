@@ -29,6 +29,15 @@ then
     echo `git push`;
 
     echo 'done with updates!'
+
+    #now send out the stats to the core players
+    echo `python3 player_profile/remote_send_player_profiles_on_update.py Pat`
+    echo `python3 player_profile/remote_send_player_profiles_on_update.py Demitri`
+    echo `python3 player_profile/remote_send_player_profiles_on_update.py Kevin`
+    echo `python3 player_profile/remote_send_player_profiles_on_update.py Chris`
+
+    echo 'all stats sent out!'
+
 else
     echo 'Not Running, No new data';
     echo 'Exiting...';
