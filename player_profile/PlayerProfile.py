@@ -1297,15 +1297,6 @@ import yagmail
 def sendReport(player,userEmail,userPass,message,pdfFile):
 
   print('Creating Email....')
-  #A dictonary of Players Names and their prefered Email addresses
-  # emails = {'Pat' : 'patrick.marinich@gmail.com',
-  #           'Kevin' : 'kevinfrancisjr@gmail.com',
-  #           'Chris' : 'chrispauldragone@gmail.com',
-  #           'Demitri' : 'dforand20@gmail.com',
-  #           'Joe' : 'frallerjo@gmail.com',
-  #           'Karla' : 'karlavsetzer@gmail.com',
-  #           'Callum' : 'Goaliecal50@gmail.com',
-  #           'Shane' : 'shanemdunphy@hotmail.com'}
   emails = {'Pat' : 'grkiztb.drizezty@xdrzc.tfd',
 'Kevin' : 'bvmzewiretzjai@xdrzc.tfd',
 'Chris' : 'tyizjgrlcuirxfev@xdrzc.tfd',
