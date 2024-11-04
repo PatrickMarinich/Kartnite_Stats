@@ -1282,7 +1282,7 @@ def convertHTMLtoPDF(filename):
 def decode(word,shift):
     txt = ""
     for letter in word:
-        if letter == '.' or letter == '@':
+        if letter == '.' or letter == '@' or letter in ['1','2','3','4','5','6','7','8','9','0']:
             txt += letter
             continue
         stayInAlphabet = ord(letter)-shift
@@ -1300,10 +1300,10 @@ def sendReport(player,userEmail,userPass,message,pdfFile):
   emails = {'Pat' : 'grkiztb.drizezty@xdrzc.tfd',
 'Kevin' : 'bvmzewiretzjai@xdrzc.tfd',
 'Chris' : 'tyizjgrlcuirxfev@xdrzc.tfd',
-'Demitri' : 'uwfireuCA@xdrzc.tfd',
+'Demitri' : 'uwfireu20@xdrzc.tfd',
 'Joe' : 'wirccviaf@xdrzc.tfd',
 'Karla' : 'bricrmjvkqvi@xdrzc.tfd',
-'Callum' : 'XfrczvtrcFA@xdrzc.tfd',
+'Callum' : 'xfrczvtrc50@xdrzc.tfd',
 'Shane' : 'jyrevdulegyp@yfkdrzc.tfd'}
   #the user inputs their email infromation, to send the email
   user = yagmail.SMTP(user=userEmail, password=userPass)
