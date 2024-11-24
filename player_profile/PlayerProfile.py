@@ -1259,6 +1259,7 @@ def trackStatsPage(dfSeasonScores,dfSeasonRaces,dfAllScores,dfAllRaces,TrackInde
 
 
 #this function converts the html file into a pdf so it can be viewed nicely
+from pypdf import PdfWriter
 def convertHTMLtoPDF(filename):
   print('Converting to PDF...')
   path = '/usr/local/bin/wkhtmltopdf'
@@ -1275,6 +1276,14 @@ def convertHTMLtoPDF(filename):
   output = 'Kartnite Stats - ' + today + '.pdf'
   pdfkit.from_file(currFile, output_path=output, configuration=config,options={"enable-local-file-access": "",'--keep-relative-links': ''},verbose=True)
   print('Conversion Complete...')
+
+  #add in extra pdf pages, the pre-made ones, such as the championship
+  merger = PdfWriter()
+  merger.append(output)
+  merger.append("player_profile/pre_made_pdf/Kartnite Champtionship season 6.pdf")
+
+  merger.write('Kartnite Stats - ' + today + '.pdf')
+  merger.close()
 
   return output
 
