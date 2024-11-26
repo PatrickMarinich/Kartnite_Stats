@@ -516,7 +516,7 @@ def coverPage(player,seasonalTotalPoints,seasonalAverage,seasonalTotalRaces,seas
   elif allTimetop1 > 9:
     awPath = "player_profile/Badges/RaceWins/Win10Races.png"
   elif allTimetop1 > 0:
-    awPath = "player_profile/Badges/RaceWins/Win1Race1.png"
+    awPath = "player_profile/Badges/RaceWins/Win1Race.png"
 
   #Gp Wins seasonal
   if int(dfSeasonWins.at[0,player]) > 999:
@@ -1283,7 +1283,7 @@ def convertHTMLtoPDF(filename):
   #add in extra pdf pages, the pre-made ones, such as the championship
   merger = PdfWriter()
   merger.append(output)
-  merger.append("player_profile/pre_made_pdf/Kartnite Champtionship season 6.pdf")
+  merger.append("player_profile/pre_made_pdf/Kartnite Championship season 6.pdf")
 
   merger.write('Kartnite Stats - ' + today + '.pdf')
   merger.close()
