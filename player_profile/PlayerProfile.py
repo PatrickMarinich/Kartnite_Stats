@@ -102,6 +102,13 @@ def createPlayerProfile(player,TrackIndex):
   dfAllTimeWins = dfAllTimeWins[dfAllTimeWins.columns.difference(["Tracks x Players"])]
   players = dfAllTimeWins.columns
  
+  #gets all of the all time leaderboards (10), this is needed all the way up here so that the players seed can be found
+  dfPowerPoints1,dfNormalizedKart1,dfKartRating1,dfMiscScore1,dfAllTimeWins1,dfAllTimeAverage1,dfAllTimeShockDodges1,dfAllTimeBlueShells1,dfAllTimeRaceCount1,dfAllTimeTotalPoints1 = getAllTimeLeaderboads(dfSeasonOwnedScore,dfSeasonScores,dfSeasonRaceCount,dfSeasonWins,dfSeasonShock,dfSeasonBlue,
+                                                                                                                                                                                                            dfAllTimeOwnedScore,dfAllTimeScores,dfAllTimeRaceCount,dfAllTimeWins,dfAllTimeShock,dfAllTimeBlue,dfAllTimeSeeding,TrackIndex,display = False)
+
+
+
+
   for racer in players:
   #combine the data frames into one df for use later in displaying the stats
     for track in TrackIndex:
@@ -185,10 +192,7 @@ def createPlayerProfile(player,TrackIndex):
   allTimetop4 = int(dfAllTimePlacement.at[3,player])
 
 
-  #gets all of the all time leaderboards (10), this is needed all the way up here so that the players seed can be found
-  dfPowerPoints1,dfNormalizedKart1,dfKartRating1,dfMiscScore1,dfAllTimeWins1,dfAllTimeAverage1,dfAllTimeShockDodges1,dfAllTimeBlueShells1,dfAllTimeRaceCount1,dfAllTimeTotalPoints1 = getAllTimeLeaderboads(dfSeasonOwnedScore,dfSeasonScores,dfSeasonRaceCount,dfSeasonWins,dfSeasonShock,dfSeasonBlue,
-                                                                                                                                                                                                            dfAllTimeOwnedScore,dfAllTimeScores,dfAllTimeRaceCount,dfAllTimeWins,dfAllTimeShock,dfAllTimeBlue,dfAllTimeSeeding,TrackIndex,display = False)
-
+  
   #generation of the seasonal and all time placement leaderboards for count 
   dfSeasonFirst,dfSeasonSecond,dfSeasonThird,dfSeasonFourth = getPlacementLeaderboards(dfSeasonPlacement,display = False)
   dfAllTimeFirst,dfAllTimeSecond,dfAllTimeThird,dfAllTimeFourth = getPlacementLeaderboards(dfAllTimePlacement,display = False)
@@ -1156,7 +1160,6 @@ def InfoPage():
   print('<li>Each Shock Dodge: 5</li>')
   print('<li>Each Blue Shell: 0.5</li>')
   print('<li>Each Blue Dodge: 10</li>')
-  print('<li>Average Score: 1 Point Per Average</li>')
   print('</ul>')
   print('<li>There is also Normalized Kart Score for the All Time Stats</li>')
   print('<li>This is calculated by having your seasonal kart score converted into a percentage of the total kart score earned this current season</li>')

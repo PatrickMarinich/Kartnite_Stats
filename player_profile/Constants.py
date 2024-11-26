@@ -6,6 +6,50 @@ VERSION = 'v4.0'
 CONTRIBUTORS = 'Patrick Marinich'
 #------------------------------------
 
+#------------TRACK LIST-------------
+#seeds are needed to preform the reset
+TrackIndex = {"Luigi Circuit":0,
+  "Moo Moo Meadows":1,
+  "Mushroom Gorge":2,
+  "Toad's Factory":3,
+  "Mario Circuit":4,
+  "Coconut Mall":5,
+  "DK Summit":6,
+  "Wario's Gold Mine":7,
+  "Daisy Circuit":8,
+  "Koopa Cape":9,
+  "Maple Treeway":10,
+  "Grumble Volcano":11,
+  "Dry Dry Ruins":12,
+  "Moonview Highway":13,
+  "Bowser's Castle":14,
+  "Rainbow Road":15,
+  "GCN Peach Beach":16,
+  "DS Yoshi Falls":17,
+  "SNES Ghost Valley 2":18,
+  "N64 Mario Raceway":19,
+  "N64 Sherbet Land":20,
+  "GBA Shy Guy Beach":21,
+  "DS Delfino Square":22,
+  "GCN Waluigi Stadium":23,
+  "DS Desert Hills":24,
+  "GBA Bowser's Castle 3":25,
+  "N64 DK's Jungle Parkway":26,
+  "GCN Mario Circuit":27,
+  "SNES Mario Circuit 3":28,
+  "DS Peach Gardens":29,
+  "GCN DK Mountain":30,
+  "N64 Bowser's Castle":31,
+  "Lava Lake":32,
+  "Stargaze Summit":33,
+  "Envenom Snowstorm":34,
+  "Dragon Burial Grounds":35,
+  "Bowser Jr.'s Crafty Castle":36,
+  "N64 Royal Raceway":37,
+  "DS Airstrip Fortress":38,
+  "DK Ruins":39
+  }
+
 
 #-----------KART SCORE---------
 #Point Values, constants which can be adjusted for ease of balancing
@@ -13,7 +57,7 @@ POINTS_SCORED_POINTS = 1        #points for each GP point scored
 GP_WINS_POINTS = 100               #points per gp win
 OWNER_POINTS = 0.5              #points per player on owned track
 DODGE_POINTS = 5                   #points per dodge
-AVERAGE_POINTS = 1                #points for track average
+AVERAGE_POINTS = 0                #points for track average, (kart score should be a accumlative stat)
 BLUE_POINTS = 0.5                 #points for getting hit with blue shell
 BLUE_D_POINTS = 10                 #points for dodging a blue shell
 #--------------------------------------
@@ -55,11 +99,11 @@ PLAYER_RACES_DICT = {"Pat" : PAT_RACES, "Chris": CHRIS_RACES,"Demitri": DEMITRI_
 #SEASON GP WINS -> MANUALLY STORED BY 
 #UPDATE THESE EVERY SEASON 
 #UPDATE IF SOMEBODY NEW WINS A GP
-PLAYER_GP_WINS_PAST_SEASONS = {"Pat" : [11,21,17,10,6],
-                           "Chirs" : [4,8,5,16,5],
-                           "Demitri" : [6,16,3,24,3],
-                           "Kevin" : [10,27,17,37,14], 
-                            "Shane": [0,0,0,0,1]}
+PLAYER_GP_WINS_PAST_SEASONS = {"Pat" : [11,21,17,10,6,33],
+                           "Chirs" : [4,8,5,16,5,11],
+                           "Demitri" : [6,16,3,24,3,22],
+                           "Kevin" : [10,27,17,37,14,46], 
+                            "Shane": [0,0,0,0,1,0]}
 
 #------------------------
 

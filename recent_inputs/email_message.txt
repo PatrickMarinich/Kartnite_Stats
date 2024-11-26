@@ -1,5 +1,7 @@
-kevin got 2 Ws with the chuck today pretty impressive tbh, however demitri did have one of the unluckiest days of all time. kevin also made the most bone-head play of all time on delfino it was funny af. calling bank shots is now BANNED.
+New season starts TODAY. Mike popped out, he said he is coming for the throne. It would be hype if he keeps playing with us I had a good time.
 
-good plays everybody
+Pat is currently on a 5 GP win streak, this is so epic.
 
--pat
+side note: I found a MASSIVE nasty bug in my code which was making the all-time data super inflated, so unfortunatly all of our all-time stats are lower than we thought. The issue was the seasonal stats were being double counted.... super silly. But this has the corrected version and everything should be up to date!
+
+- Pat (I am writing this at 1 am the stupid season reset code was broken as hell, it took a good hour+ to fix it grrr rock)
