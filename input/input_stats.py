@@ -91,12 +91,15 @@ def inputRace(currentData,RaceCount,dfKartScore, dfPlacement,dfKVR, Track, Racer
       for i in range(len(newScores)):
         newScores[i] = int(newScores[i])
       #Adds new Score to the current score for each racer, uses the track index to find the track
+
+      #calculate the track owner ahead of time, fixes edge case
+      track_owners = getTrackOwner(currentData,RaceCount, Track, TrackIndex)
       for i in range(len(racersArray)):
 
         #only gives the points if there is a singular MVP
-        if(len(getTrackOwner(currentData,RaceCount, Track, TrackIndex).split()) == 1):
+        if(len(track_owners.split()) == 1):
         #gives the track owner a tally for each person that played the track
-          dfKartScore.at[0, getTrackOwner(currentData,RaceCount, Track, TrackIndex)] = int(dfKartScore.at[0, getTrackOwner(currentData,RaceCount, Track, TrackIndex)]) + 1
+          dfKartScore.at[0, track_owners] = int(dfKartScore.at[0, track_owners]) + 1
 
 
         #if the score is then 15, 12, 10, or 8, then increment the placement stats
@@ -300,8 +303,8 @@ def GetTrackData(dfScores,dfRaceCount,Track,TrackIndex):
 
 def getTrackOwner(dfScores,dfRaceCount, Track, TrackIndex):
 
-  AVERAGE_PERCENT = .96
-  TOTAL_PERCENT = .04
+  AVERAGE_PERCENT = .98
+  TOTAL_PERCENT = .02
 
   #eliminates the first row, to allow for players only
   dfNoTracks = dfScores[dfScores.columns.difference(["Tracks x Players"])]
@@ -318,7 +321,7 @@ def getTrackOwner(dfScores,dfRaceCount, Track, TrackIndex):
   if TrackTotalPoints != 0:
     for player in set(dfNoTracks.columns.values.tolist()):
       #way to calculate track owner, total points + average
-      playerScore = ((int(dfScores.at[TrackIndex[Track],player])/TrackTotalPoints)*100) *TOTAL_PERCENT + getPlayerAverage(dfScores,dfRaceCount,player,Track,TrackIndex) * AVERAGE_PERCENT
+      playerScore = ((int(dfScores.at[TrackIndex[Track],player])/TrackTotalPoints)*100) * TOTAL_PERCENT + getPlayerAverage(dfScores,dfRaceCount,player,Track,TrackIndex) * AVERAGE_PERCENT
 
       if playerScore > currentMaxScore:
         currentPlayer = player

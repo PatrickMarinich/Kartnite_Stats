@@ -1151,7 +1151,7 @@ def InfoPage():
   print('<b> Kart Score </b>')
   print('<ul>')
   print('<li>Kart Score is a seasonal stat which takes into account six different catigories</li>')
-  print('<li>The catigories are: GP Wins, Track MVP Points, Race Points, Track Average Points, Shock Dodge Points, and Blue Shell Points</li>')
+  print('<li>The catigories are: GP Wins, Track MVP Points, Race Points, Shock Dodge Points, and Blue Shell Points</li>')
   print('<li>These are the points given out as it currently stands: </li>')
   print('<ul>')
   print('<li>Each GP Point Scored: 1</li>')

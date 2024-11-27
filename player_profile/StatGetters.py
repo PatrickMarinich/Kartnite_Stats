@@ -1,5 +1,6 @@
 import pandas as pd
 from Constants import *
+from copy import deepcopy
 #This file will contain all of the methods that get different stats
 #this will include all track stat getters, player stat getters, and seasonal and all time stat getters
 #All of these stats are calculated here, and they are called within the I/O file or the Player Profile if nessassary
@@ -486,23 +487,31 @@ def getAllTimeLeaderboads(dfSeasonOwnedScore,dfSeasonScores,dfSeasonRaceCount,df
     if display == True:
       print('Doing Calculations...')
     
+    #make deep copies
+    dfAllTimeScores_new = deepcopy(dfAllTimeScores)
+    dfAllTimeRaceCount_new = deepcopy(dfAllTimeRaceCount)
+    dfAllTimeOwnedScore_new = deepcopy(dfAllTimeOwnedScore)
+    dfAllTimeWins_new = deepcopy(dfAllTimeWins)
+    dfAllTimeShock_new = deepcopy(dfAllTimeShock)
+    dfAllTimeBlue_new = deepcopy(dfAllTimeBlue)
+
     #gets a player list
     players = dfAllTimeWins[dfAllTimeWins.columns.difference(["Tracks x Players"])].columns
     #combines all of the data frames 
     for player in players:
     #combine the data frames into one df for use later in displaying the stats
       for track in TrackIndex:
-        dfAllTimeScores.loc[TrackIndex[track], player] = int(dfAllTimeScores.at[TrackIndex[track], player]) + int(dfSeasonScores.at[TrackIndex[track], player])
-        dfAllTimeRaceCount.loc[TrackIndex[track], player] = int(dfAllTimeRaceCount.at[TrackIndex[track], player]) + int(dfSeasonRaceCount.at[TrackIndex[track], player])
+        dfAllTimeScores_new.loc[TrackIndex[track], player] = int(dfAllTimeScores.at[TrackIndex[track], player]) + int(dfSeasonScores.at[TrackIndex[track], player])
+        dfAllTimeRaceCount_new.loc[TrackIndex[track], player] = int(dfAllTimeRaceCount.at[TrackIndex[track], player]) + int(dfSeasonRaceCount.at[TrackIndex[track], player])
       
       #others not related to tracks
-      dfAllTimeOwnedScore.loc[0,player] = float(dfAllTimeOwnedScore.loc[0,player]) + float(dfSeasonOwnedScore.loc[0,player])
-      dfAllTimeWins.loc[0,player] = int(dfAllTimeWins.loc[0,player]) + int(dfSeasonWins.loc[0,player])
-      dfAllTimeShock.loc[0,player] = int(dfAllTimeShock.loc[0,player]) + int(dfSeasonShock.loc[0,player])
+      dfAllTimeOwnedScore_new.loc[0,player] = float(dfAllTimeOwnedScore.loc[0,player]) + float(dfSeasonOwnedScore.loc[0,player])
+      dfAllTimeWins_new.loc[0,player] = int(dfAllTimeWins.loc[0,player]) + int(dfSeasonWins.loc[0,player])
+      dfAllTimeShock_new.loc[0,player] = int(dfAllTimeShock.loc[0,player]) + int(dfSeasonShock.loc[0,player])
     
       #blueshell is two columns
-      dfAllTimeBlue.loc[0,player] = int(dfAllTimeBlue.loc[0,player]) + int(dfSeasonBlue.loc[0,player])
-      dfAllTimeBlue.loc[1,player] = int(dfAllTimeBlue.loc[1,player]) + int(dfSeasonBlue.loc[1,player])
+      dfAllTimeBlue_new.loc[0,player] = int(dfAllTimeBlue.loc[0,player]) + int(dfSeasonBlue.loc[0,player])
+      dfAllTimeBlue_new.loc[1,player] = int(dfAllTimeBlue.loc[1,player]) + int(dfSeasonBlue.loc[1,player])
 
 
     #empty leaderboards for use below
@@ -557,9 +566,9 @@ def getAllTimeLeaderboads(dfSeasonOwnedScore,dfSeasonScores,dfSeasonRaceCount,df
       totalRaces = 0
       tracksOwned = 0
       for track in TrackIndex:
-        totalPoints = totalPoints + int(dfAllTimeScores.loc[TrackIndex[track],player])
-        totalRaces = totalRaces + int(dfAllTimeRaceCount.loc[TrackIndex[track],player])
-        if (getAllTimeTrackOwner(dfAllTimeScores,dfAllTimeRaceCount,track,TrackIndex) == player):
+        totalPoints = totalPoints + int(dfAllTimeScores_new.loc[TrackIndex[track],player])
+        totalRaces = totalRaces + int(dfAllTimeRaceCount_new.loc[TrackIndex[track],player])
+        if (getAllTimeTrackOwner(dfAllTimeScores_new,dfAllTimeRaceCount_new,track,TrackIndex) == player):
           tracksOwned = tracksOwned + 1
 
         #fixes divide by 0 error
@@ -569,10 +578,10 @@ def getAllTimeLeaderboads(dfSeasonOwnedScore,dfSeasonScores,dfSeasonRaceCount,df
           miscScore = 0
         else:
           average = totalPoints/totalRaces
-          FirstPlaceRate = (int(dfAllTimeWins.at[0,player]) / (totalRaces/8))*100
+          FirstPlaceRate = (int(dfAllTimeWins_new.at[0,player]) / (totalRaces/8))*100
           avgGPScore = (totalPoints) / (totalRaces/8)
           FirstPlaceEquivilent = totalPoints/15
-          miscScore = (int(dfAllTimeBlue.at[1,player])*BLUE_DODGE + int(dfAllTimeBlue.at[0,player])*BLUE_HIT + int(dfAllTimeShock.at[0,player])*SHOCK) / (totalRaces/8)
+          miscScore = (int(dfAllTimeBlue_new.at[1,player])*BLUE_DODGE + int(dfAllTimeBlue_new.at[0,player])*BLUE_HIT + int(dfAllTimeShock_new.at[0,player])*SHOCK) / (totalRaces/8)
       
 
       #----LEADERBOARDS ---
