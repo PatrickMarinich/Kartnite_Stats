@@ -11,7 +11,7 @@ import sys
 from IPython import display
 import pdfkit
 from datetime import date
-
+from copy import deepcopy
 #this file gets all of the leaderboards and generates a html player profile for any given player
 
 #it will get all of the stats, generate html code, convert it to a pdf, and the email it out to the given player
@@ -191,14 +191,28 @@ def createPlayerProfile(player,TrackIndex):
   allTimetop3 = int(dfAllTimePlacement.at[2,player])
   allTimetop4 = int(dfAllTimePlacement.at[3,player])
 
-
   
+  
+
   #generation of the seasonal and all time placement leaderboards for count 
   dfSeasonFirst,dfSeasonSecond,dfSeasonThird,dfSeasonFourth = getPlacementLeaderboards(dfSeasonPlacement,display = False)
   dfAllTimeFirst,dfAllTimeSecond,dfAllTimeThird,dfAllTimeFourth = getPlacementLeaderboards(dfAllTimePlacement,display = False)
 
-  ##do percentages here
+  ##do percentages here - fix later...
+  #dfSeasonPlacementPercent = deepcopy(dfSeasonPlacement.astype('float'))
+  #dfAllTimePlacementPercent = deepcopy(dfAllTimePlacement.astype('float'))
+  #print(dfAllTimePlacementPercent)
+  #for racer in players:
+    #caculate each players total races played
+  #  for track in TrackIndex:
+  #    seasonalTotalRaces = seasonalTotalRaces + int(dfSeasonRaceCount.loc[TrackIndex[track],racer])
+  #    allTimeTotalRaces =  allTimeTotalRaces + int(dfAllTimeRaceCount.loc[TrackIndex[track],racer])
 
+  #  dfSeasonPlacementPercent.loc[:,racer] = dfSeasonPlacementPercent.loc[:,racer].div(seasonalTotalRaces)
+  #  dfAllTimePlacementPercent.loc[:,racer] = dfAllTimePlacementPercent.loc[:,racer].div(allTimeTotalRaces)
+
+  #print(dfSeasonPlacementPercent)
+  #print(dfAllTimePlacementPercent)
 
   #all of the stats are generated, so create the files
   #---------GENERATING THE HTML FILE---------
@@ -330,10 +344,10 @@ def coverPage(player,seasonalTotalPoints,seasonalAverage,seasonalTotalRaces,seas
   else:
      print('<p>Average Placement Points: ', seasonalAverage, '<i class="arrow down"></i>','</p>')
 
-  print('<p>First Places: ', seasonaltop1,'</p>')
-  print('<p>Top 2 Finishes: ', seasonaltop2,'</p>')
-  print('<p>Top 3 Finishes: ', seasonaltop3,'</p>')
-  print('<p>Top 4 Finishes: ', seasonaltop4,'</p>')
+  print('<p>First Places: ', seasonaltop1, '(' + f"{seasonaltop1/seasonalTotalRaces:.3%}" + ')', '</p>')
+  print('<p>Top 2 Finishes: ', seasonaltop2,'(' + f"{seasonaltop2/seasonalTotalRaces:.3%}" +')','</p>')
+  print('<p>Top 3 Finishes: ', seasonaltop3,'(' + f"{seasonaltop3/seasonalTotalRaces:.3%}" +')','</p>')
+  print('<p>Top 4 Finishes: ', seasonaltop4,'('+ f"{seasonaltop4/seasonalTotalRaces:.2%}" +')','</p>')
   print('</div>')
 
   #stat box center for GP
@@ -429,10 +443,10 @@ def coverPage(player,seasonalTotalPoints,seasonalAverage,seasonalTotalRaces,seas
   
   print('<p>Total Race Count: ',  allTimeTotalRaces, ' (' + str(allTimeTotalRaces-sub) + ')','</p>')
   print('<p>Average Placement Points: ',  allTimeAverage,'</p>')
-  print('<p>First Places: ',  allTimetop1,'</p>')
-  print('<p>Top 2 Finishes: ',  allTimetop2,'</p>')
-  print('<p>Top 3 Finishes: ',  allTimetop3,'</p>')
-  print('<p>Top 4 Finishes: ',  allTimetop4,'</p>')
+  print('<p>First Places: ',  allTimetop1,'(' + f"{allTimetop1/(allTimeTotalRaces-sub):.3%}" + ')','</p>')
+  print('<p>Top 2 Finishes: ',  allTimetop2,'(' + f"{allTimetop2/(allTimeTotalRaces-sub):.3%}" + ')','</p>')
+  print('<p>Top 3 Finishes: ',  allTimetop3,'(' + f"{allTimetop3/(allTimeTotalRaces-sub):.3%}" + ')','</p>')
+  print('<p>Top 4 Finishes: ',  allTimetop4,'(' + f"{allTimetop4/(allTimeTotalRaces-sub):.3%}" + ')','</p>')
 
   print('</div>')
 
