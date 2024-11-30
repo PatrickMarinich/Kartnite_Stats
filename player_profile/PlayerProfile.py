@@ -344,10 +344,16 @@ def coverPage(player,seasonalTotalPoints,seasonalAverage,seasonalTotalRaces,seas
   else:
      print('<p>Average Placement Points: ', seasonalAverage, '<i class="arrow down"></i>','</p>')
 
-  print('<p>First Places: ', seasonaltop1, '(' + f"{seasonaltop1/seasonalTotalRaces:.3%}" + ')', '</p>')
-  print('<p>Top 2 Finishes: ', seasonaltop2,'(' + f"{seasonaltop2/seasonalTotalRaces:.3%}" +')','</p>')
-  print('<p>Top 3 Finishes: ', seasonaltop3,'(' + f"{seasonaltop3/seasonalTotalRaces:.3%}" +')','</p>')
-  print('<p>Top 4 Finishes: ', seasonaltop4,'('+ f"{seasonaltop4/seasonalTotalRaces:.2%}" +')','</p>')
+  if seasonalTotalRaces != 0:
+    print('<p>First Places: ', seasonaltop1, '(' + f"{seasonaltop1/seasonalTotalRaces:.3%}" + ')', '</p>')
+    print('<p>Top 2 Finishes: ', seasonaltop2,'(' + f"{seasonaltop2/seasonalTotalRaces:.3%}" +')','</p>')
+    print('<p>Top 3 Finishes: ', seasonaltop3,'(' + f"{seasonaltop3/seasonalTotalRaces:.3%}" +')','</p>')
+    print('<p>Top 4 Finishes: ', seasonaltop4,'('+ f"{seasonaltop4/seasonalTotalRaces:.2%}" +')','</p>')
+  else:
+    print('<p>First Places: ', seasonaltop1, '(' + f"{0:.3%}" + ')', '</p>')
+    print('<p>Top 2 Finishes: ', seasonaltop2,'(' + f"{0:.3%}" +')','</p>')
+    print('<p>Top 3 Finishes: ', seasonaltop3,'(' + f"{0:.3%}" +')','</p>')
+    print('<p>Top 4 Finishes: ', seasonaltop4,'('+ f"{0::.2%}" +')','</p>')
   print('</div>')
 
   #stat box center for GP
@@ -443,10 +449,16 @@ def coverPage(player,seasonalTotalPoints,seasonalAverage,seasonalTotalRaces,seas
   
   print('<p>Total Race Count: ',  allTimeTotalRaces, ' (' + str(allTimeTotalRaces-sub) + ')','</p>')
   print('<p>Average Placement Points: ',  allTimeAverage,'</p>')
-  print('<p>First Places: ',  allTimetop1,'(' + f"{allTimetop1/(allTimeTotalRaces-sub):.3%}" + ')','</p>')
-  print('<p>Top 2 Finishes: ',  allTimetop2,'(' + f"{allTimetop2/(allTimeTotalRaces-sub):.3%}" + ')','</p>')
-  print('<p>Top 3 Finishes: ',  allTimetop3,'(' + f"{allTimetop3/(allTimeTotalRaces-sub):.3%}" + ')','</p>')
-  print('<p>Top 4 Finishes: ',  allTimetop4,'(' + f"{allTimetop4/(allTimeTotalRaces-sub):.3%}" + ')','</p>')
+  if allTimeTotalRaces-sub != 0:
+    print('<p>First Places: ',  allTimetop1,'(' + f"{allTimetop1/(allTimeTotalRaces-sub):.3%}" + ')','</p>')
+    print('<p>Top 2 Finishes: ',  allTimetop2,'(' + f"{allTimetop2/(allTimeTotalRaces-sub):.3%}" + ')','</p>')
+    print('<p>Top 3 Finishes: ',  allTimetop3,'(' + f"{allTimetop3/(allTimeTotalRaces-sub):.3%}" + ')','</p>')
+    print('<p>Top 4 Finishes: ',  allTimetop4,'(' + f"{allTimetop4/(allTimeTotalRaces-sub):.3%}" + ')','</p>')
+  else:
+    print('<p>First Places: ',  allTimetop1,'(' + f"{0:.3%}" + ')','</p>')
+    print('<p>Top 2 Finishes: ',  allTimetop2,'(' + f"{0:.3%}" + ')','</p>')
+    print('<p>Top 3 Finishes: ',  allTimetop3,'(' + f"{0:.3%}" + ')','</p>')
+    print('<p>Top 4 Finishes: ',  allTimetop4,'(' + f"{0:.3%}" + ')','</p>')
 
   print('</div>')
 
