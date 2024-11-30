@@ -91,13 +91,14 @@ def inputRace(currentData,RaceCount,dfKartScore, dfPlacement,dfKVR, Track, Racer
       for i in range(len(newScores)):
         newScores[i] = int(newScores[i])
       #Adds new Score to the current score for each racer, uses the track index to find the track
+
+      #calculate the track owner ahead of time, fixes edge case
+      track_owners = getTrackOwner(currentData,RaceCount, Track, TrackIndex)
       for i in range(len(racersArray)):
-
         #only gives the points if there is a singular MVP
-        if(len(getTrackOwner(currentData,RaceCount, Track, TrackIndex).split()) == 1):
+        if(len(track_owners.split()) == 1):
         #gives the track owner a tally for each person that played the track
-          dfKartScore.at[0, getTrackOwner(currentData,RaceCount, Track, TrackIndex)] = int(dfKartScore.at[0, getTrackOwner(currentData,RaceCount, Track, TrackIndex)]) + 1
-
+          dfKartScore.at[0, track_owners] = int(dfKartScore.at[0, track_owners]) + 1
 
         #if the score is then 15, 12, 10, or 8, then increment the placement stats
         FIRSTPLACE_ROW = 0
