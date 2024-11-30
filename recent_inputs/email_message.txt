@@ -1,7 +1,6 @@
-New season starts TODAY. Mike popped out, he said he is coming for the throne. It would be hype if he keeps playing with us I had a good time.
+happy friendsgiving everybody!
 
-Pat is currently on a 5 GP win streak, this is so epic.
+good plays by all, a solid 4 GPs in the books. next time I get on my computer to code ill make sure to give chris and kevin their flowers. kevin had a 114 score and chris had a 12th place GP win. pretty sweet
 
-side note: I found a MASSIVE nasty bug in my code which was making the all-time data super inflated, so unfortunatly all of our all-time stats are lower than we thought. The issue was the seasonal stats were being double counted.... super silly. But this has the corrected version and everything should be up to date!
-
-- Pat (I am writing this at 1 am the stupid season reset code was broken as hell, it took a good hour+ to fix it grrr rock)
+thanks for coming cant wait to play again soon
+-pat
