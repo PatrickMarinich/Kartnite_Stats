@@ -190,8 +190,11 @@ def parse_input(file):
         if "" in arr:
             arr.remove("")
         
-        #print(arr)
+        #if empty arr, then skip.
+        if arr == [] or arr == None:
+            continue
 
+        #print(arr)
         #check if arr can grab out the data.
         # No matches we will continue and play it off as info
         # if there is a partial match then we will throw errors
