@@ -593,15 +593,15 @@ def getAllTimeLeaderboads(dfSeasonOwnedScore,dfSeasonScores,dfSeasonRaceCount,df
       
       #swapped all the .at to .loc
       dfNormalizedKartLeaderboard.loc[currRow] = [player, estimatedKartScore]
-      rating = getKartRating(dfAllTimeScores,dfAllTimeRaceCount,dfAllTimeWins,player,TrackIndex)
+      rating = getKartRating(dfAllTimeScores_new,dfAllTimeRaceCount_new,dfAllTimeWins_new,player,TrackIndex)
       dfKartRatingLeaderboard.loc[currRow] = [player, rating]
       dfMiscRatingLeaderboard.loc[currRow] = [player, miscScore]
 
       # --- Other Leaderboards --
       dfAllTimeAverageLeaderboard.loc[currRow] = [player, average]
-      dfAllTimeWinsLeaderboard.loc[currRow] = [player, dfAllTimeWins.at[0,player]]
-      dfShockDodgesLeaderboard.loc[currRow] = [player, dfAllTimeShock.at[0,player]]
-      dfBlueShellsLeaderboard.loc[currRow] = [player, dfAllTimeBlue.at[1,player], dfAllTimeBlue.at[0,player]]
+      dfAllTimeWinsLeaderboard.loc[currRow] = [player, dfAllTimeWins_new.at[0,player]]
+      dfShockDodgesLeaderboard.loc[currRow] = [player, dfAllTimeShock_new.at[0,player]]
+      dfBlueShellsLeaderboard.loc[currRow] = [player, dfAllTimeBlue_new.at[1,player], dfAllTimeBlue_new.at[0,player]]
       dfRaceCountLeaderboard.loc[currRow] = [player, totalRaces]
       dfTotalPointsLeaderboard.loc[currRow] = [player,totalPoints]
       dfTracksOwnedLeaderboard.loc[currRow] = [player,tracksOwned]
