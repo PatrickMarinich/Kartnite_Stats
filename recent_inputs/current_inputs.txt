@@ -13,7 +13,7 @@ WGM. K D P M9. Pat blue
 TF. D K P M. 
 KC. P K D M. 
 BC3. D K P M. Kevin blue. Mike blue
-MT. P K D M. Kevin blue mile shock
+MT. P K D M. Kevin blue mike shock
 CM. D K P M. Kevin blue Demitri blue
 MR. P K D M. Kevin blue
 Demitri 101 Win
