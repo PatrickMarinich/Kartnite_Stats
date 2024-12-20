@@ -57,7 +57,7 @@ POINTS_SCORED_POINTS = 1        #points for each GP point scored
 GP_WINS_POINTS = 100               #points per gp win
 OWNER_POINTS = 0.5              #points per player on owned track
 DODGE_POINTS = 5                   #points per dodge
-BLUE_POINTS = 0.5                 #points for getting hit with blue shell
+BLUE_POINTS = 1                 #points for getting hit with blue shell
 BLUE_D_POINTS = 10                 #points for dodging a blue shell
 #---------removed from this calculation-------
 AVERAGE_POINTS = 0                #points for track average, (kart score should be a accumlative stat)
