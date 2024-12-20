@@ -1184,7 +1184,7 @@ def InfoPage():
   print('<li>Each GP Win: 100</li>')
   print('<li>Each Time A Track you are MVP of is Played: 0.5 Points Per Player </li>')
   print('<li>Each Shock Dodge: 5</li>')
-  print('<li>Each Blue Shell: 0.5</li>')
+  print('<li>Each Blue Shell: 1</li>')
   print('<li>Each Blue Dodge: 10</li>')
   print('</ul>')
   print('<li>There is also Normalized Kart Score for the All Time Stats</li>')
