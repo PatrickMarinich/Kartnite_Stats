@@ -6,6 +6,7 @@ import time
 import pdfkit
 import yagmail
 #import wkhtmltopdf
+import os
 
 import sys
 from IPython import display
@@ -244,7 +245,7 @@ def createPlayerProfile(player,TrackIndex):
   GPStatsPage(player,dfSeasonWins,dfAllTimeWins)
 
   #shows all of the current and all time track mvps
-  trackMVPPage(dfSeasonScores,dfSeasonRaceCount,TrackIndex,dfAllTimeScores,dfAllTimeRaceCount) 
+  trackMVPPage(dfSeasonScores,dfSeasonRaceCount,TrackIndex,dfAllTimeScores,dfAllTimeRaceCount,player) 
 
   trackStatsPage(dfSeasonScores,dfSeasonRaceCount,dfAllTimeScores,dfAllTimeRaceCount,TrackIndex)
 
@@ -287,9 +288,10 @@ def htmlHeaders():
   print('<style> div.statbox3 {text-align: left; display: inline-block; align-items:left; width: 30%; height: 375px; border: 3px solid black; padding: 7px; margin: auto; vertical-align: top;} </style>')
   print('<style> div.horizontalgap {float: left; overflow: hidden; height: 1px; width: 0px;} </style>')
   print('<style> div.vbar { display: flex; align-items: center; width: 3px; height: 200px; background-color: #1faadb; padding: 4px;} </style>')
-
+  print('<style> div.boxGP {text-align: center; display: inline-block; align-items:center; width: 22%;  height: 300px; border: 2px solid black; padding: 5px; margin: 2px; vertical-align: top; horizontal-align: center} </style>')
   print('<style> div.statbox4 {text-align: left; display: inline-block; align-items:left; width: 13%; height: 500px; border: 3px solid black; padding: 7px; margin: auto; vertical-align: top;} </style>')
-
+  print('<style> div.boxGP2 {text-align: center; display: inline-block; align-items:center; width: 47%;  height: ; border: 0px solid black; padding: 1px; margin: 0px; vertical-align: top; horizontal-align: center} </style>')
+  print('<style> div.innerbox {text-align: center; display: inline-block; align-items:center; width: 48%;  height: 90%; border: 1px solid black; padding: 0px; margin: 0px; vertical-align: top; horizontal-align: center} </style>')
 
 def coverPage(player,seasonalTotalPoints,seasonalAverage,seasonalTotalRaces,seasonaltop1,allTimeAverage,
   dfSeasonWins,seasonalFirstPlaceRate,allTimeFirstPlaceRate,seasonalAvgGPScore,allTimeAvgGPScore,seasonalTracksOwned,allTimeTracksOwned,dfSeasonShock,
@@ -670,9 +672,350 @@ def coverPage(player,seasonalTotalPoints,seasonalAverage,seasonalTotalRaces,seas
   
     
     
+#the new track MVPpage as of dec 2024. It is actually 3 pages now! one for all time, one for seasonal and one for personal
+def trackMVPPage(dfSeasonScores,dfSeasonRaceCount,TrackIndex,dfAllTimeScores,dfAllTimeRaceCount,player):    
+    print('<p style= \"page-break-after: always;\"> &nbsp; </p>')
+    print('<p style= \"page-break-before: always;\"> &nbsp; </p>')
     
+    print('<div class="center">')
+    print('<h1> Track MVPs - Seasonal </h1>')
+    print('</div>')
+    print('<div class="bar"></div>')
+    print('<div class="center">')
+    print('<h7> Below are all of the current seasonal MVPs, the best player on each track.</h7><br>')
+    print('<h7> Calculated by a weighted sum of their average and total points scored.</h7><br>')
+    print('<h7> In the event of a tie both players are shown.</h7><br>')
+    print('</div>')
+
+    #get the current and all time owners
+    dfSeasonOwners = getAllTrackOwners(dfSeasonScores,dfSeasonRaceCount,TrackIndex, display= False)
+    dfAllTimeOwners = getAllTimeAllTrackOwners(dfAllTimeScores,dfAllTimeRaceCount,TrackIndex, display= False)
+    dfSeasonOwners = dfSeasonOwners.reset_index(drop=True)
+    dfAllTimeOwners = dfAllTimeOwners.reset_index(drop=True)
     
+    #personal rankings
+    track_placement = {}
+    for track in TrackIndex.keys():
+        seasonRaces,allRaces,sMVP,allMVP = getTrackStats(dfSeasonScores,dfSeasonRaceCount,dfAllTimeScores,dfAllTimeRaceCount,track,TrackIndex)
+
+        #SEASONAL update row numbers
+        sMVP = sMVP.reset_index(drop=True)
+        p_index_s = sMVP.index[sMVP['Player']==player].tolist()
+       
+        #ALL TIME
+        allMVP = allMVP.reset_index(drop=True)
+        p_index_a = allMVP.index[allMVP['Player']==player].tolist()
+        
+        #save some space
+        if track == "N64 DK's Jungle Parkway":
+            track = "DK's Jungle Parkway"
+        #put into a dictionary
+        track_placement[track] = [p_index_s[0],p_index_a[0]]
+
+
+    #season
+    #for all images.
+    cup_imgs = os.listdir("/home/pat/KartniteStats/Kartnite_Stats/images/cup_emblems")
+    cup_imgs = sorted(cup_imgs)
+
+    counter = 0
+    trueIterCount = 0
+    gp_count = 0
+    player_count = {}
+    crowns = {}
+    currCrown = ["",0]
+    print('<div class="center">')
+    for index, row in dfSeasonOwners.iterrows():
+        #print('Season',row['Track'], row['Current MVP'])
+        
+
+        if counter%4 == 0:
+            print('<div class="boxGP">')
+            path = cup_imgs[gp_count]
+            gp_count += 1
+            print('<img src=', PATH_EXT+'images/cup_emblems/'+path, 'alt=\"cups\" width=\"100\" height=\"100\">' )
+
+        if str(row['Current MVP']) != "":
+            print('<b><p style="color:#DAA520;bold;">'+ str(row['Track']) + ' - ' + str(row['Current MVP'])  +'</b></p>')
+            
+            #if we have an MVP, and only one, increment the counter
+            if str(row['Current MVP']).__contains__(',') == False:
+                if str(row['Current MVP']) not in player_count:
+                    player_count[str(row['Current MVP'])] = 1
+                else:
+                    player_count[str(row['Current MVP'])]+=1
+            
+                #need 4 for a crown
+                if currCrown[0] == str(row['Current MVP']):
+                    currCrown[1] += 1
+                else:
+                    currCrown[1] = 0
+                    currCrown[0] = str(row['Current MVP'])
+
+        else:
+            print('<p style="color:#000000;bold;">'+ str(row['Track']) + ' - ' + "None" +'</p>')
+        
+        if counter%4 == 3:
+            print('</div>')
+            counter = 0
+            #check for crown
+            if currCrown[1] == 4:
+                if currCrown[0] not in crowns:
+                    crowns[currCrown[0]] = [gp_count]
+                else:
+                    crowns[currCrown[0]].append(gp_count)
+            #reset every GP
+            currCrown[1] = 0
+
+        else:
+            counter +=1
+        trueIterCount+=1
+        if trueIterCount == 16:
+            print('</div>')
+            print('<div class="center">')
+   
+
+    #bonus boxes, one for any crown GPs, leaderboard for counting.
+    print('<div class="boxGP">')
+    print('<h4><u> Total Track MVPs </u></h4>')
+    for idx in sorted(player_count, key=player_count.get, reverse = True):
+        print('<p>' + idx + ' - ' + str(player_count[idx]) + '</p>')
+
+    print('</div>')
+
+    print('<div class="boxGP">')
+    print('<h4><u> GP Crowns </u></h4>')
+    CUP_NAMES = ["Mushroom Cup", "Flower Cup","Star Cup", "Special Cup","Shell Cup", "Banana Cup", "Leaf Cup", "Lightning Cup", "Custom Cup A", "Custom Cup B"]
+    for idx in sorted(crowns, key=crowns.get):
+        for elem in crowns[idx]:
+            print('<p>' + idx + ' - ' + str(CUP_NAMES[elem-1]) + '</p>')
+    print('<img src=', PATH_EXT+'images/trophies/mvp_trophy.png', 'alt=\"cups\" width=\"125\" height=\"125\">' )
+    print('</div>')
+   
+    print('</div>')
+    print('<br>')
+    print('<div class="bar"></div>')
+
+
+
+    #do the same thing, but for the all time MVPs
+    print('<p style= \"page-break-after: always;\"> &nbsp; </p>')
+    print('<p style= \"page-break-before: always;\"> &nbsp; </p>')
+
+    #all time
+    print('<div class="center">')
+    print('<h1> Track MVPs - All Time </h1>')
+    print('</div>')
+    print('<div class="bar"></div>')
+    print('<div class="center">')
+    print('<h7> Below are all of the track MVPs, the best player on each track across every season.</h7><br>')
+    print('<h7> Calculated by a the player\'s average on a track, with a minimum 5 races played.</h7><br>')
+    print('<h7> In the event of a tie both players are shown.</h7><br>')
+    print('</div>')
+    #for all images.
+    cup_imgs = os.listdir("/home/pat/KartniteStats/Kartnite_Stats/images/cup_emblems")
+    cup_imgs = sorted(cup_imgs)
+
+    counter = 0
+    trueIterCount = 0
+    gp_count = 0
+    player_count = {}
+    crowns = {}
+    currCrown = ["",0]
+    print('<div class="center">')
+    for index, row in dfAllTimeOwners.iterrows():
+        #print('Season',row['Track'], row['Current MVP'])
+        
+
+        if counter%4 == 0:
+            print('<div class="boxGP">')
+            path = cup_imgs[gp_count]
+            gp_count += 1
+            print('<img src=', PATH_EXT+'images/cup_emblems/'+path, 'alt=\"cups\" width=\"100\" height=\"100\">' )
+
+        if str(row['Current MVP']) != "N/A":
+            print('<b><p style="color:#DAA520;bold;">'+ str(row['Track']) + ' - ' + str(row['Current MVP'])  +'</b></p>')
+            
+            #if we have an MVP, and only one, increment the counter
+            if str(row['Current MVP']).__contains__(',') == False:
+                if str(row['Current MVP']) not in player_count:
+                    player_count[str(row['Current MVP'])] = 1
+                else:
+                    player_count[str(row['Current MVP'])]+=1
+            
+                #need 4 for a crown
+                if currCrown[0] == str(row['Current MVP']):
+                    currCrown[1] += 1
+                else:
+                    currCrown[1] = 0
+                    currCrown[0] = str(row['Current MVP'])
+
+        else:
+            print('<p style="color:#000000;bold;">'+ str(row['Track']) + ' - ' + "None" +'</p>')
+        
+        if counter%4 == 3:
+            print('</div>')
+            counter = 0
+            #check for crown
+            if currCrown[1] == 4:
+                if currCrown[0] not in crowns:
+                    crowns[currCrown[0]] = [gp_count]
+                else:
+                    crowns[currCrown[0]].append(gp_count)
+            #reset every GP
+            currCrown[1] = 0
+
+        else:
+            counter +=1
+        trueIterCount+=1
+        if trueIterCount == 16:
+            print('</div>')
+            print('<div class="center">')
+   
+
+    #bonus boxes, one for any crown GPs, leaderboard for counting.
+    print('<div class="boxGP">')
+    print('<h4><u> Total Track MVPs </u></h4>')
+    for idx in sorted(player_count, key=player_count.get, reverse = True):
+        print('<p>' + idx + ' - ' + str(player_count[idx]) + '</p>')
+
+    print('</div>')
+
+    print('<div class="boxGP">')
+    print('<h4><u> GP Crowns </u></h4>')
+    CUP_NAMES = ["Mushroom Cup", "Flower Cup","Star Cup", "Special Cup","Shell Cup", "Banana Cup", "Leaf Cup", "Lightning Cup", "Custom Cup A", "Custom Cup B"]
+    for idx in sorted(crowns, key=crowns.get):
+        for elem in crowns[idx]:
+            print('<p>' + idx + ' - ' + str(CUP_NAMES[elem-1]) + '</p>')
+    print('<img src=', PATH_EXT+'images/trophies/mvp_trophy.png', 'alt=\"cups\" width=\"125\" height=\"125\">' )
+    print('</div>')
+   
+    print('</div>')
+    print('<br>')
+    print('<div class="bar"></div>')
     
+
+    #a THIRD page for the players current placements
+    print('<p style= \"page-break-after: always;\"> &nbsp; </p>')
+    print('<p style= \"page-break-before: always;\"> &nbsp; </p>')
+
+    #do two large boxes wii tracks and retros
+    print('<div class="center">')
+    #seasonal part
+    print('<h1>Your Rank in the Track MVP Race - Seasonal</h1><br>')
+    print('<div class="bar"></div>')
+    print('<br>')
+    print('<div class="boxGP2">')
+    print('<h3>Wii Tracks</h3>')
+    counter = 0
+    for k,v in track_placement.items():
+        #first half
+        if counter == 0 or counter == 8:
+            print('<div class=innerbox>')
+        if counter < 16:
+
+            #check for the ranking
+            v[0] = v[0] + 1
+            if v[0] == 1:
+                print('<p style="color:#DAA520;bold;">', k + ' - ' + str(v[0]) +"st" ,"</p>")
+            elif v[0] == 2:
+                print('<p style="color:#6E6D70;bold;">', k + ' - ' + str(v[0]) +"nd" ,"</p>")
+            elif v[0] == 3:
+                print('<p style="color:#B76734;bold;">', k + ' - ' + str(v[0]) +"rd" ,"</p>")
+            else:
+                print("<p>", k + ' - ' + str(v[0]) +"th" ,"</p>")
+        if counter == 7 or counter == 15:
+            print('</div>')
+        counter+=1
+
+    print('</div>')
+    print('<div class="boxGP2">')
+    print('<h3>Retro Tracks</h3>')
+    counter = 0
+    for k,v in track_placement.items():
+        #first half
+        if counter == 16 or counter == 24:
+            print('<div class=innerbox>')
+        if counter > 15 and counter < 32:
+            #check for the ranking
+            v[0] = v[0] + 1
+            if v[0] == 1:
+                print('<p style="color:#DAA520;bold;">', k + ' - ' + str(v[0]) +"st" ,"</p>")
+            elif v[0] == 2:
+                print('<p style="color:#6E6D70;bold;">', k + ' - ' + str(v[0]) +"nd" ,"</p>")
+            elif v[0] == 3:
+                print('<p style="color:#B76734;bold;">', k + ' - ' + str(v[0]) +"rd" ,"</p>")
+            else:
+                print("<p>", k + ' - ' + str(v[0]) +"th" ,"</p>")
+        if counter == 23 or counter == 31:
+            print('</div>')
+        counter+=1
+    print('</div>')
+
+    print('<br><br>')
+    print('<div class="bar"></div>')
+    print('<br>')
+
+    #all time part
+    print('<h1>Your Rank in the Track MVP Race - All Time</h1><br>')
+    print('<div class="bar"></div>')
+    print('<br>')
+    print('<div class="boxGP2">')
+    print('<h3>Wii Tracks</h3>')
+    counter = 0
+    for k,v in track_placement.items():
+        #first half
+        if counter == 0 or counter == 8:
+            print('<div class=innerbox>')
+        if counter < 16:
+
+            #check for the ranking
+            v[1] = v[1] + 1
+            if v[1] == 1:
+                print('<p style="color:#DAA520;bold;">', k + ' - ' + str(v[1]) +"st" ,"</p>")
+            elif v[1] == 2:
+                print('<p style="color:#6E6D70;bold;">', k + ' - ' + str(v[1]) +"nd" ,"</p>")
+            elif v[1] == 3:
+                print('<p style="color:#B76734;bold;">', k + ' - ' + str(v[1]) +"rd" ,"</p>")
+            else:
+                print("<p>", k + ' - ' + str(v[1]) +"th" ,"</p>")
+        if counter == 7 or counter == 15:
+            print('</div>')
+        counter+=1
+
+    print('</div>')
+    print('<div class="boxGP2">')
+    print('<h3>Retro Tracks</h3>')
+    counter = 0
+    for k,v in track_placement.items():
+        #first half
+        if counter == 16 or counter == 24:
+            print('<div class=innerbox>')
+        if counter > 15 and counter < 32:
+            #check for the ranking
+            v[1] = v[1] + 1
+            if v[1] == 1:
+                print('<p style="color:#DAA520;bold;">', k + ' - ' + str(v[1]) +"st" ,"</p>")
+            elif v[1] == 2:
+                print('<p style="color:#6E6D70;bold;">', k + ' - ' + str(v[1]) +"nd" ,"</p>")
+            elif v[1] == 3:
+                print('<p style="color:#B76734;bold;">', k + ' - ' + str(v[1]) +"rd" ,"</p>")
+            else:
+                print("<p>", k + ' - ' + str(v[1]) +"th" ,"</p>")
+        if counter == 23 or counter == 31:
+            print('</div>')
+        counter+=1
+    print('</div>')
+    print('<br><br>')
+    print('<div class="bar"></div>')
+
+    print('</div>')
+
+    
+        
+
+        
+
     
     
     
@@ -690,8 +1033,8 @@ def coverPage(player,seasonalTotalPoints,seasonalAverage,seasonalTotalRaces,seas
 
 
  
-
-def trackMVPPage(dfSeasonScores,dfSeasonRaceCount,TrackIndex,dfAllTimeScores,dfAllTimeRaceCount):
+#this is the old function, replaced with the newer version dec 2024
+def trackMVPPage_old(dfSeasonScores,dfSeasonRaceCount,TrackIndex,dfAllTimeScores,dfAllTimeRaceCount):
   #page split
   print('<p style= \"page-break-after: always;\"> &nbsp; </p>')
   print('<p style= \"page-break-before: always;\"> &nbsp; </p>')
@@ -928,7 +1271,7 @@ def allTimeLeaderboardsPages(dfPowerPoints1,dfNormalizedKart1,dfKartRating1,dfMi
   print('</div>')
   #statbox second places
   print("<div class=\"statbox2\">")
-  print('<h2> Top 2 Finsihes</h2>')
+  print('<h2> Top 2 Finishes</h2>')
   print(dfAllTimeSecond.to_html())
   print('</div>')
   #statbox 3rd places
