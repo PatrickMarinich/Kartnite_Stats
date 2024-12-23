@@ -140,7 +140,7 @@ DEMITRI_SEASON5_AWARDS = ['Season V Best Reactions']
 JOE_SEASON5_AWARDS = ['Season V Biggest Lacker','Season V Best Bagger']
 #---------Season 6 AWARDS HERE----------
 PAT_SEASON6_AWARDS = ['Season VI Steamboat Ricky Award - Best Sniper','Season VI Best Bagger']
-CHRIS_SEASON6_AWARDS = ['Season VI Best Lines','Season VI Best Shortcuts','Season VI Co-Biggest Lacker','*Season VI AHA Award - Most Cardio*']
+CHRIS_SEASON6_AWARDS = ['Season VI Best Lines','Season VI Best Shortcuts','Season VI Co-Biggest Lacker','*Season VI AHA Award*']
 KEVIN_SEASON6_AWARDS = ['Season VI Aaron Judge Award - MVP', 'Season VI Best Items','Season VI Best Trapper','*Season VI 2016 Warriors Award*']
 DEMITRI_SEASON6_AWARDS = ['Season VI Luckiest Player','Season VI Best Reactions','Season VI Co-Biggest Lacker','Season VI Best Guy','Season VI Choke Artist']
 #----------Season 7 -------------
