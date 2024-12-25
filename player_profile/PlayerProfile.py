@@ -475,6 +475,12 @@ def coverPage(player,seasonalTotalPoints,seasonalAverage,seasonalTotalRaces,seas
   print('<p> Total GPs Played:', allTimeTotalRaces/8,'</p>')
   print('<p> GP First Place Rate: ',  allTimeFirstPlaceRate , '% </p>'  )
   print('<p> Average GP Score: ',  allTimeAvgGPScore,'</p>')
+
+  if player in PLAYER_GP_WIN_STREAKS.keys():
+    print('<p> Longest GP Win Streak: ', PLAYER_GP_WIN_STREAKS[player] ,'</p>')
+  else:
+    print('<p> Longest GP Win Streak: N/A </p>')
+
   print('</div>')
 
   #stat box right for MISC stats

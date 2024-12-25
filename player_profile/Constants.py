@@ -107,6 +107,14 @@ PLAYER_GP_WINS_PAST_SEASONS = {"Pat" : [11,21,17,10,6,33],
                             "Shane": [0,0,0,0,1,0]}
 
 #------------------------
+#longest GP win streaks, manually tracking
+PLAYER_GP_WIN_STREAKS = {
+"Pat" : 14,
+"Chris" : 3,
+"Kevin" : 4,
+"Demitri" : 3,
+"Shane" : 1
+}
 
 #THESE ARE THE SEASONAL AWARDS
 
