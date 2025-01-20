@@ -24,7 +24,7 @@ GCNMC D M K C. Demitri blue
 GV K C D M. Demitri blue
 MG D C K M
 MMM. K M C D demitri 2 blue
-PG K DB C M. Demitri blue 
+PG K D C M. Demitri blue 
 DDR C K M D. Kevin blue
 Kevin 100 Win
 
