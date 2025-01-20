@@ -531,7 +531,7 @@ def coverPage(player,seasonalTotalPoints,seasonalAverage,seasonalTotalRaces,seas
   elif seasonaltop1 > 9:
     swPath = "player_profile/Badges/RaceWins/Win10Races.png"
   elif seasonaltop1 > 0:
-    swPath = "player_profile/Badges/RaceWins/Win1Race1.png"
+    swPath = "player_profile/Badges/RaceWins/Win1Race.png"
   #all time wins
   if allTimetop1 > 4999:
     awPath = "player_profile/Badges/RaceWins/Win5kRaces.png"
