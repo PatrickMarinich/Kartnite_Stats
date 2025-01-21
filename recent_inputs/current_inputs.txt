@@ -8,12 +8,12 @@ MT C D K M. Demitri blue
 BCWii C K D M6 Kevin blue
 Kevin 100 win
 
-DC K D P C K. Demitri blue
+DC K D P C Demitri blue
 PG D P K C
 TF P K D4 C12
 GV K P D C Pat blue demitri blue
 LL P K C D9. Chris blue
-GCN K P C Chris blue
+GCNMC K P C Chris blue
 DDR K P C D5 Kevin blue
 RR C K D P Kevin blue Kevin dodge
 Kevin 100 win
