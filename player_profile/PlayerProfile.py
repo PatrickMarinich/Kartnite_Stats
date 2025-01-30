@@ -350,12 +350,12 @@ def coverPage(player,seasonalTotalPoints,seasonalAverage,seasonalTotalRaces,seas
     print('<p>First Places: ', seasonaltop1, '(' + f"{seasonaltop1/seasonalTotalRaces:.3%}" + ')', '</p>')
     print('<p>Top 2 Finishes: ', seasonaltop2,'(' + f"{seasonaltop2/seasonalTotalRaces:.3%}" +')','</p>')
     print('<p>Top 3 Finishes: ', seasonaltop3,'(' + f"{seasonaltop3/seasonalTotalRaces:.3%}" +')','</p>')
-    print('<p>Top 4 Finishes: ', seasonaltop4,'('+ f"{seasonaltop4/seasonalTotalRaces:.2%}" +')','</p>')
+    print('<p>Top 4 Finishes: ', seasonaltop4,'('+ f"{seasonaltop4/seasonalTotalRaces:.3%}" +')','</p>')
   else:
     print('<p>First Places: ', seasonaltop1, '(' + f"{0:.3%}" + ')', '</p>')
     print('<p>Top 2 Finishes: ', seasonaltop2,'(' + f"{0:.3%}" +')','</p>')
     print('<p>Top 3 Finishes: ', seasonaltop3,'(' + f"{0:.3%}" +')','</p>')
-    print('<p>Top 4 Finishes: ', seasonaltop4,'('+ f"{0::.2%}" +')','</p>')
+    print('<p>Top 4 Finishes: ', seasonaltop4,'('+ f"{0::.3%}" +')','</p>')
   print('</div>')
 
   #stat box center for GP
