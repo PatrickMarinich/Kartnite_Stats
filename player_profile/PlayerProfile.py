@@ -241,13 +241,13 @@ def createPlayerProfile(player,TrackIndex):
 
   #KVR History Page
   KVRHistoryPage(player,dfKVR)
-
+  #GP page
   GPStatsPage(player,dfSeasonWins,dfAllTimeWins)
+  #kart score page
+  kartScorePage(dfSeasonOwnedScore,dfSeasonScores,dfSeasonRaceCount,dfSeasonWins,dfSeasonShock,dfSeasonBlue,TrackIndex)
 
   #shows all of the current and all time track mvps
   trackMVPPage(dfSeasonScores,dfSeasonRaceCount,TrackIndex,dfAllTimeScores,dfAllTimeRaceCount,player) 
-
-  trackStatsPage(dfSeasonScores,dfSeasonRaceCount,dfAllTimeScores,dfAllTimeRaceCount,TrackIndex)
 
   #pages with seasonal leaderbaords
   seasonalLeaderboardPage(TrackIndex,dfSeasonScores,dfSeasonRaceCount,dfSeasonWins,dfSeasonShock,dfSeasonBlue,dfSeasonFirst,dfSeasonSecond,dfSeasonThird,dfSeasonFourth,dfSeasonOwnedScore) 
@@ -256,6 +256,7 @@ def createPlayerProfile(player,TrackIndex):
   allTimeLeaderboardsPages(dfPowerPoints1,dfNormalizedKart1,dfKartRating1,dfMiscScore1,dfAllTimeWins1,dfAllTimeAverage1,dfAllTimeShockDodges1,
     dfAllTimeBlueShells1,dfAllTimeRaceCount1,dfAllTimeTotalPoints1,dfAllTimeFirst,dfAllTimeSecond,dfAllTimeThird,dfAllTimeFourth)  
 
+  trackStatsPage(dfSeasonScores,dfSeasonRaceCount,dfAllTimeScores,dfAllTimeRaceCount,TrackIndex)
     
   awardsPage(player) #a page with the player awards
 
@@ -833,7 +834,7 @@ def trackMVPPage(dfSeasonScores,dfSeasonRaceCount,TrackIndex,dfAllTimeScores,dfA
         #print('Season',row['Track'], row['Current MVP'])
         
 
-        if counter%4 == 0:
+        if counter % 4 == 0:
             print('<div class="boxGP">')
             path = cup_imgs[gp_count]
             gp_count += 1
@@ -853,13 +854,13 @@ def trackMVPPage(dfSeasonScores,dfSeasonRaceCount,TrackIndex,dfAllTimeScores,dfA
                 if currCrown[0] == str(row['Current MVP']):
                     currCrown[1] += 1
                 else:
-                    currCrown[1] = 0
+                    currCrown[1] = 1
                     currCrown[0] = str(row['Current MVP'])
 
         else:
             print('<p style="color:#000000;bold;">'+ str(row['Track']) + ' - ' + "None" +'</p>')
         
-        if counter%4 == 3:
+        if counter % 4 == 3:
             print('</div>')
             counter = 0
             #check for crown
@@ -870,6 +871,7 @@ def trackMVPPage(dfSeasonScores,dfSeasonRaceCount,TrackIndex,dfAllTimeScores,dfA
                     crowns[currCrown[0]].append(gp_count)
             #reset every GP
             currCrown[1] = 0
+            currCrown[0] = ""
 
         else:
             counter +=1
@@ -1623,13 +1625,145 @@ def trackStatsPage(dfSeasonScores,dfSeasonRaces,dfAllScores,dfAllRaces,TrackInde
       print("</div>")
 
     count = count + 1
-      
+  print("</div>")
   print('<div class = \"bar\"> </div>')
 
+#generates 2 staked bar chart images based off of the custom stat, KARTSCORE
+def kartScorePage(dfSeasonOwnedScore,dfSeasonScores,dfSeasonRaceCount,dfSeasonWins,dfSeasonShock,dfSeasonBlue,TrackIndex):
+  #page split
+  print('<p style= \"page-break-after: always;\"> &nbsp; </p>')
+  print('<p style= \"page-break-before: always;\"> &nbsp; </p>')
 
-    
+  print('<div class="center">')
+  print('<h1> Kart Score </h1>')
+  print('</div>')
+  print('<div class="bar"></div>')
+  print('<div class="center">')
+  print('<h7> Kart Score is a custom cumulative stat where you score points by playing</h7><br>')
+  print('</div>')
 
+  #get the leaderboard first
+  dfkartScoreList = getSeedings(dfSeasonOwnedScore,dfSeasonScores,dfSeasonRaceCount,dfSeasonWins,dfSeasonShock,dfSeasonBlue,TrackIndex,display=False)
+  dfkartScoreList.reset_index(drop=True)
+  
+  #arrays for player points
+  player_list = []
+  gpPoints_list = []
+  gpWinsPoints_list = []
+  mvpPoints_list= []
+  blueShellPoints_list = []
+  blueDodgePoints_list = []
+  shockPoints_list = []
 
+  player_list_avg = []
+  gpPoints_list_avg = []
+  gpWinsPoints_list_avg = []
+  mvpPoints_list_avg= []
+  blueShellPoints_list_avg = []
+  blueDodgePoints_list_avg = []
+  shockPoints_list_avg = []
+
+  #get the top 10 players's scores
+  for i in range(0,10):
+      player = dfkartScoreList.iloc[i]
+      player_list.append(player.iloc[0])
+      total,gpPoints,gpWinsPoints,mvpPoints,blueShellPoints,blueDodgePoints,shockPoints = getKartScore(player.iloc[0],dfSeasonOwnedScore,dfSeasonScores,dfSeasonRaceCount,dfSeasonWins,dfSeasonShock,dfSeasonBlue,TrackIndex)
+      gpPoints_list.append(gpPoints)
+      gpWinsPoints_list.append(gpWinsPoints)
+      mvpPoints_list.append(mvpPoints)
+      blueShellPoints_list.append(blueShellPoints)
+      blueDodgePoints_list.append(blueDodgePoints)
+      shockPoints_list.append(shockPoints)
+
+      count = 0
+      for rc in dfSeasonRaceCount[player.iloc[0]]:
+          count += int(rc)
+
+      gps_played = count/8
+      if gps_played != 0:
+          gpPoints_list_avg.append(gpPoints/gps_played)
+          gpWinsPoints_list_avg.append(gpWinsPoints/gps_played)
+          mvpPoints_list_avg.append(mvpPoints/gps_played)
+          blueShellPoints_list_avg.append(blueShellPoints/gps_played)
+          blueDodgePoints_list_avg.append(blueDodgePoints/gps_played)
+          shockPoints_list_avg.append(shockPoints/gps_played)
+      else:
+          gpPoints_list_avg.append(0)
+          gpWinsPoints_list_avg.append(0)
+          mvpPoints_list_avg.append(0)
+          blueShellPoints_list_avg.append(0)
+          blueDodgePoints_list_avg.append(0)
+          shockPoints_list_avg.append(0)
+
+  # create data
+  y1 = np.array(gpPoints_list)
+  y2 = np.array(gpWinsPoints_list)
+  y3 = np.array(mvpPoints_list)
+  y4 = np.array(blueShellPoints_list)
+  y5 = np.array(blueDodgePoints_list)
+  y6 = np.array(shockPoints_list)
+  # plot bars in stack manner
+  plt.clf()
+  plt.figure(figsize=(8, 5))
+  plt.bar(player_list, y1, color='firebrick')
+  plt.bar(player_list, y2, bottom=y1, color='darkorange')
+  plt.bar(player_list, y3, bottom=y1+y2, color='palegreen')
+  plt.bar(player_list, y4, bottom=y1+y2+y3, color='blue')
+  plt.bar(player_list, y5, bottom=y1+y2+y3+y4, color='cyan')
+  bars = plt.bar(player_list, y6, bottom=y1+y2+y3+y4+y5, color='darkgoldenrod')
+
+  #label with the values
+  total_scores = y1+y2+y3+y4+y5+y6
+  i = 0
+  for b in bars:
+      yval = total_scores[i] 
+      plt.text(b.get_x()+ 0.4, yval + total_scores[0]*0.01, int(yval),horizontalalignment="center")
+      i+=1
+
+  plt.xlabel("Players")
+  plt.ylabel("Kart Score")
+  plt.legend (["GP Points", "GP Wins Points", "MVP Points", "Blue Shell Points", "Blue Dodge Points","Shock Dodge Points"])
+  plt.title("Seasonal Kart Scores")
+  plt.savefig('KartScore.png')
+  
+  plt.clf()
+  plt.figure(figsize=(8, 5))
+  #make the same graph, but sure points per GP
+  y1 = np.array(gpPoints_list_avg)
+  y2 = np.array(gpWinsPoints_list_avg)
+  y3 = np.array(mvpPoints_list_avg)
+  y4 = np.array(blueShellPoints_list_avg)
+  y5 = np.array(blueDodgePoints_list_avg)
+  y6 = np.array(shockPoints_list_avg)
+  # plot bars in stack manner
+  plt.bar(player_list, y1, color='firebrick')
+  plt.bar(player_list, y2, bottom=y1, color='darkorange')
+  plt.bar(player_list, y3, bottom=y1+y2, color='palegreen')
+  plt.bar(player_list, y4, bottom=y1+y2+y3, color='blue')
+  plt.bar(player_list, y5, bottom=y1+y2+y3+y4, color='cyan')
+  bars = plt.bar(player_list, y6, bottom=y1+y2+y3+y4+y5, color='darkgoldenrod')
+
+  #label values
+  total_scores = y1+y2+y3+y4+y5+y6
+  i = 0
+  for b in bars:
+      yval = total_scores[i] 
+      plt.text(b.get_x() + 0.4, yval + 1.25, "{:.2f}".format(yval),horizontalalignment="center")
+      i+=1
+
+  plt.xlabel("Players")
+  plt.ylabel("Kart Score")
+  plt.legend (["GP Points", "GP Wins Points", "MVP Points", "Blue Shell Points", "Blue Dodge Points","Shock Dodge Points"])
+  plt.title("Kart Score Gained Per GP")
+  plt.savefig('KartScore_avg.png')
+  
+  #display image
+  print('<div class =\"center\">')
+  path = 'KartScore.png'
+  print('<img src=', PATH_EXT+path, 'alt=\"KartScore\" width=\"1000\" height=\"650\">')
+  path = 'KartScore_avg.png'
+  print('<img src=', PATH_EXT+path, 'alt=\"KartScoreAvg\" width=\"1000\" height=\"650\">')
+  print("</div>")
 
 
 #CREATE NEW PAGES HERE

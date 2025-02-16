@@ -978,3 +978,26 @@ def getTrackStats(dfScores,dfRaceCount,dfAllScores,dfAllRaceCount,Track,TrackInd
     return seasonRaces/4,allRaces/4,dfSeasonMVPLeaderboard,dfAllMVPLeaderboard
   #bad track selection
   return 'ERROR'
+
+#returns the kartscore (and its parts of the player)
+def getKartScore(player,dfKartScore,dfScores,dfRaceCount,dfWins,dfShock,dfBlue,TrackIndex):
+    #gp wins 
+    gpWinsPoints = int(dfWins.at[0,player])*GP_WINS_POINTS
+  
+    #enters the owned track score 
+    mvpPoints =  + int(dfKartScore.at[0, player])*OWNER_POINTS
+
+    #Dodges
+    shockPoints = int(dfShock.at[0,player])*DODGE_POINTS
+  
+    #total points
+    points = 0
+    for track in TrackIndex:
+      points = points + int(dfScores.at[TrackIndex[track], player]) * POINTS_SCORED_POINTS
+
+    #adds blue points
+    bluePoints = (int(dfBlue.at[0,player]) * BLUE_POINTS)
+    blueDodgePoints =  (int(dfBlue.at[1,player]) * BLUE_D_POINTS)
+    #returns the sum and the parts
+    total = gpWinsPoints + mvpPoints + shockPoints + points + bluePoints + blueDodgePoints
+    return total,points,gpWinsPoints,mvpPoints,bluePoints,blueDodgePoints,shockPoints
