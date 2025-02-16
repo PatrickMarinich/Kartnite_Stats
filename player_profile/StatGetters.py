@@ -962,7 +962,11 @@ def getTrackStats(dfScores,dfRaceCount,dfAllScores,dfAllRaceCount,Track,TrackInd
       if TrackTotalPoints != 0:
         ownershipScore = ((int(dfScores.at[TrackIndex[Track],player])/TrackTotalPoints)*100) *TOTAL_PERCENT + getPlayerAverage(dfScores,dfRaceCount,player,Track,TrackIndex) * AVERAGE_PERCENT
       
-      allOwnershipScore = round(getPlayerAverage(dfAllScores,dfAllRaceCount,player,Track,TrackIndex),2)
+      #5 race minimum for all time
+      if dfAllRaceCount.at[TrackIndex[Track],player] >=5:
+        allOwnershipScore = round(getPlayerAverage(dfAllScores,dfAllRaceCount,player,Track,TrackIndex),2)
+      else:
+        allOwnershipScore = 0
       #puts the score into the datafram
       dfSeasonMVPLeaderboard.loc[counter] = [player, round(ownershipScore,2)]
       dfAllMVPLeaderboard.loc[counter] = [player,allOwnershipScore]
