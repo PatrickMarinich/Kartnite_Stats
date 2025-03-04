@@ -1,0 +1,49 @@
+SNES3. K D C P. 
+WGM. P C K D12. Demitri blue
+MT. K D P C. Chris 2 blue Chris dodge
+WS. D P K C. Chris blue Kevin blue
+DDR. D P C K. 
+GCNMC. D C P K. Chris blue
+BC64. K C D P. Pat blue. Chris blue
+BCWii. C K D P. 
+Kevin 93 Win
+
+DC. P C D K. Kevin 2 blue
+KC. C D P K. Pat blue Kevin blue
+MR. D K P C. Demitri blue Kevin blue
+PG. P K C D. 
+BC3. C K D P. Demitri blue
+DS. C P K D. Demitri blue Chris blue
+TF. C P D K. 
+DKJP. D P K C. Pat 2 blue demitri blue 
+Chris 98 Win
+
+MMM. D P K C. 
+CM. K P D C. 
+GV. K C P D. Kevin blue
+DKS. K P C D. 
+SL. K P D C
+MG. C K P D Demitri blue
+DKM. C D K P. 
+RR. K D C P. Kevin blue
+Kevin 107 Win
+
+PB. P D K C. 
+DH. C D K P. Demitri blue
+LL. K P C D. Chris blue demitri blue
+GV. D P C K. Demitri blue
+YF. C K D P. Chris blue Pat blue
+MH. K D P C. 
+MT. K D P C. 
+BC3. K C D K. Demitri blue
+Kevin 100 Win. 
+
+MR. C D K P. Pat blue demitri blue
+BCWii. P K D C. Demitri blue
+DKS. C D P K. Pat blue demitri blue
+TF. K C D P. 
+MG. C P K D. Chris blue
+CM. P K D C. 
+RR. K C D P. Demitri blue Kevin blue
+WS. C D K P. 
+Chris 100 Win
