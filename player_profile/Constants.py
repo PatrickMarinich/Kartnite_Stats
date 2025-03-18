@@ -111,7 +111,7 @@ PLAYER_GP_WINS_PAST_SEASONS = {"Pat" : [11,21,17,10,6,33],
 PLAYER_GP_WIN_STREAKS = {
 "Pat" : 14,
 "Chris" : 3,
-"Kevin" : 4,
+"Kevin" : 6,
 "Demitri" : 3,
 "Shane" : 1
 }
