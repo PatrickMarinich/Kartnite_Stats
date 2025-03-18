@@ -1,0 +1,59 @@
+KC. C P D J. Pat blue Chris blue
+MR. P C D J10 Pat blue Chris blue Demitri blue
+TF. C P J D. 
+BC64. P C J5 D9. Pat blue demitri blue
+DS. P C D J. Pat blue Chris blue
+MT. P D C J. Pat blue
+DKJP. P D C J7. Demitri blue
+DKS. P C D J
+Pat 114 Win
+
+MMM. K P C M. 
+PG. C M K P. Chris blue
+BC3. K C P M. 
+SNES3. P C K M. 
+MG. K P C M. 
+GCNMC. M K P C. Kevin blue
+DC. K P C M. 
+GV. C K M P. 
+Kevin 107 Win
+
+SL. C K D J Chris blue 
+DDR. K C D J. Demitri blue Kevin blue
+CM. C K D J. 
+DKM. K C D J. Kevin blue
+WS. K C D J. Demitri blue Chris blue
+RR. K C D J. 
+BCWii. D K J C. Kevin 2 blue Chris blue
+YF. C K J D
+Kevin 108 Win
+
+PB. D P C M. 
+MG. C P M D. 
+WGM. D C P M. Chris blue
+BC3. C P M D. Chris blue
+DH. D P C M. Chris blue
+MT. C P D M. Pat blue Chris blue
+LC. C D P M. Chris blue Chris dodge
+BC64. C P M D. Demitri blue Pat blue Chris blue
+Chris 107 Win
+
+SGB. C P K J. Kevin blue
+GV2. K C P J. Chris blue Chris shock
+MH. K P C J11. Kevin blue
+DKM. K P J C. Kevin shock Kevin blue Chris blue
+KC. C K P J. 
+LL. C K P J7. Pat blue Chris blue
+DC. P C K J. Joe blue
+WGM. P K C J. 
+Kevin 101 Win
+
+MR. P D C M. Demitri blue
+GV. D P M C. 
+BC3. P M D C6. Pat blue
+SL. P M D C. 
+RR. C P D M. Demitri blue Pat blue
+MG. D C P M 
+WS. P D M C. Chris blue demitri blue
+DS. D P C M. Chris blue
+Pat 106 Win
