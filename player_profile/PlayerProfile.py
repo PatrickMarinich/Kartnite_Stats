@@ -353,10 +353,10 @@ def coverPage(player,seasonalTotalPoints,seasonalAverage,seasonalTotalRaces,seas
     print('<p>Top 3 Finishes: ', seasonaltop3,'(' + f"{seasonaltop3/seasonalTotalRaces:.3%}" +')','</p>')
     print('<p>Top 4 Finishes: ', seasonaltop4,'('+ f"{seasonaltop4/seasonalTotalRaces:.3%}" +')','</p>')
   else:
-    print('<p>First Places: ', seasonaltop1, '(' + f"{0:.3%}" + ')', '</p>')
-    print('<p>Top 2 Finishes: ', seasonaltop2,'(' + f"{0:.3%}" +')','</p>')
-    print('<p>Top 3 Finishes: ', seasonaltop3,'(' + f"{0:.3%}" +')','</p>')
-    print('<p>Top 4 Finishes: ', seasonaltop4,'('+ f"{0::.3%}" +')','</p>')
+    print('<p>First Places: ', seasonaltop1, '(0.00%)', '</p>')
+    print('<p>Top 2 Finishes: ', seasonaltop2,'(0.00%)','</p>')
+    print('<p>Top 3 Finishes: ', seasonaltop3,'(0.00%)','</p>')
+    print('<p>Top 4 Finishes: ', seasonaltop4,'(0.00%)','</p>')
   print('</div>')
 
   #stat box center for GP
@@ -458,10 +458,10 @@ def coverPage(player,seasonalTotalPoints,seasonalAverage,seasonalTotalRaces,seas
     print('<p>Top 3 Finishes: ',  allTimetop3,'(' + f"{allTimetop3/(allTimeTotalRaces-sub):.3%}" + ')','</p>')
     print('<p>Top 4 Finishes: ',  allTimetop4,'(' + f"{allTimetop4/(allTimeTotalRaces-sub):.3%}" + ')','</p>')
   else:
-    print('<p>First Places: ',  allTimetop1,'(' + f"{0:.3%}" + ')','</p>')
-    print('<p>Top 2 Finishes: ',  allTimetop2,'(' + f"{0:.3%}" + ')','</p>')
-    print('<p>Top 3 Finishes: ',  allTimetop3,'(' + f"{0:.3%}" + ')','</p>')
-    print('<p>Top 4 Finishes: ',  allTimetop4,'(' + f"{0:.3%}" + ')','</p>')
+    print('<p>First Places: ',  allTimetop1,'(0.00%)','</p>')
+    print('<p>Top 2 Finishes: ',  allTimetop2,'(0.00%)','</p>')
+    print('<p>Top 3 Finishes: ',  allTimetop3,'(0.00%)','</p>')
+    print('<p>Top 4 Finishes: ',  allTimetop4,'(0.00%)','</p>')
 
   print('</div>')
 
