@@ -162,7 +162,7 @@ CHIRS_SCORE_AWARDS = ['Scored 111: x1','Scored 110: x1']
 #-----------------
 
 #----COMEBACK AWARDS-----
-CHRIS_COMEBACK_AWARDS = ["Win GP with a 12th place: x1"]
+CHRIS_COMEBACK_AWARDS = ["Win GP with a 12th place: x1","Win a GP with a 6th place: x1"]
 
 #--TPURNIMENT AWARDS--
 PAT_TOURNIMENT_AWARDS = ["First Annual Kartnite Championship (Season VI) Champion"]
