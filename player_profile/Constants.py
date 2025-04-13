@@ -166,6 +166,7 @@ CHRIS_COMEBACK_AWARDS = ["Win GP with a 12th place: x1","Win a GP with a 6th pla
 
 #--TPURNIMENT AWARDS--
 PAT_TOURNIMENT_AWARDS = ["First Annual Kartnite Championship (Season VI) Champion"]
+DEMITRI_TOURNIMENT_AWARDS = ["Okemo Vehical Elimination Champion ", "First Kartnite Knockout Tournament Champion"]
 
 #--------
 
@@ -192,6 +193,7 @@ CHRIS_AWARDS.append(CHRIS_COMEBACK_AWARDS)
 
 #append the tourniment awards
 PAT_AWARDS.append(PAT_TOURNIMENT_AWARDS)
+DEMITRI_AWARDS.append(DEMITRI_TOURNIMENT_AWARDS)
 
 
 
