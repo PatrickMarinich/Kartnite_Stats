@@ -156,7 +156,7 @@ DEMITRI_SEASON6_AWARDS = ['Season VI Luckiest Player','Season VI Best Reactions'
 #-----HIGH SCORE AWARDS------
 SHANE_SCORE_AWARDS = ['Perfect 120 - Nov 24th 2023']
 KEVIN_SCORE_AWARDS = ['Perfect 120 - Feb 10th 2025','Scored 115: x2', 'Scored 114: x3' ,'Scored 112: x2 ','Scored 111: x2', 'Scored 110: x2']
-DEMITRI_SCORE_AWARDS = ['Perfect 120 - Sept 3rd 2024','Scored 115 x1','Scored 112: x1','Scored 111: x1', 'Scored 110: x1']
+DEMITRI_SCORE_AWARDS = ['Perfect 120 - Sept 3rd 2024','Scored 115 x1','Scored 112: x1','Scored 111: x1', 'Scored 110: x2']
 PAT_SCORE_AWARDS = ['Scored 114: x2','Scored 111: x3','Scored 110: x1']
 CHIRS_SCORE_AWARDS = ['Scored 111: x1','Scored 110: x1']
 #-----------------
