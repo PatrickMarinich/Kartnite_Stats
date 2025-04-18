@@ -286,7 +286,7 @@ def htmlHeaders():
   print('<style> div.empty {display: flex; width: 100%; height: 15px;} </style>')
   print('<style> div.statbox2 {text-align: left; display: inline-block; align-items:left; width: 30%; height: 325px; border: 3px solid black; padding: 7px; margin: auto; vertical-align: top;text-overflow: ellipsis;white-space: nowrap;overflow: hidden; } </style>')
   print('<style> .arrow {border: solid black;border-width: 0 3px 3px 0;display: inline-block;padding: 3px;} .up {transform: rotate(-135deg); -webkit-transform: rotate(-135deg); border: solid green;border-width: 0 3px 3px 0;}.down {transform: rotate(45deg);-webkit-transform: rotate(45deg); border: solid red; border-width: 0 3px 3px 0;} </style>')
-  print('<style> div.statbox3 {text-align: left; display: inline-block; align-items:left; width: 30%; height: 375px; border: 3px solid black; padding: 7px; margin: auto; vertical-align: top;} </style>')
+  print('<style> div.statbox3 {text-align: left; display: inline-block; align-items:left; width: 30%; height: 375px; border: 3px solid black; padding: 7px; margin: auto; vertical-align: top;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;} </style>')
   print('<style> div.horizontalgap {float: left; overflow: hidden; height: 1px; width: 0px;} </style>')
   print('<style> div.vbar { display: flex; align-items: center; width: 3px; height: 200px; background-color: #1faadb; padding: 4px;} </style>')
   print('<style> div.boxGP {text-align: center; display: inline-block; align-items:center; width: 22%;  height: 300px; border: 2px solid black; padding: 5px; margin: 2px; vertical-align: top; horizontal-align: center} </style>')
