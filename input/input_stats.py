@@ -372,7 +372,8 @@ PLAYERS_INIT = {
         "MA":"Matt",
         "JA":"Jason",
         "KA":"Karla",
-        "CA":"Callum"
+        "CA":"Callum",
+        "JW":"John"
 }
 TrackIndex = {"Luigi Circuit":0,
     "Moo Moo Meadows":1,
