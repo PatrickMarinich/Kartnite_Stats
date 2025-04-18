@@ -155,7 +155,9 @@ def parse_input(file):
     "BJCC": "Bowser Jr.'s Crafty Castle",
     "N64RR" : "N64 Royal Raceway",
     "AF": "DS Airstrip Fortress",
-    "DKR": "DK Ruins"}
+    "DKR": "DK Ruins",
+    "DSBC" : "DS Bowser's Castle",
+    "WC" : "Wolf Castlegrounds"}
     #Successful Parse Data
     data = []
     #error list

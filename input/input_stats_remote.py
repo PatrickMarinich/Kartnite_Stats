@@ -412,7 +412,9 @@ TrackIndex = {"Luigi Circuit":0,
     "Bowser Jr.'s Crafty Castle":36,
     "N64 Royal Raceway":37,
     "DS Airstrip Fortress":38,
-    "DK Ruins":39
+    "DK Ruins":39,
+    "DS Bowser's Castle":40,
+    "Wolf Castlegrounds":41
     }
 NickNameIndex = {"Luigi":"Luigi Circuit",
     "LC":"Luigi Circuit",
@@ -534,7 +536,9 @@ NickNameIndex = {"Luigi":"Luigi Circuit",
     "BJCC": "Bowser Jr.'s Crafty Castle",
     "N64RR" : "N64 Royal Raceway",
     "AF": "DS Airstrip Fortress",
-    "DKR": "DK Ruins"}
+    "DKR": "DK Ruins",
+    "DSBC" : "DS Bowser's Castle",
+    "WC" : "Wolf Castlegrounds"}
 
 
 

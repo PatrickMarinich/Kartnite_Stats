@@ -60,7 +60,9 @@ def RunKartniteStats(version, contributors):
   "Bowser Jr.'s Crafty Castle":36,
   "N64 Royal Raceway":37,
   "DS Airstrip Fortress":38,
-  "DK Ruins":39
+  "DK Ruins":39,
+  "DS Bowser's Castle":40,
+  "Wolf Castlegrounds":41
   }
 
 
@@ -143,7 +145,9 @@ def RunKartniteStats(version, contributors):
    "bc64":"N64 Bowser's Castle",
    "bc 64":"N64 Bowser's Castle",
    "N64BC":"N64 Bowser's Castle",
-   "n64bc":"N64 Bowser's Castle"}
+   "n64bc":"N64 Bowser's Castle",
+   "DSBC" : "DS Bowser's Castle",
+   "WC" : "Wolf Castlegrounds"}
 
   #Below is the logic for asking a user what they would like to do
   ########
