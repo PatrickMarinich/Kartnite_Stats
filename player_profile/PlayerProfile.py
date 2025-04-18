@@ -735,6 +735,11 @@ def trackMVPPage(dfSeasonScores,dfSeasonRaceCount,TrackIndex,dfAllTimeScores,dfA
     for index, row in dfSeasonOwners.iterrows():
         #print('Season',row['Track'], row['Current MVP'])
         
+        #skip any tracks we dont want to show
+        #34 - envenmom snowstorm 
+        #36 - bowser junior's crafty castle
+        if index in [34,36]:
+          continue
 
         if counter%4 == 0:
             print('<div class="boxGP">')
@@ -833,6 +838,11 @@ def trackMVPPage(dfSeasonScores,dfSeasonRaceCount,TrackIndex,dfAllTimeScores,dfA
     for index, row in dfAllTimeOwners.iterrows():
         #print('Season',row['Track'], row['Current MVP'])
         
+        #skip any tracks we dont want to show
+        #34 - envenmom snowstorm 
+        #36 - bowser junior's crafty castle
+        if index in [34,36]:
+          continue
 
         if counter % 4 == 0:
             print('<div class="boxGP">')
