@@ -146,7 +146,7 @@ def RunKartniteStats(version, contributors):
    "bc 64":"N64 Bowser's Castle",
    "N64BC":"N64 Bowser's Castle",
    "n64bc":"N64 Bowser's Castle",
-   "DSBC" : "DS Bowser's Castle",
+   "BCDS" : "DS Bowser's Castle",
    "WC" : "Wolf Castlegrounds"}
 
   #Below is the logic for asking a user what they would like to do

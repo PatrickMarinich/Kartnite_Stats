@@ -537,7 +537,7 @@ NickNameIndex = {"Luigi":"Luigi Circuit",
     "N64RR" : "N64 Royal Raceway",
     "AF": "DS Airstrip Fortress",
     "DKR": "DK Ruins",
-    "DSBC" : "DS Bowser's Castle",
+    "BCDS" : "DS Bowser's Castle",
     "WC" : "Wolf Castlegrounds"}
 
 
