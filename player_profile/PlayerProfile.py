@@ -289,7 +289,7 @@ def htmlHeaders():
   print('<style> div.statbox3 {text-align: left; display: inline-block; align-items:left; width: 30%; height: 375px; border: 3px solid black; padding: 7px; margin: auto; vertical-align: top;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;} </style>')
   print('<style> div.horizontalgap {float: left; overflow: hidden; height: 1px; width: 0px;} </style>')
   print('<style> div.vbar { display: flex; align-items: center; width: 3px; height: 200px; background-color: #1faadb; padding: 4px;} </style>')
-  print('<style> div.boxGP {text-align: center; display: inline-block; align-items:center; width: 22%;  height: 300px; border: 2px solid black; padding: 5px; margin: 2px; vertical-align: top; horizontal-align: center} </style>')
+  print('<style> div.boxGP {text-align: center; display: inline-block; align-items:center; width: 22%;  height: 300px; border: 2px solid black; padding: 5px; margin: 2px; vertical-align: top; horizontal-align: center; text-overflow: ellipsis;white-space: nowrap;overflow: hidden;} </style>')
   print('<style> div.statbox4 {text-align: left; display: inline-block; align-items:left; width: 13%; height: 500px; border: 3px solid black; padding: 7px; margin: auto; vertical-align: top;} </style>')
   print('<style> div.boxGP2 {text-align: center; display: inline-block; align-items:center; width: 47%;  height: ; border: 0px solid black; padding: 1px; margin: 0px; vertical-align: top; horizontal-align: center} </style>')
   print('<style> div.innerbox {text-align: center; display: inline-block; align-items:center; width: 48%;  height: 90%; border: 1px solid black; padding: 0px; margin: 0px; vertical-align: top; horizontal-align: center} </style>')
