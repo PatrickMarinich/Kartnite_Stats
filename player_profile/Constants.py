@@ -47,7 +47,9 @@ TrackIndex = {"Luigi Circuit":0,
   "Bowser Jr.'s Crafty Castle":36,
   "N64 Royal Raceway":37,
   "DS Airstrip Fortress":38,
-  "DK Ruins":39
+  "DK Ruins":39,
+  "DS Bowser's Castle":40,
+  "Wolf Castlegrounds":41
   }
 
 
