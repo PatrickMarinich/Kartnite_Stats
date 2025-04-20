@@ -211,7 +211,8 @@ AWARD_LIST = {'Pat' : PAT_AWARDS,
               'Karla': [],
               'Mike' : [],
               'Jason' : [],
-              'Matt' : []}
+              'Matt' : [],
+              'John': []}
 
 #file path extention for images
 #this is needed since wkhtmltopdf needs absolute paths for functionality :(
