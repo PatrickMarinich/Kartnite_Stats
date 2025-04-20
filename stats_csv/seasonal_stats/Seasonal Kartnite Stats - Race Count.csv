@@ -1,43 +1,43 @@
 Tracks x Players,Demitri,Pat,Chris,Joe,Shane,Mike,Kevin,Matt,Jason,Karla,Callum,John
 Luigi Circuit,8,7,9,0,0,8,7,0,0,1,0,0
-Moo Moo Meadows,22,27,22,4,0,22,31,0,0,0,0,0
-Mushroom Gorge,33,39,33,5,0,35,43,0,0,0,0,0
-Toad's Factory,36,40,36,4,0,29,43,0,0,0,0,0
+Moo Moo Meadows,22,28,22,5,0,22,32,0,0,0,0,1
+Mushroom Gorge,33,40,33,6,0,35,44,0,0,0,0,1
+Toad's Factory,36,41,37,4,0,29,44,0,0,0,0,1
 Mario Circuit,5,9,6,1,0,6,9,0,0,0,0,0
 Coconut Mall,26,26,26,6,0,15,33,0,0,0,0,0
-DK Summit,38,40,35,5,0,30,40,0,0,0,0,0
+DK Summit,38,41,36,5,0,30,41,0,0,0,0,1
 Wario's Gold Mine,26,31,24,5,0,18,32,0,0,0,0,0
-Daisy Circuit,27,33,30,4,0,22,35,0,0,1,0,0
-Koopa Cape,27,27,24,3,0,21,30,0,0,0,0,0
-Maple Treeway,41,43,37,6,0,26,42,0,0,1,0,0
-Grumble Volcano,35,36,34,2,0,27,37,0,0,1,0,0
-Dry Dry Ruins,23,24,26,4,0,17,30,0,0,0,0,0
+Daisy Circuit,27,34,30,5,0,22,36,0,0,1,0,1
+Koopa Cape,27,28,25,3,0,21,31,0,0,0,0,1
+Maple Treeway,41,44,37,7,0,26,43,0,0,1,0,1
+Grumble Volcano,35,37,35,2,0,27,38,0,0,1,0,1
+Dry Dry Ruins,23,25,26,5,0,17,31,0,0,0,0,1
 Moonview Highway,25,23,22,1,0,19,26,0,0,0,0,0
-Bowser's Castle,40,39,37,5,0,19,44,0,0,0,0,0
+Bowser's Castle,40,40,37,6,0,19,45,0,0,0,0,1
 Rainbow Road,38,37,31,6,0,22,38,0,0,0,0,0
 GCN Peach Beach,24,21,14,4,0,18,23,0,0,0,0,0
 DS Yoshi Falls,11,11,13,2,0,9,14,0,0,0,0,0
 SNES Ghost Valley 2,15,22,18,1,0,15,21,0,0,0,0,0
-N64 Mario Raceway,36,45,42,2,0,29,45,0,0,1,0,0
+N64 Mario Raceway,36,46,43,2,0,29,46,0,0,1,0,1
 N64 Sherbet Land,21,24,23,6,0,16,26,0,0,0,0,0
 GBA Shy Guy Beach,5,9,9,4,0,6,11,0,0,0,0,0
-DS Delfino Square,38,38,37,3,0,29,38,0,0,1,0,0
-GCN Waluigi Stadium,32,40,37,2,0,25,43,0,0,1,0,0
+DS Delfino Square,38,39,38,3,0,29,39,0,0,1,0,1
+GCN Waluigi Stadium,32,41,37,3,0,25,44,0,0,1,0,1
 DS Desert Hills,23,23,22,2,0,15,23,0,0,0,0,0
-GBA Bowser's Castle 3,42,43,39,5,0,33,45,0,0,1,0,0
+GBA Bowser's Castle 3,42,44,39,6,0,33,46,0,0,1,0,1
 N64 DK's Jungle Parkway,31,36,30,2,0,21,36,0,0,0,0,0
-GCN Mario Circuit,28,37,31,5,0,23,39,0,0,0,0,0
+GCN Mario Circuit,28,38,32,5,0,23,40,0,0,0,0,1
 SNES Mario Circuit 3,24,33,27,1,0,24,31,0,0,0,0,0
 DS Peach Gardens,24,32,21,6,0,21,32,0,0,0,0,0
-GCN DK Mountain,20,25,20,3,0,19,25,0,0,0,0,0
+GCN DK Mountain,20,26,21,3,0,19,26,0,0,0,0,1
 N64 Bowser's Castle,35,37,28,6,0,23,39,0,0,0,0,0
-Lava Lake,23,26,22,4,0,16,29,0,0,0,0,0
-Stargaze Summit,0,0,0,0,0,0,0,0,0,0,0,0
+Lava Lake,23,27,23,4,0,16,30,0,0,0,0,1
+Stargaze Summit,0,1,1,0,0,0,1,0,0,0,0,1
 Envenom Snowstorm,0,0,0,0,0,0,0,0,0,0,0,0
-Dragon Burial Grounds,0,0,0,0,0,0,0,0,0,0,0,0
+Dragon Burial Grounds,0,1,1,0,0,0,1,0,0,0,0,1
 Bowser Jr.'s Crafty Castle,0,0,0,0,0,0,0,0,0,0,0,0
-N64 Royal Raceway,0,0,0,0,0,0,0,0,0,0,0,0
-DS Airstrip Fortress,0,0,0,0,0,0,0,0,0,0,0,0
-DK Ruins,0,0,0,0,0,0,0,0,0,0,0,0
-DS Bowser's Castle,0,0,0,0,0,0,0,0,0,0,0,0
-Wolf Castlegrounds,0,0,0,0,0,0,0,0,0,0,0,0
+N64 Royal Raceway,0,1,1,0,0,0,1,0,0,0,0,1
+DS Airstrip Fortress,0,1,1,0,0,0,1,0,0,0,0,1
+DK Ruins,0,1,1,0,0,0,1,0,0,0,0,1
+DS Bowser's Castle,0,1,1,0,0,0,1,0,0,0,0,1
+Wolf Castlegrounds,0,1,1,0,0,0,1,0,0,0,0,1
