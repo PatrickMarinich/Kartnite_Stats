@@ -37,3 +37,13 @@ DKM. K P D M. Pat blue Kevin blue
 SNES3. D P K M5. 
 GV2. D K M P7. 
 Kevin 105 win
+
+GCNMC K C D M
+BC64  K C D M
+YF K C M D6
+LC C2 M4 K5 D10 Kevin blue Chris blue
+MM D K C M Demitri blue
+TF K M C D Kevin blue Mike blue
+MC D K C M
+LC D C K M 
+Kevin 101 Win.
