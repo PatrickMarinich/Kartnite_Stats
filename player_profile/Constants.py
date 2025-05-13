@@ -102,11 +102,11 @@ PLAYER_RACES_DICT = {"Pat" : PAT_RACES, "Chris": CHRIS_RACES,"Demitri": DEMITRI_
 #SEASON GP WINS -> MANUALLY STORED BY 
 #UPDATE THESE EVERY SEASON 
 #UPDATE IF SOMEBODY NEW WINS A GP
-PLAYER_GP_WINS_PAST_SEASONS = {"Pat" : [11,21,17,10,6,33],
-                           "Chirs" : [4,8,5,16,5,11],
-                           "Demitri" : [6,16,3,24,3,22],
-                           "Kevin" : [10,27,17,37,14,46], 
-                            "Shane": [0,0,0,0,1,0]}
+PLAYER_GP_WINS_PAST_SEASONS = {"Pat" : [11,21,17,10,6,33,53],
+                           "Chirs" : [4,8,5,16,5,11,17],
+                           "Demitri" : [6,16,3,24,3,22,27],
+                           "Kevin" : [10,27,17,37,14,46,60], 
+                            "Shane": [0,0,0,0,1,0,0]}
 
 #------------------------
 #longest GP win streaks, manually tracking
@@ -136,7 +136,7 @@ PAT_SEASON3_AWARDS = ['Season III Luckiest Player', 'Season III Best Shortcuts']
 CHRIS_SEASON3_AWARDS =['Season III Best Sniper', 'Season III Best Lines', 'Season III Biggest Lacker', '*Season III Least Imporved Player*']
 KEVIN_SEASON3_AWARDS =['Season III MVP','Season III Best Item User']
 DEMITRI_SEASON3_AWARDS =['Season III Best Trapper','Season III Best Reactions', 'Season III Best Guy', 'Season III Choke Artist', '*Season III On Thin Ice*','*Season III Biggest Dissipointment*']
-JOE_SEASON3_AWARDS = ['Season III Best Bagger', 'Season III Most Imporved Player']
+JOE_SEASON3_AWARDS = ['Season III Best Bagger', 'Season III Most Improved Player']
 #----Season 4 awards----
 PAT_SEASON4_AWARDS = ['Season IV Best Sniper', 'Season IV Best Shortcuts', 'Season IV Biggest Lacker']
 CHRIS_SEASON4_AWARDS = ['Season IV Best Bagger', 'Season IV Best Lines', 'Season IV Choke Artist']
@@ -154,6 +154,13 @@ CHRIS_SEASON6_AWARDS = ['Season VI Best Lines','Season VI Best Shortcuts','Seaso
 KEVIN_SEASON6_AWARDS = ['Season VI Aaron Judge Award - MVP', 'Season VI Best Items','Season VI Best Trapper','*Season VI 2016 Warriors Award*']
 DEMITRI_SEASON6_AWARDS = ['Season VI Luckiest Player','Season VI Best Reactions','Season VI Co-Biggest Lacker','Season VI Best Guy','Season VI Choke Artist']
 #----------Season 7 -------------
+PAT_SEASON7_AWARDS = ['Season VII Steamboat Ricky Award - Best Sniper']
+CHRIS_SEASON7_AWARDS = ['*UNANIMOUS* Season VII Best Lines', '*UNANIMOUS* Season VII Best Shortcuts', '*Season VII AHA Award*']
+KEVIN_SEASON7_AWARDS = ['Season VII Aaron Judge Award - MVP','Season VII Best Trapper', 'Season VII Co-Choke Artist Award']
+DEMITRI_SEASON7_AWARDS = ['Season VII Co-Best Guy Award','Season VII Co-Choke Artist Award']
+MIKE_SEASON7_AWARDS = ['Season VII \"Must get the win, must get the win\" Award - Best Reactions', 'Season VII Rookie of the Year', 'Season VII Co-Best Guy Award','*Season VII Biggest Draft Bust*']
+
+#----------Season 8 here -------
 
 #-----HIGH SCORE AWARDS------
 SHANE_SCORE_AWARDS = ['Perfect 120 - Nov 24th 2023']
@@ -167,8 +174,9 @@ CHIRS_SCORE_AWARDS = ['Scored 111: x1','Scored 110: x1']
 CHRIS_COMEBACK_AWARDS = ["Win GP with a 12th place: x1","Win a GP with a 6th place: x1"]
 
 #--TPURNIMENT AWARDS--
-PAT_TOURNIMENT_AWARDS = ["First Annual Kartnite Championship (Season VI) Champion"]
+PAT_TOURNIMENT_AWARDS = ["First Kartnite Championship (Season VI) Champion"]
 DEMITRI_TOURNIMENT_AWARDS = ["Okemo Vehical Elimination Champion ", "First Kartnite Knockout Tournament Champion"]
+KEVIN_TOURNIMENT_AWARDS = ["Second Kartnite Championship (Season VII) Champion"]
 
 #--------
 
@@ -176,11 +184,12 @@ DEMITRI_TOURNIMENT_AWARDS = ["Okemo Vehical Elimination Champion ", "First Kartn
 
 
 #A LIST OF ALL PLAYERS SEASONAL AWARDS
-PAT_AWARDS = [PAT_RETRO_AWARDS,PAT_SEASON2_AWARDS,PAT_SEASON3_AWARDS,PAT_SEASON4_AWARDS,PAT_SEASON5_AWARDS,PAT_SEASON6_AWARDS]
-CHRIS_AWARDS = [CHRIS_RETRO_AWARDS,CHRIS_SEASON2_AWARDS,CHRIS_SEASON3_AWARDS,CHRIS_SEASON4_AWARDS,CHRIS_SEASON5_AWARDS,CHRIS_SEASON6_AWARDS]
-KEVIN_AWARDS = [KEVIN_RETRO_AWARDS,KEVIN_SEASON2_AWARDS,KEVIN_SEASON3_AWARDS,KEVIN_SEASON4_AWARDS,KEVIN_SEASON5_AWARDS,KEVIN_SEASON6_AWARDS]
-DEMITRI_AWARDS = [DEMITRI_RETRO_AWARDS,DEMITRI_SEASON2_AWARDS,DEMITRI_SEASON3_AWARDS,DEMITRI_SEASON4_AWARDS,DEMITRI_SEASON5_AWARDS,DEMITRI_SEASON6_AWARDS]
+PAT_AWARDS = [PAT_RETRO_AWARDS,PAT_SEASON2_AWARDS,PAT_SEASON3_AWARDS,PAT_SEASON4_AWARDS,PAT_SEASON5_AWARDS,PAT_SEASON6_AWARDS,PAT_SEASON7_AWARDS]
+CHRIS_AWARDS = [CHRIS_RETRO_AWARDS,CHRIS_SEASON2_AWARDS,CHRIS_SEASON3_AWARDS,CHRIS_SEASON4_AWARDS,CHRIS_SEASON5_AWARDS,CHRIS_SEASON6_AWARDS,CHRIS_SEASON7_AWARDS]
+KEVIN_AWARDS = [KEVIN_RETRO_AWARDS,KEVIN_SEASON2_AWARDS,KEVIN_SEASON3_AWARDS,KEVIN_SEASON4_AWARDS,KEVIN_SEASON5_AWARDS,KEVIN_SEASON6_AWARDS,KEVIN_SEASON7_AWARDS]
+DEMITRI_AWARDS = [DEMITRI_RETRO_AWARDS,DEMITRI_SEASON2_AWARDS,DEMITRI_SEASON3_AWARDS,DEMITRI_SEASON4_AWARDS,DEMITRI_SEASON5_AWARDS,DEMITRI_SEASON6_AWARDS,DEMITRI_SEASON7_AWARDS]
 JOE_AWARDS = [JOE_SEASON2_AWARDS,JOE_SEASON3_AWARDS,JOE_SEASON5_AWARDS]
+MIKE_AWARDS = [MIKE_SEASON7_AWARDS]
 SHANE_AWARDS = []
 
 #APPENDING THE HIGH SCORES
@@ -196,6 +205,7 @@ CHRIS_AWARDS.append(CHRIS_COMEBACK_AWARDS)
 #append the tourniment awards
 PAT_AWARDS.append(PAT_TOURNIMENT_AWARDS)
 DEMITRI_AWARDS.append(DEMITRI_TOURNIMENT_AWARDS)
+KEVIN_AWARDS.append(KEVIN_TOURNIMENT_AWARDS)
 
 
 
@@ -209,7 +219,7 @@ AWARD_LIST = {'Pat' : PAT_AWARDS,
               'Joe' : JOE_AWARDS,
               'Shane': SHANE_AWARDS,
               'Karla': [],
-              'Mike' : [],
+              'Mike' : MIKE_AWARDS,
               'Jason' : [],
               'Matt' : [],
               'John': []}
