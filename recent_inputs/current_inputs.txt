@@ -12,7 +12,7 @@ BCWii. D P C
 DKM. P C D. Demitri blue
 SNES3. D P C. Chris dodge
 BC3. P C D. 
-DJKP. P D C. Pat 2 blue 
+DKJP. P D C. Pat 2 blue 
 DKS. P C D. Pat shock
 GV. C D P7. Demitri shock
 GV2. D P C. 
