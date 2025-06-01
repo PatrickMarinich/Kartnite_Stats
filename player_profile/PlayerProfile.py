@@ -1809,6 +1809,7 @@ def convertHTMLtoPDF(filename):
 
   merger = PdfWriter()
   merger.append("player_profile/pre_made_pdf/Kartnite Title Page.pdf")
+  merger.append("player_profile/pre_made_pdf/Kartnite Events Summary - Living Document.pdf")
   merger.append("player_profile/pre_made_pdf/Kartnite Championship season 6.pdf")
   merger.append("player_profile/pre_made_pdf/Okemo Vehicle Elimination Tournament.pdf")
   merger.append("player_profile/pre_made_pdf/Kartnite knockout tournament.pdf")
