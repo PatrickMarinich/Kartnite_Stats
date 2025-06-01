@@ -174,13 +174,13 @@ def RunKartniteStats(version, contributors):
       racers = ['Pat', 'Kevin', 'Demitri', 'Chris', 'Joe','Shane','Mike']
       for player in racers:
         HTML = createPlayerProfile(player,TrackIndex)
-        generatedFile = convertHTMLtoPDF(HTML)
-        sendReport(player,email,password,message,generatedFile)
+        generatedFile,events = convertHTMLtoPDF(HTML)
+        sendReport(player,email,password,message,generatedFile,events)
     else:
         player = players
         HTML = createPlayerProfile(player,TrackIndex)
-        generatedFile = convertHTMLtoPDF(HTML)
-        sendReport(player,email,password,message,generatedFile)
+        generatedFile,events = convertHTMLtoPDF(HTML)
+        sendReport(player,email,password,message,generatedFile,events)
   else: 
     print('invalid selection restart the program')
 

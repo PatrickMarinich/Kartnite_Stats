@@ -1796,22 +1796,27 @@ def convertHTMLtoPDF(filename):
   
   #Convert
   output = 'Kartnite Stats - ' + today + '.pdf'
+  output_events = 'Kartnite Events - ' + today + '.pdf'
   pdfkit.from_file(currFile, output_path=output, configuration=config,options={"enable-local-file-access": "",'--keep-relative-links': ''},verbose=True)
   print('Conversion Complete...')
 
-  #add in extra pdf pages, the pre-made ones, such as the championship
+  #make two pdfs, one for the stats, one for the events
   merger = PdfWriter()
   merger.append("player_profile/pre_made_pdf/Kartnite Title Page.pdf")
   merger.append(output)
+  merger.write('Kartnite Stats - ' + today + '.pdf')
+  merger.close()
+
+  merger = PdfWriter()
+  merger.append("player_profile/pre_made_pdf/Kartnite Title Page.pdf")
   merger.append("player_profile/pre_made_pdf/Kartnite Championship season 6.pdf")
   merger.append("player_profile/pre_made_pdf/Okemo Vehicle Elimination Tournament.pdf")
   merger.append("player_profile/pre_made_pdf/Kartnite knockout tournament.pdf")
   merger.append("player_profile/pre_made_pdf/Kartnite Season 7 - Championship.pdf")
-
-  merger.write('Kartnite Stats - ' + today + '.pdf')
+  merger.write('Kartnite Events - ' + today + '.pdf')
   merger.close()
 
-  return output
+  return output,output_events
 
 
 def decode(word,shift):
@@ -1829,7 +1834,7 @@ def decode(word,shift):
 
 #this is for emailing the created PDF to the player that it was generated for
 import yagmail
-def sendReport(player,userEmail,userPass,message,pdfFile):
+def sendReport(player,userEmail,userPass,message,pdfFile,events):
 
   print('Creating Email....')
   emails = {'Pat' : 'grkiztb.drizezty@xdrzc.tfd',
@@ -1850,6 +1855,6 @@ def sendReport(player,userEmail,userPass,message,pdfFile):
   today = date.isoformat(today)
 
   #uses the dictionary to get the email for the reciepient
-  user.send(to=decode(emails[player],17), subject=('Kartnite Stats from: ' +  today), contents=message,attachments = pdfFile)
+  user.send(to=decode(emails[player],17), subject=('Kartnite Stats from: ' +  today), contents=message,attachments = [pdfFile,events])
 
   print('Report Delievered To ', player, '!')
