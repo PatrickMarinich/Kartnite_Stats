@@ -20,7 +20,7 @@ def parse_input(file):
     #extra stats include the blue shells and shocks
 
     #STD INFO
-    PLAYERS = ["PAT","DEMITRI","KEVIN","KEV","CHRIS","JOE","SHANE","MIKE","MATT","JASON","KARLA","CALLUM","JOHN"]
+    PLAYERS = ["PAT","DEMITRI","KEVIN","KEV","CHRIS","JOE","SHANE","MIKE","MATT","JASON","KARLA","CALLUM","JOHN","DANNY"]
     PLAYERS_INIT = {
         "P":"Pat",
         "D":"Demitri",
@@ -33,7 +33,8 @@ def parse_input(file):
         "JA":"Jason",
         "KA":"Karla",
         "CA":"Callum",
-        "JW":"John"
+        "JW":"John",
+        "DA" : "Danny"
     }
     TRACKS = {"Luigi":"Luigi Circuit",
     "LC":"Luigi Circuit",
