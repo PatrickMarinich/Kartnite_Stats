@@ -1,7 +1,7 @@
 # Kartnite_Stats
 
 ## General Info 
-Version 4.0, automation work
+Version 5.0, Initial support for time trials (finally!)
 
 Dec 2021 -> Current
 
