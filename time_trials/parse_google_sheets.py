@@ -13,6 +13,9 @@
 # Do something with the Standards list
 # A checklist to see if we have beaten the staff ghosts.
 
+#auto commit csvs to github
+
+
 import os.path
 
 from google.auth.transport.requests import Request
@@ -24,6 +27,7 @@ from google.oauth2 import service_account
 
 import pandas as pd
 from datetime import datetime
+from git import Repo
 
 PATH_EXT = "/home/pat/KartniteStats/Kartnite_Stats/"
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
@@ -158,11 +162,36 @@ def update_player_database(player):
 if __name__ == "__main__":
     #for all players, update their player databases from the sheet
     players= ["Pat","Kevin","Chris","Demitri","John","Mike"]
+    update_database = 0
     update_count = 0
     for player in players:
        print("Updating: " + player + "...")
        update_count = update_player_database(player)
        print(player+" had "+ str(update_count) +" new times!")
+       if update_count != 0:
+          update_database = 1
     print("All players successfully updated!")
+
+    #update csvs in remote if theres an update
+    repo_path = '~/KartniteStats/Kartnite_Stats'
+    file_to_add = 'time_trials/player_data/*'
+    commit_message = "Update Player TT Times"
+
+    if update_database == 1:
+      try:
+          repo = Repo(repo_path)
+          repo.index.add([file_to_add])
+          repo.index.commit(commit_message)
+          print("File committed successfully.")
+          if repo.remotes:
+              origin = repo.remote(name='origin')
+              origin.push()
+              print("Changes pushed to remote repository.")
+          else:
+              print("No remote repository configured, commit only.")
+      except Exception as e:
+          print(f"Error: {e}")
+    else:
+       print("No updates to report")
 
   
