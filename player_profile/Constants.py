@@ -166,12 +166,12 @@ MIKE_SEASON7_AWARDS = ['Season VII \"Must get the win, must get the win\" Award 
 SHANE_SCORE_AWARDS = ['Perfect 120 - Nov 24th 2023']
 KEVIN_SCORE_AWARDS = ['Perfect 120 - Feb 10th 2025','Scored 115: x2', 'Scored 114: x3' ,'Scored 112: x2 ','Scored 111: x2', 'Scored 110: x2']
 DEMITRI_SCORE_AWARDS = ['Perfect 120 - Sept 3rd 2024','Scored 117 x1', 'Scored 115 x1','Scored 112: x1','Scored 111: x1', 'Scored 110: x2']
-PAT_SCORE_AWARDS = ['Scored 114: x2','Scored 111: x5','Scored 110: x2']
+PAT_SCORE_AWARDS = ['Scored 114: x3','Scored 111: x5','Scored 110: x2']
 CHIRS_SCORE_AWARDS = ['Scored 111: x1','Scored 110: x2']
 #-----------------
 
 #----COMEBACK AWARDS-----
-CHRIS_COMEBACK_AWARDS = ["Win GP with a 12th place: x1","Win a GP with a 6th place: x1"]
+CHRIS_COMEBACK_AWARDS = ["Win GP with a 12th place: x1","Win a GP with a 6th place: x1", "Win a GP with a 5th place: x1"]
 
 #--TPURNIMENT AWARDS--
 PAT_TOURNIMENT_AWARDS = ["First Kartnite Championship (Season VI) Champion"]
