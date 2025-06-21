@@ -71,7 +71,7 @@ def get_current_leaderboard(all_histories,track):
 
 #generate a line plot of all of the players times over time on the track, since june 1st 2025
 #data of the form time,date
-def get_players_line_graph(all_histories,track):
+def get_players_line_graph(all_histories,track,extra_txt = ""):
     
     #iterate through the items:
     players = []
@@ -123,17 +123,18 @@ def get_players_line_graph(all_histories,track):
             y_formatter = FuncFormatter(format_time)
             x_formatter = FuncFormatter(format_date)
             plt.gca().yaxis.set_major_formatter(y_formatter)
-            plt.plot(unzipped_list[1],unzipped_list[0],label=players[i],color=PLAYER_COLORS[players[i]],linewidth=1)
+            plt.plot(unzipped_list[1],unzipped_list[0],label=players[i],color=PLAYER_COLORS[players[i]],linewidth=1,drawstyle='steps-post')
 
     plt.legend()
-    name = 'time_trials/tmp_imgs/'+track.replace(" ","").replace("'","")+'_history.png'
+    plt.title("Player History")
+    name = 'time_trials/tmp_imgs/'+track.replace(" ","").replace("'","")+'_history'+ extra_txt + '.png'
 
     plt.savefig(name)
     plt.close() 
     return name
 
 #each day that passes, the player with the best time gets X points, second best Y points, third best Z points, june first 2025
-def get_time_trail_scores(all_histories,track):
+def get_time_trial_scores(all_histories,track):
     
     FIRST_POINTS = 1
     SECOND_POINTS = 0.2
@@ -196,6 +197,199 @@ def get_time_trail_scores(all_histories,track):
         data.append([k,v])
     return pd.DataFrame(data,columns=["Player","Track Score"]).sort_values(by="Track Score", ascending=False)
 
+
+#iterate through all of the days and count who has the best time, make a pie chart
+def get_pie_chart_days_in_first(all_histories,track,extra_txt = ""):
+    
+    #TT stats started on june 1st 2025
+    start_date = datetime(2025, 6, 1)
+    end_date = datetime.today()
+
+    #time step is one day 
+    d = timedelta(days=1)
+
+    #init the scores dict
+    days_in_first = {}
+    curr_times = {}
+    for k in all_histories.keys():
+        days_in_first[k] = 0
+        curr_times[k] = datetime(1900, 1, 1, 0, 9, 59, 999000)
+
+    #iterate over each day
+    #Store the best time per player up to this date
+    #then look at the top 3 and add their points
+    all_histories_cpy = deepcopy(all_histories)
+    while (start_date <= end_date):
+    
+        #for each player
+        for k in all_histories_cpy.keys():
+            if track in all_histories_cpy[k].keys():
+                if all_histories_cpy[k][track]!= []: 
+                    while(all_histories_cpy[k][track][0][1] <= start_date): #doing this in a loop should take care of mapping any pre- 06/01/25 times
+
+                        curr_times[k] = all_histories_cpy[k][track][0][0]
+                        all_histories_cpy[k][track].pop(0)
+
+                        if all_histories_cpy[k][track] == []:
+                            break
+
+        #convert hashmap to a list of lists. sort by time
+        day_list = []
+        for k,v in curr_times.items():
+            day_list.append([k,v])
+        day_list.sort(key=lambda x: x[1])
+
+        #increment increment the player in first by 1
+        days_in_first[day_list[0][0]] += 1
+        
+        #move to the next day
+        start_date += d
+
+    #make a list, remove any players with 0 days
+    names = []
+    days = []
+    for k,v in days_in_first.items():
+        if v != 0:
+            names.append(k)
+            days.append(v)
+
+    #custom labeling
+    total = sum(days)
+    def autopct_format(pct):
+        val = int(round(pct * total / 100.0))
+        return f'{val}\n({pct:.1f}%)'
+
+    #match player to color
+    colors = list(map(lambda x: PLAYER_COLORS[x], names))
+
+    #plt.figure()
+    fig, ax = plt.subplots()
+    ax.pie(days, labels=names, autopct=autopct_format,colors=colors)
+    plt.title("Days in First Place")
+    #plt.show()
+
+    name = 'time_trials/tmp_imgs/'+track.replace(" ","").replace("'","")+'_pie' + extra_txt + '.png'
+
+    plt.savefig(name,bbox_inches='tight')
+    plt.close() 
+    return name
+
+#get a graph of the overall #1 times over time. Color by player
+def get_record_line(all_histories, track, extra_txt = ""):
+    #TT stats started on june 1st 2025
+    start_date = datetime(2025, 6, 1)
+    end_date = datetime.today()
+
+    #time step is one day 
+    d = timedelta(days=1)
+
+    #init the scores dict
+    curr_times = {}
+    for k in all_histories.keys():
+        curr_times[k] = datetime(1900, 1, 1, 0, 9, 59, 999000)
+
+    #iterate over each day
+    #Store the best time per player up to this date
+    all_histories_cpy = deepcopy(all_histories)
+    first_place = []
+    while (start_date <= end_date):
+    
+        #for each player
+        for k in all_histories_cpy.keys():
+            if track in all_histories_cpy[k].keys():
+                if all_histories_cpy[k][track]!= []: 
+                    while(all_histories_cpy[k][track][0][1] <= start_date): #doing this in a loop should take care of mapping any pre- 06/01/25 times
+
+                        curr_times[k] = all_histories_cpy[k][track][0][0]
+                        all_histories_cpy[k][track].pop(0)
+
+                        if all_histories_cpy[k][track] == []:
+                            break
+
+        #convert hashmap to a list of lists. sort by time
+        day_list = []
+        for k,v in curr_times.items():
+            day_list.append([k,v])
+        day_list.sort(key=lambda x: x[1])
+
+        #whoever is in first, list the name, time date
+        first_place.append([day_list[0][0],day_list[0][1],start_date])
+        
+        #move to the next day
+        start_date += d
+
+    #print(first_place)
+
+    #formatting datetime objects
+    def format_time(x,pos=None):
+        dt = mdates.num2date(x)
+        format_string_time = "%M:%S.%f" 
+        label = dt.strftime(format_string_time)
+        #print(dt, label)
+        return label[:-3]
+    def format_date(x,pos=None):
+        print(x)
+        vals = str(x).split("-")
+        return vals[1]+"/"+vals[2]+"/"+vals[0]
+    
+    #all of the dates
+    x = [x[2] for x  in first_place]
+    #all of the times
+    y = [y[1] for y in first_place]
+    #for coloring the line
+    names = [z[0] for z in first_place]
+
+    #a new line is plotted each time there is a new name in the list.
+    prev_name = None
+    curr_x = []
+    curr_y = []
+    i = 0
+    names_used = []
+    #plot a point at the very first time, if there is only one time then the axis is broken, plotting a point seems to fix it
+    plt.plot(x[0],y[0] + timedelta(milliseconds=1),label="_nolegend_")
+    for name in names: 
+        #same person held record, so add day to list
+        if prev_name == name:
+            curr_x.append(x[i])
+            curr_y.append(y[i])  
+        #very first elem, log dont plot
+        elif prev_name == None:
+            curr_x = [x[i]]
+            curr_y = [y[i]]
+        else:
+            #different person, so clear plot an clear x & y
+            label = prev_name
+            if prev_name in names_used:
+                label = "_nolegend_"
+            plt.plot(curr_x,curr_y,color = PLAYER_COLORS[prev_name],label=label,drawstyle='steps-pre')
+            names_used.append(prev_name)
+            #include prev point so the lines connect
+            curr_x = [x[i-1],x[i]]
+            curr_y = [y[i-1],y[i]]
+
+        prev_name = name
+        i += 1
+    
+    #when complete plot the last segment
+    #print(curr_y)
+    label = prev_name
+    if prev_name in names_used:
+        label = "_nolegend_"
+    plt.plot(curr_x,curr_y,color = PLAYER_COLORS[prev_name],label=label,drawstyle='steps-pre')
+
+    y_formatter = FuncFormatter(format_time)
+    x_formatter = FuncFormatter(format_date)
+    plt.gca().yaxis.set_major_formatter(y_formatter)
+    plt.title("Kartnite Record")
+    plt.legend()
+    #plt.show()
+
+    name = 'time_trials/tmp_imgs/'+track.replace(" ","").replace("'","")+'_recordline' + extra_txt + '.png'
+
+    plt.savefig(name)
+    plt.close() 
+    return name
+
 #find the longest lasting record for a track, and the length of the current time, since june 1st 2025
 def get_time_record_was_held(all_histories,track):
    pass #not yet implemented
@@ -217,7 +411,9 @@ if __name__ == "__main__":
 
     #get_players_line_graph(all_histories,'GCN DK Mountain')
 
-    track_scores = get_time_trail_scores(all_histories,"GCN DK Mountain")
-    print(track_scores)
+    #track_scores = get_time_trail_scores(all_histories,"GCN DK Mountain")
+    #print(track_scores)
     #track_scores = get_time_trail_scores(all_histories,"Rainbow Road")
     #print(track_scores)
+    #get_pie_chart_days_in_first(all_histories,"Moo Moo Meadows")
+    get_record_line(all_histories,"Moo Moo Meadows")

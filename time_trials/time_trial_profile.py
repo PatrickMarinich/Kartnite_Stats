@@ -35,14 +35,49 @@ def create_time_trial_profile(player):
 
     htmlHeaders()
 
-    create_cup_page(all_histories,"Luigi Circuit","Moo Moo Meadows","Mushroom Gorge","Toad's Factory","Mushroom Cup")
-    create_cup_page(all_histories,"Mario Circuit","Coconut Mall","DK's Snowboard Cross","Wario's Gold Mine","Flower Cup")
-    create_cup_page(all_histories,"Daisy Circuit","Koopa Cape","Maple Treeway","Grumble Volcano","Star Cup")
-    create_cup_page(all_histories,"Dry Dry Ruins","Moonview Highway","Bowser's Castle","Rainbow Road","Special Cup")
-    create_cup_page(all_histories,"GCN Peach Beach","DS Yoshi Falls","SNES Ghost Valley 2","N64 Mario Raceway","Shell Cup")
-    create_cup_page(all_histories,"N64 Sherbet Land","GBA Shy Guy Beach","DS Delfino Square","GCN Waluigi Stadium","Banana Cup")
-    create_cup_page(all_histories,"DS Desert Hills","GBA Bowser Castle 3","N64 DK's Jungle Parkway","GCN Mario Circuit","Leaf Cup")
-    create_cup_page(all_histories,"SNES Mario Circuit 3","DS Peach Gardens","GCN DK Mountain","N64 Bowser's Castle","Lightning Cup")
+    #mushroom cup
+    create_category_page(all_histories,"Luigi Circuit","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"Moo Moo Meadows","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"Mushroom Gorge","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"Toad's Factory","Unrestricted", extra_txt = "")
+    #flower cup
+    create_category_page(all_histories,"Mario Circuit","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"Coconut Mall","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"DK's Snowboard Cross","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"Wario's Gold Mine","Unrestricted", extra_txt = "")
+    #star cup
+    create_category_page(all_histories,"Daisy Circuit","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"Koopa Cape","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"Maple Treeway","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"Grumble Volcano","Unrestricted", extra_txt = "")
+    #special cup
+    create_category_page(all_histories,"Dry Dry Ruins","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"Moonview Highway","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"Bowser's Castle","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"Rainbow Road","Unrestricted", extra_txt = "")
+    #shell cup
+    create_category_page(all_histories,"GCN Peach Beach","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"DS Yoshi Falls","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"SNES Ghost Valley 2","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"N64 Mario Raceway","Unrestricted", extra_txt = "")
+    #banana cup
+    create_category_page(all_histories,"N64 Sherbet Land","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"GBA Shy Guy Beach","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"DS Delfino Square","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"GCN Waluigi Stadium","Unrestricted", extra_txt = "")
+    #leaf cup
+    create_category_page(all_histories,"DS Desert Hills","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"GBA Bowser Castle 3","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"N64 DK's Jungle Parkway","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"GCN Mario Circuit","Unrestricted", extra_txt = "")
+    #lightning cup
+    create_category_page(all_histories,"SNES Mario Circuit 3","Unrestricted",extra_txt = "")
+    create_category_page(all_histories,"DS Peach Gardens","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"GCN DK Mountain","Unrestricted", extra_txt = "")
+    create_category_page(all_histories,"N64 Bowser's Castle","Unrestricted", extra_txt = "")
+    
+    #create_cup_page(all_histories,"DS Desert Hills","GBA Bowser Castle 3","N64 DK's Jungle Parkway","GCN Mario Circuit","Leaf Cup")
+    #create_cup_page(all_histories,"SNES Mario Circuit 3","DS Peach Gardens","GCN DK Mountain","N64 Bowser's Castle","Lightning Cup")
 
     #----------Setting Output back to console--------
     sys.stdout = default_stdout
@@ -59,8 +94,74 @@ def htmlHeaders():
   print('<style> div.center {text-align: center; } </style>')
   print('<style> div.bar { display: flex; align-items: center; width: 100%; height: 3px; background-color: #1faadb; padding: 4px;} </style>')
   print('<style> div.block { display: inline-block; padding: 3px} </style>')
-  print('<style> div.trackbox {text-align: left; display: inline-block; align-items:left; width: 47%; height: 40%; border: 3px solid black; padding: 7px; margin: auto; vertical-align: top;} </style>')
-  print('<style> div.dfbox {text-align: left; display: inline-block; align-items:center; width: 100%; border: 0px solid black; padding: 0px; margin: auto; vertical-align: top;} </style>')
+  print('<style> div.trackbox {text-align: left; display: inline-block; align-items:left; width: 47%; height: 40%; border: 0px solid black; padding: 7px; margin: auto; vertical-align: top;} </style>')
+  print('<style> div.dfbox {text-align: left; display: inline-block; align-items:center; width: 100%; border: 0px solid black; padding: 1px; margin: auto; vertical-align: top;} </style>')
+
+
+def create_category_page(all_histories,track,category, extra_txt = ""):
+    #title
+    print("<div class=\"center\">")
+    print('<h1>',track, "-",category, '</h1>')
+    print('</div>')
+    #break line
+    print('<div class = \"bar\"> </div>')
+
+    #records_graph
+    print('<div class =\"trackbox\">')  #box 1
+    print('<div class =\"center\">')
+    #get the embedded HTML for the plot
+    path = get_record_line(all_histories,track,extra_txt)
+    print('<img src=', PATH_EXT+path, 'alt=\"'+track+'\" width=\"425\" height=\"350\">' )
+    print('</div>')
+    print('</div>')
+
+    #all_players_graph
+    print('<div class =\"trackbox\">')  #box 2
+    print('<div class =\"center\">')
+    #get the embedded HTML for the plot
+    path = get_players_line_graph(all_histories,track,extra_txt)
+    print('<img src=', PATH_EXT+path, 'alt=\"'+track+'\" width=\"425\" height=\"350\">' )
+    print('</div>')
+    print('</div>')
+
+    #pie_chart
+    print('<div class =\"trackbox\">') # box 3
+    #print('<div class =\"center\">')
+    #get the embedded HTML for the plot
+    path = get_pie_chart_days_in_first(all_histories,track,extra_txt)
+    print('<img src=', PATH_EXT+path, 'alt=\"'+track+'\" width=\"350\" height=\"350\">' )
+    #print('</div>')
+    print('</div>')
+
+    print('<div class =\"trackbox\">') # box 4
+    print("<div class=\"center\">")
+    print('<h2> Track Stats </h2>')
+    curr_times = get_current_leaderboard(all_histories,track)
+    print('<div class =\"block\">')
+    print(curr_times.to_html(index=False,justify='left'))
+    print("</div>")
+
+    #getting the track scores
+    curr_scores = get_time_trial_scores(all_histories,track)
+    print('<div class =\"block\">')
+    print(curr_scores.to_html(index=False,justify='right'))
+    print("</div>")
+    print('<h4> Track Score is calculated by: </h4>')
+    print('<p> 1 point per day with the best time         </p>')
+    print('<p> 0.2 points per day with the 2nd best time  </p>')
+    print('<p> 0.04 points per day with the 3rd best time </p>')
+    print('</div>')
+    print("</div>")
+
+    print('<div class = \"bar\"> </div>')
+    #-----include more stuff here ------
+
+    #page break, if not at last page
+    if track != "N64 Bowser's Castle":
+        print('<p style= \"page-break-after: always;\"> &nbsp; </p>')
+        print('<p style= \"page-break-before: always;\"> &nbsp; </p>')
+
+
 
 def create_track_box(all_histories, track):
     #outer box for the track
@@ -79,7 +180,7 @@ def create_track_box(all_histories, track):
     print("</div>")
 
     #getting the track scores
-    curr_scores = get_time_trail_scores(all_histories,track)
+    curr_scores = get_time_trial_scores(all_histories,track)
     print('<div class =\"block\">')
     print(curr_scores.to_html(index=False,justify='right'))
     print("</div>")
