@@ -22,10 +22,12 @@ def create_time_trial_profile(player):
     #gather all data necessarry:
     players= ["Pat","Kevin","Chris","Demitri","John","Mike"]
     all_histories = {}
+    all_histories_nsc = {}
     #data is now in the format of: 
     #{player : {track: (time, date_set), ...}, ...}
     for player in players:
         all_histories[player] = convert_history_to_dict(player)
+        all_histories_nsc[player] = convert_nsc_history_to_dict(player)
 
 
     #HTML File name and redirecting output
@@ -35,25 +37,39 @@ def create_time_trial_profile(player):
 
     htmlHeaders()
 
+    #all tracks will have a unrestricted page
+    #select tracks with a shortcut will have a non-shortcut page as well
+    #Tracks will 'unlock' the non-shortcut page when a player gets a shortcut time
+    
+    #These are the tracks that currently have a time with a shortcut
+    #mushroom gorge, Warios Gold Mine, Grumble Volcano, BCWii
+    #BC3, 
+
+
+
     #mushroom cup
     create_category_page(all_histories,"Luigi Circuit","Unrestricted", extra_txt = "")
     create_category_page(all_histories,"Moo Moo Meadows","Unrestricted", extra_txt = "")
     create_category_page(all_histories,"Mushroom Gorge","Unrestricted", extra_txt = "")
+    create_category_page(all_histories_nsc,"Mushroom Gorge","Non-Shortcut", extra_txt = "NSC")
     create_category_page(all_histories,"Toad's Factory","Unrestricted", extra_txt = "")
     #flower cup
     create_category_page(all_histories,"Mario Circuit","Unrestricted", extra_txt = "")
     create_category_page(all_histories,"Coconut Mall","Unrestricted", extra_txt = "")
     create_category_page(all_histories,"DK's Snowboard Cross","Unrestricted", extra_txt = "")
     create_category_page(all_histories,"Wario's Gold Mine","Unrestricted", extra_txt = "")
+    create_category_page(all_histories_nsc,"Wario's Gold Mine","Non-Shortcut", extra_txt = "NSC")
     #star cup
     create_category_page(all_histories,"Daisy Circuit","Unrestricted", extra_txt = "")
     create_category_page(all_histories,"Koopa Cape","Unrestricted", extra_txt = "")
     create_category_page(all_histories,"Maple Treeway","Unrestricted", extra_txt = "")
     create_category_page(all_histories,"Grumble Volcano","Unrestricted", extra_txt = "")
+    create_category_page(all_histories_nsc,"Grumble Volcano","Non-Shortcut", extra_txt = "NSC")
     #special cup
     create_category_page(all_histories,"Dry Dry Ruins","Unrestricted", extra_txt = "")
     create_category_page(all_histories,"Moonview Highway","Unrestricted", extra_txt = "")
     create_category_page(all_histories,"Bowser's Castle","Unrestricted", extra_txt = "")
+    create_category_page(all_histories_nsc,"Bowser's Castle","Non-Shortcut", extra_txt = "NSC")
     create_category_page(all_histories,"Rainbow Road","Unrestricted", extra_txt = "")
     #shell cup
     create_category_page(all_histories,"GCN Peach Beach","Unrestricted", extra_txt = "")
@@ -68,6 +84,7 @@ def create_time_trial_profile(player):
     #leaf cup
     create_category_page(all_histories,"DS Desert Hills","Unrestricted", extra_txt = "")
     create_category_page(all_histories,"GBA Bowser Castle 3","Unrestricted", extra_txt = "")
+    create_category_page(all_histories_nsc,"GBA Bowser Castle 3","Non-Shortcut", extra_txt = "NSC")
     create_category_page(all_histories,"N64 DK's Jungle Parkway","Unrestricted", extra_txt = "")
     create_category_page(all_histories,"GCN Mario Circuit","Unrestricted", extra_txt = "")
     #lightning cup

@@ -10,7 +10,7 @@ from copy import deepcopy
 from matplotlib.ticker import FuncFormatter
 import matplotlib.dates as mdates
 
-PLAYER_COLORS = {"Pat": 'darkorange', "Demitri": 'green', "Chris": "magenta", "Kevin": 'royalblue', 'Mike': 'purple', "John": "palegreen"}
+PLAYER_COLORS = {"Pat": 'darkorange', "Demitri": 'green', "Chris": "magenta", "Kevin": 'royalblue', 'Mike': 'purple', "John": '#98E1D0'}
 PATH_EXT = "/home/pat/KartniteStats/Kartnite_Stats/"
 
 #open up the history file and create a dict with all of the tracks, the PR set and what date it was set on
@@ -33,6 +33,25 @@ def convert_history_to_dict(player):
     
     return history
 
+#Identical to above, but using the non-shortcut times
+def convert_nsc_history_to_dict(player):
+    #open file
+    history_file = open(PATH_EXT+"time_trials/player_data/non_shortcut/"+player+"_history.csv", "r")
+    format_string_date = "%m/%d/%Y"
+    format_string_time = "%M:%S.%f" 
+
+    #add in the form track: (race time, date)
+    history = {}
+    for line in history_file:
+        line = line.replace("\n","") #remove endline
+        data = line.split(",")  #split csv
+
+        if data[0] in history.keys():
+            history[data[0]].append((datetime.strptime(data[1],format_string_time),datetime.strptime(data[2],format_string_date)))
+        else:
+            history[data[0]] = [(datetime.strptime(data[1],format_string_time),datetime.strptime(data[2],format_string_date))]
+    
+    return history
 
 #generate the current leaderboard of everybodys PRs for a given track (their most recent times)
 def get_current_leaderboard(all_histories,track):
