@@ -56,6 +56,7 @@ def create_time_trial_profile(player):
     #flower cup
     create_category_page(all_histories,"Mario Circuit","Unrestricted", extra_txt = "")
     create_category_page(all_histories,"Coconut Mall","Unrestricted", extra_txt = "")
+    create_category_page(all_histories_nsc,"Coconut Mall","Non-Shortcut", extra_txt = "NSC")
     create_category_page(all_histories,"DK's Snowboard Cross","Unrestricted", extra_txt = "")
     create_category_page(all_histories,"Wario's Gold Mine","Unrestricted", extra_txt = "")
     create_category_page(all_histories_nsc,"Wario's Gold Mine","Non-Shortcut", extra_txt = "NSC")

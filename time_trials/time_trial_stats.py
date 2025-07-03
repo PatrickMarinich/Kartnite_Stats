@@ -142,6 +142,7 @@ def get_players_line_graph(all_histories,track,extra_txt = ""):
             y_formatter = FuncFormatter(format_time)
             x_formatter = FuncFormatter(format_date)
             plt.gca().yaxis.set_major_formatter(y_formatter)
+            plt.gcf().autofmt_xdate()
             plt.plot(unzipped_list[1],unzipped_list[0],label=players[i],color=PLAYER_COLORS[players[i]],linewidth=1,drawstyle='steps-post')
 
     plt.legend()
@@ -398,6 +399,7 @@ def get_record_line(all_histories, track, extra_txt = ""):
 
     y_formatter = FuncFormatter(format_time)
     x_formatter = FuncFormatter(format_date)
+    plt.gcf().autofmt_xdate()
     plt.gca().yaxis.set_major_formatter(y_formatter)
     plt.title("Kartnite Record")
     plt.legend()
