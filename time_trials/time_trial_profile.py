@@ -5,7 +5,7 @@ import yagmail
 import os
 
 import sys
-from IPython import display
+#from IPython import display
 import pdfkit
 from datetime import date
 from copy import deepcopy
