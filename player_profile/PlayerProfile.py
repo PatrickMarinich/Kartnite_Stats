@@ -761,7 +761,7 @@ def trackMVPPage(dfSeasonScores,dfSeasonRaceCount,TrackIndex,dfAllTimeScores,dfA
                 if currCrown[0] == str(row['Current MVP']):
                     currCrown[1] += 1
                 else:
-                    currCrown[1] = 0
+                    currCrown[1] = 1
                     currCrown[0] = str(row['Current MVP'])
 
         else:
@@ -782,6 +782,9 @@ def trackMVPPage(dfSeasonScores,dfSeasonRaceCount,TrackIndex,dfAllTimeScores,dfA
         else:
             counter +=1
         trueIterCount+=1
+
+        #print(counter, trueIterCount, currCrown, file=open('mylog.txt','a'))
+
         if trueIterCount == 16:
             print('</div>')
             print('<div class="center">')
@@ -1028,27 +1031,6 @@ def trackMVPPage(dfSeasonScores,dfSeasonRaceCount,TrackIndex,dfAllTimeScores,dfA
     print('<div class="bar"></div>')
 
     print('</div>')
-
-    
-        
-
-        
-
-    
-    
-    
-    
-    
-    
-
-
-
-
-
-
-
-
-
 
  
 #this is the old function, replaced with the newer version dec 2024
@@ -1847,7 +1829,8 @@ def sendReport(player,userEmail,userPass,message,pdfFile,events):
 'Callum' : 'xfrczvtrc50@xdrzc.tfd',
 'Shane' : 'jyrevdulegyp@yfkdrzc.tfd',
 'Mike':'udzbv1228@xdrzc.tfd',
-'John':'adnlcww.22@xdrzc.tfd'}
+'John':'adnlcww.22@xdrzc.tfd',
+'Danny': 'tczggviure42@xdrzc.tfd'}
   #the user inputs their email infromation, to send the email
   user = yagmail.SMTP(user=userEmail, password=userPass)
 

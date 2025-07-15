@@ -39,6 +39,7 @@ then
     echo `python3 player_profile/remote_send_player_profiles_on_update.py Mike`
     echo `python3 player_profile/remote_send_player_profiles_on_update.py Shane`
     echo `python3 player_profile/remote_send_player_profiles_on_update.py Joe`
+    echo `python3 player_profile/remote_send_player_profiles_on_update.py Danny`
 
     echo 'all stats sent out!'
 
