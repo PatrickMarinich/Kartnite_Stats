@@ -10,8 +10,9 @@ from copy import deepcopy
 from matplotlib.ticker import FuncFormatter
 import matplotlib.dates as mdates
 
-PLAYER_COLORS = {"Pat": 'darkorange', "Demitri": 'green', "Chris": "magenta", "Kevin": 'royalblue', 'Mike': 'purple', "John": '#98E1D0'}
-PATH_EXT = "/home/pat/KartniteStats/Kartnite_Stats/"
+#import everything from the constants file
+from constants import *
+
 
 #open up the history file and create a dict with all of the tracks, the PR set and what date it was set on
 def convert_history_to_dict(player):
@@ -415,6 +416,32 @@ def get_record_line(all_histories, track, extra_txt = ""):
 def get_time_record_was_held(all_histories,track):
    pass #not yet implemented
 
+#given a track and the category determine the rank of the time and return it
+def get_track_standard_rank(player,all_histories,track,category):
+    
+    #based on the inputs for track and cetegory, choose the right standards dictionary
+    track_category_standards = None
+    if category != "nsc":
+        track_category_standards = TRACK_TO_STANDARDS[track][0]
+    else: 
+        track_category_standards = TRACK_TO_STANDARDS[track][1]
+
+    #get the current best time of the player on that track
+    currtime = all_histories[player][track][-1][0]
+    #print(currtime)
+
+    #iterate though the list of standards times, if time is greater continue otherwise break, return the standard
+    format_string_time = "%M:%S.%f" 
+    currStd = "Newbie"
+    for k,v in track_category_standards.items():
+        #convert to date time and compare
+        #print(k, datetime.strptime(v,format_string_time))
+        if datetime.strptime(v,format_string_time) > currtime:
+            currStd = k
+            break
+    
+    print("My standard on", track, "is: ", currStd)
+    return currStd
 
 
 if __name__ == "__main__":
@@ -437,4 +464,11 @@ if __name__ == "__main__":
     #track_scores = get_time_trail_scores(all_histories,"Rainbow Road")
     #print(track_scores)
     #get_pie_chart_days_in_first(all_histories,"Moo Moo Meadows")
-    get_record_line(all_histories,"Moo Moo Meadows")
+    #get_record_line(all_histories,"Moo Moo Meadows")
+
+    get_track_standard_rank("Pat",all_histories,"Moo Moo Meadows","open")
+    get_track_standard_rank("Pat",all_histories,"Grumble Volcano","open")
+    get_track_standard_rank("Pat",all_histories,"GBA Shy Guy Beach","open")
+    get_track_standard_rank("Pat",all_histories,"Moonview Highway","open")
+    get_track_standard_rank("Pat",all_histories,"Toad's Factory","open")
+    get_track_standard_rank("Pat",all_histories,"Coconut Mall","open")
