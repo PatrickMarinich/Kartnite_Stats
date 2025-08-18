@@ -25,10 +25,12 @@ def create_time_trial_profile(player):
     all_histories_nsc = {}
     #data is now in the format of: 
     #{player : {track: (time, date_set), ...}, ...}
-    for player in players:
-        all_histories[player] = convert_history_to_dict(player)
-        all_histories_nsc[player] = convert_nsc_history_to_dict(player)
+    for playerx in players:
+        all_histories[playerx] = convert_history_to_dict(playerx)
+        all_histories_nsc[playerx] = convert_nsc_history_to_dict(playerx)
 
+    
+    print(player)
 
     #HTML File name and redirecting output
     filename = player + '.html'
@@ -37,15 +39,12 @@ def create_time_trial_profile(player):
 
     htmlHeaders()
 
+    #add in the standards page
+    create_standards_page(player,all_histories,all_histories_nsc)
+
     #all tracks will have a unrestricted page
     #select tracks with a shortcut will have a non-shortcut page as well
-    #Tracks will 'unlock' the non-shortcut page when a player gets a shortcut time
-    
-    #These are the tracks that currently have a time with a shortcut
-    #mushroom gorge, Warios Gold Mine, Grumble Volcano, BCWii
-    #BC3, 
-
-
+    #Tracks will 'unlock' the non-shortcut page when a player gets a shortcut time, see constants.py for more info
 
     #mushroom cup
     create_category_page(all_histories,"Luigi Circuit","Unrestricted", extra_txt = "")
@@ -104,17 +103,30 @@ def create_time_trial_profile(player):
 
 
 def htmlHeaders():
-  #file headers
-  print('<!DOCTYPE html>')
-  print('<html>')
-  print('<body>')
-  #divs for text
-  print('<style> div.center {text-align: center; } </style>')
-  print('<style> div.bar { display: flex; align-items: center; width: 100%; height: 3px; background-color: #1faadb; padding: 4px;} </style>')
-  print('<style> div.block { display: inline-block; padding: 3px} </style>')
-  print('<style> div.trackbox {text-align: left; display: inline-block; align-items:left; width: 47%; height: 40%; border: 0px solid black; padding: 7px; margin: auto; vertical-align: top;} </style>')
-  print('<style> div.dfbox {text-align: left; display: inline-block; align-items:center; width: 100%; border: 0px solid black; padding: 1px; margin: auto; vertical-align: top;} </style>')
+    #file headers
+    print('<!DOCTYPE html>')
+    print('<html>')
+    print('<body>')
+    #divs for text
+    print('<style> div.center {text-align: center; } </style>')
+    print('<style> div.bar { display: flex; align-items: center; width: 100%; height: 3px; background-color: #1faadb; padding: 4px;} </style>')
+    print('<style> div.block { display: inline-block; padding: 3px} </style>')
+    print('<style> div.block2 { display: inline-block; padding: 3px; border: 0px solid black;} </style>')
+    print('<style> div.trackbox {text-align: left; display: inline-block; align-items:left; width: 47%; height: 40%; border: 0px solid black; padding: 7px; margin: auto; vertical-align: top;} </style>')
+    print('<style> div.dfbox {text-align: left; display: inline-block; align-items:center; width: 100%; border: 0px solid black; padding: 1px; margin: auto; vertical-align: top;} </style>')
 
+    #divs for the standards page
+    print('<style>.outer-badge-row-container {display: flex; flex-direction: row; justify-content: space-evenly; width: 100%; border: 0px solid black; padding: 8px;}</style>')
+    print('<style>.outer-badge-container {display: inline-block; flex-direction: column; width: 200px; height: 140px; border: 0px solid black; padding: 0px;text-align: center}</style>')
+    print('<style>.inner-badge-container {position: relative; display: flex; justify-content: space-between; width: 200px; height: 125px; border: 0px solid black; z-index: 1}</style>')
+    print('<style>.inner-badge-container-no-triangles {position: relative; display: flex; width: 200px; height: 125px; border: 0px solid black; background-color: #FF5733;}</style>')
+    print('<style>.half-triangles {position: absolute; bottom:0; left: 0; width: 0;height: 0;border-bottom: 125px solid green; border-left: 200px solid #12dbd8; z-index: 1;} </style>')
+    print('<style>.circle {width: 20px;height: 20px;background: blue;border-radius: 50%;  position: absolute; top: 10px;left: 10px;z-index: 2; }</style>')
+    print('<style> div.center-bottom {text-align: center; bottom:0; } </style>')
+    print('<style> div.no-margin-text {font-size: 15px; margin: 0px; padding: 0px; } </style>')
+    print('<style> div.img-wrapper {margin-top: 10px;} </style>')
+
+#--------------- pages -------------------
 
 def create_category_page(all_histories,track,category, extra_txt = ""):
     #title
@@ -148,27 +160,29 @@ def create_category_page(all_histories,track,category, extra_txt = ""):
     #get the embedded HTML for the plot
     path = get_pie_chart_days_in_first(all_histories,track,extra_txt)
     print('<img src=', PATH_EXT+path, 'alt=\"'+track+'\" width=\"350\" height=\"350\">' )
-    #print('</div>')
+    print('</div>')
     print('</div>')
 
     print('<div class =\"trackbox\">') # box 4
     print("<div class=\"center\">")
     print('<h2> Track Stats </h2>')
-    curr_times = get_current_leaderboard(all_histories,track)
+    curr_times = get_current_leaderboard(all_histories,track,category=extra_txt)
     print('<div class =\"block\">')
     print(curr_times.to_html(index=False,justify='left'))
     print("</div>")
 
     #getting the track scores
     curr_scores = get_time_trial_scores(all_histories,track)
-    print('<div class =\"block\">')
+    print('<div class ="block2">')
     print(curr_scores.to_html(index=False,justify='right'))
     print("</div>")
-    print('<h4> Track Score is calculated by: </h4>')
-    print('<p> 1 point per day with the best time         </p>')
-    print('<p> 0.2 points per day with the 2nd best time  </p>')
-    print('<p> 0.04 points per day with the 3rd best time </p>')
-    print('</div>')
+    # print('<div class ="block2">')
+    # print('<b> Track Score Per Day: </b>')
+    # print('<p> 1 point for 1st</p>')
+    # print('<p> 0.2 points for 2nd</p>')
+    # print('<p> 0.04 points for 3rd </p>')
+    # print('</div>')
+    print("</div>")
     print("</div>")
 
     print('<div class = \"bar\"> </div>')
@@ -180,6 +194,70 @@ def create_category_page(all_histories,track,category, extra_txt = ""):
         print('<p style= \"page-break-before: always;\"> &nbsp; </p>')
 
 
+#iterate through all of the tracks, if the track is in the schortcut list, do two otherwsie do one
+def create_standards_page(player,all_histories,all_histories_nsc):
+    print('<div class="center">')
+    print('<h1> Player Timesheet </h1>')
+    print('</div>')
+    print('<div class="bar"></div>')
+    
+    track_count = 0
+    for track in LIST_OF_TRACK_NAMES:
+        #get the current standards from the track.
+        std = get_track_standard_rank(player, all_histories,track,category="open")
+        std_nsc = None
+        if track in LIST_OF_TRACK_NAMES_SHORTCUT:
+            std_nsc = get_track_standard_rank(player, all_histories_nsc,track,category="nsc")
+
+        #outer casing
+        if track_count % 4 == 0:
+            print('<div class="outer-badge-row-container">')
+            print('<div class="center">')
+
+        #track without a shortcut - gets one box and one badge
+        if track not in LIST_OF_TRACK_NAMES_SHORTCUT:
+            print('<div class="outer-badge-container">')
+            print('<div class="center-bottom">')
+            print('<div class="no-margin-text">')
+            print(track)
+            print('</div>')
+            print('</div>')
+            print('<div class="inner-badge-container-no-triangles" style="background-color: ' + STANDARDS_RANK_TO_BG_COLOR[std]+ ';">')
+            print('<div class="center-bottom">')
+            print('<img src=',STANDARDS_RANK_TO_IMG_PATH[std], 'alt=\"BadgeA\" width=\"143\" height=\"100\" style=\"padding-top: 12px; padding-left: 26px; border: 1px; display: block;\">' )
+            print('</div>')
+            print('</div>')
+            print('</div>')
+        #the track has a shortcut in it
+        else: 
+            print('<div class="outer-badge-container">')
+            print('<div class="center-bottom">')
+            print('<div class="no-margin-text">')
+            print(track)
+            print('</div>')
+            print('</div>')
+            print('<div class="inner-badge-container">')
+            print('<div class="half-triangles" style="border-bottom: 125px solid ' + STANDARDS_RANK_TO_BG_COLOR[std_nsc] + '; border-left: 200px solid ' + STANDARDS_RANK_TO_BG_COLOR[std]  + ';"> </div>')
+            print('<div class="center-bottom">')
+            print('<img src=',STANDARDS_RANK_TO_IMG_PATH[std], 'alt=\"BadgeB\" width=\"100\" height=\"70\" style=\"padding-top: 2px; padding-left: 2px; border: 1px; display: block; z-index:2; position: absolute;\">' )
+            print('<img src=',STANDARDS_RANK_TO_IMG_PATH[std_nsc], 'alt=\"BadgeB\" width=\"100\" height=\"70\" style=\"padding-top: 50px; padding-left: 95px; border: 1px; display: block; z-index:2; position: absolute;\">' )
+            print('</div>')
+            print('</div>')
+            print('</div>')
+
+        #outer casing closing
+        if track_count % 4 == 3:
+            print('</div>')
+            print('</div>')
+        
+        track_count += 1
+    
+    #force page break
+    #print('<p style= \"page-break-after: always;\"> &nbsp; </p>')
+
+
+
+#-------------------page helpers--------------------
 
 def create_track_box(all_histories, track):
     #outer box for the track

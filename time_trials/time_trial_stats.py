@@ -55,8 +55,12 @@ def convert_nsc_history_to_dict(player):
     return history
 
 #generate the current leaderboard of everybodys PRs for a given track (their most recent times)
-def get_current_leaderboard(all_histories,track):
+def get_current_leaderboard(all_histories,track, category='open'):
     
+    category_helper = "open"
+    if category != "":
+        category_helper = "nsc"
+
     #iterate through all items
     data = []
     format_string_time = "%M:%S.%f" 
@@ -65,14 +69,14 @@ def get_current_leaderboard(all_histories,track):
     for k,v in all_histories.items():
         if v != {}:
             if track in v.keys():
-                data.append([k,datetime.time(v[track][len(v[track])-1][0]),datetime.date(v[track][len(v[track])-1][1])])
+                data.append([k,datetime.time(v[track][len(v[track])-1][0]),datetime.date(v[track][len(v[track])-1][1]), get_track_standard_rank(k,all_histories,track,category=category_helper)])
             else: 
                 data.append([k,(datetime.time(datetime.strptime("09:59.999",format_string_time))),datetime.date(datetime.strptime("12/31/9999",format_string_date))])
         else:
             data.append([k,(datetime.time(datetime.strptime("09:59.999",format_string_time))),datetime.date(datetime.strptime("12/31/9999",format_string_date))])
     
     #create the dataframe
-    df = pd.DataFrame(data,columns=['Name','Time','Date'])
+    df = pd.DataFrame(data,columns=['Name','Time','Date','Standard'])
     df = df.sort_values(by="Time")
 
     def format_time(x,format_string_time):
@@ -419,6 +423,11 @@ def get_time_record_was_held(all_histories,track):
 #given a track and the category determine the rank of the time and return it
 def get_track_standard_rank(player,all_histories,track,category):
     
+
+    #if no times or if no times on a given track return newbie
+    if all_histories[player] == {} or track not in all_histories[player].keys():
+        return "Newbie"
+
     #based on the inputs for track and cetegory, choose the right standards dictionary
     track_category_standards = None
     if category != "nsc":
@@ -440,7 +449,7 @@ def get_track_standard_rank(player,all_histories,track,category):
             currStd = k
             break
     
-    print("My standard on", track, "is: ", currStd)
+    #print("My standard on", track, "is: ", currStd)
     return currStd
 
 
@@ -472,3 +481,5 @@ if __name__ == "__main__":
     get_track_standard_rank("Pat",all_histories,"Moonview Highway","open")
     get_track_standard_rank("Pat",all_histories,"Toad's Factory","open")
     get_track_standard_rank("Pat",all_histories,"Coconut Mall","open")
+
+    print(all_histories["Pat"])
