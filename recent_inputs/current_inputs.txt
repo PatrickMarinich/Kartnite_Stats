@@ -35,5 +35,5 @@ WGM. C P M J. Chris 2 blue
 SS. P C J M6 Pat 2 blue Mike blue
 AF. P C M J 
 DBG. C P M J10. Pat blue
-DSBC. P J M C. Pat 2 blue
+BCDS. P J M C. Pat 2 blue
 Pat 111 Win
