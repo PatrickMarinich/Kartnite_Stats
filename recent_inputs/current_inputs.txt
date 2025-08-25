@@ -4,7 +4,7 @@ MR C K D M demitri 2 blue kev blue
 BC3 D M K C
 PG C K D M demitri blue 
 DS K M D C demitri blue 
-MT  K D M C demitri 3 blue
+MT K D M C demitri 3 blue
 BC64. D K C M kev blue demitri blue 
 Demitri 99 Win
 
@@ -13,15 +13,15 @@ TF D K M C
 DC K D M C
 GCNMC C K D M demitri blue 
 WS D M K C demitri blue Chris blue chris shock. 
-KC  K D M C demitri blue 
-RR  K C D M demitri blue 
+KC K D M C demitri blue 
+RR K C D M demitri blue 
 BCWii D C K M Chris blue demitri blue 
 Demitri 104 Win
 
 MMM K M D C 
 DKS D K M C5 demitri blue 
 MH D K C M 
-SL  C K D M 
+SL C K D M 
 DKJP K D C M kev blue mike blue 
 SNES3 M K D C Mike blue Chris blue 
 LL C K M D 
