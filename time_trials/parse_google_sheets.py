@@ -116,6 +116,7 @@ def update_player_database(player):
 
     #compare the read to the stored. If there is a difference print it.
     format_str = "%M:%S.%f" 
+    date_format_str = "%m/%d/%Y"
     update_count = 0
     for i in range(len(sc)):
         row_read = sc.iloc[i]
@@ -124,12 +125,17 @@ def update_player_database(player):
         time1 = datetime.strptime(row_read.Times, format_str)
         time2 = datetime.strptime(row_stored.Times, format_str)
 
+        date1 = datetime.strptime(row_read.Dates,date_format_str)
+        date2 = datetime.strptime(row_stored.Dates,date_format_str)
+
         history_file = open(PATH_EXT+"time_trials/player_data/shortcut/"+player+"_history.csv", "a")
         if (time1 < time2):
             update_count += 1
             print(player+ " decreased their time by: " + str(time2 - time1)[:-3] + " on " + row_read.Tracks + " Shortcut")
             #if we have a new best time, we want to write it to the history at the end... will be useful later
-            history_file.write(str(row_read.Tracks+','+time1.strftime(format_str)[:-3]+','+row_read.Dates+'\n'))    
+            history_file.write(str(row_read.Tracks+','+time1.strftime(format_str)[:-3]+','+row_read.Dates+'\n'))   
+            if (date1 == date2):
+                print("WARNING: date not updated (shortcut), please review manually:", player, str(row_read.Tracks)) 
         history_file.close()
 
     #overwrite the stored values with the read in values
@@ -143,12 +149,17 @@ def update_player_database(player):
         time1 = datetime.strptime(row_read.Times, format_str)
         time2 = datetime.strptime(row_stored.Times, format_str)
 
+        date1 = datetime.strptime(row_read.Dates,date_format_str)
+        date2 = datetime.strptime(row_stored.Dates,date_format_str)
+
         history_file = open(PATH_EXT+"time_trials/player_data/non_shortcut/"+player+"_history.csv", "a")
         if (time1 < time2):
             update_count += 1
             print(player+ " decreased their time by: " + str(time2 - time1)[:-3] + " on " + row_read.Tracks + " Non-Shortcut")
             #if we have a new best time, we want to write it to the history at the end... will be useful later
             history_file.write(str(row_read.Tracks+','+time1.strftime(format_str)[:-3]+','+row_read.Dates+'\n'))
+            if (date1 == date2):
+                print("WARNING: date not updated (non-shortcut), please review manually:", player, str(row_read.Tracks)) 
         history_file.close()
 
     #overwrite the stored values with the read in values
