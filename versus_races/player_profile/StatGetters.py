@@ -733,7 +733,7 @@ def make_line_plot(df, column):
     name = 'KVRHistory.png'
     
   
-    plt.savefig('KVRHistory.png')
+    plt.savefig('versus_races/KVRHistory.png')
   
     
     return name
@@ -859,7 +859,7 @@ def make_GP_pie_charts(dfS,dfA,player):
 
   #plt.show()
   #saves to a file to be used by the pdf maker
-  plt.savefig('GPWins.png')
+  plt.savefig('versus_races/GPWins.png')
     
 
 #These are the KVR Helper Stats

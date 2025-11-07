@@ -55,8 +55,8 @@ def getSeedings(dfScores,dfRaceCount,dfKartScore,dfPlacement,dfKVR,dfWins,dfShoc
     #sorts and prints the leaderboards
     dfLeaderboard = dfLeaderboard.sort_values(['Kart Score', 'Player'],  ascending=[0, 1])
 
-    if display == True:
-      print(dfLeaderboard)
+    #if display == True:
+    #  print(dfLeaderboard)
 
     return dfLeaderboard
 
@@ -85,24 +85,24 @@ def transfer_data(dfOldKart,dfNewKart):
 def end_season(TrackIndex):
   
     #seasonal Stats since those are what get updated during races
-    dfScores = pd.read_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Total Scores.csv")
-    dfRaceCount =  pd.read_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Race Count.csv")
-    dfKartScore =  pd.read_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Owned Score.csv")
-    dfPlacement =  pd.read_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Placement Stats.csv")
-    dfKVR =  pd.read_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - KVR Stats.csv")
-    dfWins = pd.read_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - GP Wins.csv")
-    dfShock = pd.read_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Shock Dodges.csv")
-    dfBlueShell = pd.read_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Blue Shells.csv")
+    dfScores = pd.read_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Total Scores.csv")
+    dfRaceCount =  pd.read_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Race Count.csv")
+    dfKartScore =  pd.read_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Owned Score.csv")
+    dfPlacement =  pd.read_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Placement Stats.csv")
+    dfKVR =  pd.read_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - KVR Stats.csv")
+    dfWins = pd.read_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - GP Wins.csv")
+    dfShock = pd.read_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Shock Dodges.csv")
+    dfBlueShell = pd.read_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Blue Shells.csv")
 
     # #all time
-    dfAllTimeOwnedScore =  pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - Owned Score.csv')
-    dfAllTimeScores =  pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - Total Scores.csv')
-    dfAllTimeRaceCount =  pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - Race Count.csv')
-    dfAllTimeWins =  pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - GP Wins.csv')
-    dfAllTimeShock =  pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - Shock Dodges.csv')
-    dfAllTimeBlue =  pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - Blue Shells.csv')
-    dfAllTimeSeeding =  pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - All-Time Seeding.csv')
-    dfAllTimePlacement = pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - Placement Stats.csv')
+    dfAllTimeOwnedScore =  pd.read_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Owned Score.csv')
+    dfAllTimeScores =  pd.read_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Total Scores.csv')
+    dfAllTimeRaceCount =  pd.read_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Race Count.csv')
+    dfAllTimeWins =  pd.read_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - GP Wins.csv')
+    dfAllTimeShock =  pd.read_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Shock Dodges.csv')
+    dfAllTimeBlue =  pd.read_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Blue Shells.csv')
+    dfAllTimeSeeding =  pd.read_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - All-Time Seeding.csv')
+    dfAllTimePlacement = pd.read_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Placement Stats.csv')
 
     #first get the seeding points and then update the kart sheet
     dfFinalRanks = getSeedings(dfScores,dfRaceCount,dfKartScore,dfPlacement,dfKVR,dfWins,dfShock,dfBlueShell,TrackIndex)
@@ -185,21 +185,21 @@ if __name__ == '__main__':
     p = input("enter password")
     if p == 'resetseason123':
       #saving all csvs; to reset, uncomment all of these and run; commented out for saftey
-      #oldPoints.to_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Total Scores.csv",index=False)
-      #oldRaceCount.to_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Race Count.csv",index=False)
-      #oldOwned.to_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Owned Score.csv",index=False)
-      #oldPlacement.to_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Placement Stats.csv",index=False)
-      #oldWins.to_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - GP Wins.csv",index=False)
-      #oldDodge.to_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Shock Dodges.csv",index=False)
-      #oldShells.to_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Blue Shells.csv",index=False)
-      #newOwned.to_csv('stats_csv/all_time/All-Time Kartnite Stats - Owned Score.csv',index=False)
-      #newPoints.to_csv('stats_csv/all_time/All-Time Kartnite Stats - Total Scores.csv',index=False)
-      #newRaceCount.to_csv('stats_csv/all_time/All-Time Kartnite Stats - Race Count.csv',index=False)
-      #newWins.to_csv('stats_csv/all_time/All-Time Kartnite Stats - GP Wins.csv',index=False)
-      #newDodge.to_csv('stats_csv/all_time/All-Time Kartnite Stats - Shock Dodges.csv',index=False)
-      #newShells.to_csv('stats_csv/all_time/All-Time Kartnite Stats - Blue Shells.csv',index=False)
-      #newSeeds.to_csv('stats_csv/all_time/All-Time Kartnite Stats - All-Time Seeding.csv',index=False)
-      #newPlacement.to_csv('stats_csv/all_time/All-Time Kartnite Stats - Placement Stats.csv',index=False)
+      #oldPoints.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Total Scores.csv",index=False)
+      #oldRaceCount.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Race Count.csv",index=False)
+      #oldOwned.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Owned Score.csv",index=False)
+      #oldPlacement.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Placement Stats.csv",index=False)
+      #oldWins.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - GP Wins.csv",index=False)
+      #oldDodge.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Shock Dodges.csv",index=False)
+      #oldShells.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Blue Shells.csv",index=False)
+      #newOwned.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Owned Score.csv',index=False)
+      #newPoints.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Total Scores.csv',index=False)
+      #newRaceCount.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Race Count.csv',index=False)
+      #newWins.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - GP Wins.csv',index=False)
+      #newDodge.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Shock Dodges.csv',index=False)
+      #newShells.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Blue Shells.csv',index=False)
+      #newSeeds.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - All-Time Seeding.csv',index=False)
+      #newPlacement.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Placement Stats.csv',index=False)
 
       print("A new season is upon us!!!")
     else:

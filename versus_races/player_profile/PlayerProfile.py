@@ -79,24 +79,24 @@ def createPlayerProfile(player,TrackIndex):
 
   #rather than doin all that.... load in the csvs!!
   #seasonal
-  dfSeasonOwnedScore = pd.read_csv('stats_csv/seasonal_stats/Seasonal Kartnite Stats - Owned Score.csv')
-  dfSeasonScores =  pd.read_csv('stats_csv/seasonal_stats/Seasonal Kartnite Stats - Total Scores.csv')
-  dfSeasonRaceCount =  pd.read_csv('stats_csv/seasonal_stats/Seasonal Kartnite Stats - Race Count.csv')
-  dfSeasonWins =  pd.read_csv('stats_csv/seasonal_stats/Seasonal Kartnite Stats - GP Wins.csv')
-  dfSeasonShock =  pd.read_csv('stats_csv/seasonal_stats/Seasonal Kartnite Stats - Shock Dodges.csv')
-  dfSeasonBlue =   pd.read_csv('stats_csv/seasonal_stats/Seasonal Kartnite Stats - Blue Shells.csv')
-  dfKVR =  pd.read_csv('stats_csv/seasonal_stats/Seasonal Kartnite Stats - KVR Stats.csv')
-  dfSeasonPlacement =  pd.read_csv('stats_csv/seasonal_stats/Seasonal Kartnite Stats - Placement Stats.csv')
+  dfSeasonOwnedScore = pd.read_csv('versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Owned Score.csv')
+  dfSeasonScores =  pd.read_csv('versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Total Scores.csv')
+  dfSeasonRaceCount =  pd.read_csv('versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Race Count.csv')
+  dfSeasonWins =  pd.read_csv('versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - GP Wins.csv')
+  dfSeasonShock =  pd.read_csv('versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Shock Dodges.csv')
+  dfSeasonBlue =   pd.read_csv('versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Blue Shells.csv')
+  dfKVR =  pd.read_csv('versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - KVR Stats.csv')
+  dfSeasonPlacement =  pd.read_csv('versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Placement Stats.csv')
 
   # #all time
-  dfAllTimeOwnedScore =  pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - Owned Score.csv')
-  dfAllTimeScores =  pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - Total Scores.csv')
-  dfAllTimeRaceCount =  pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - Race Count.csv')
-  dfAllTimeWins =  pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - GP Wins.csv')
-  dfAllTimeShock =  pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - Shock Dodges.csv')
-  dfAllTimeBlue =  pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - Blue Shells.csv')
-  dfAllTimeSeeding =  pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - All-Time Seeding.csv')
-  dfAllTimePlacement = pd.read_csv('stats_csv/all_time/All-Time Kartnite Stats - Placement Stats.csv')
+  dfAllTimeOwnedScore =  pd.read_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Owned Score.csv')
+  dfAllTimeScores =  pd.read_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Total Scores.csv')
+  dfAllTimeRaceCount =  pd.read_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Race Count.csv')
+  dfAllTimeWins =  pd.read_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - GP Wins.csv')
+  dfAllTimeShock =  pd.read_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Shock Dodges.csv')
+  dfAllTimeBlue =  pd.read_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Blue Shells.csv')
+  dfAllTimeSeeding =  pd.read_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - All-Time Seeding.csv')
+  dfAllTimePlacement = pd.read_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Placement Stats.csv')
 
   print('Doing Calculations...')
  
@@ -223,7 +223,7 @@ def createPlayerProfile(player,TrackIndex):
   default_stdout = sys.stdout
 
   #HTML File name and redirecting output
-  filename = player + '.html'
+  filename = "versus_races/" + player + '.html'
   sys.stdout = open(filename, 'w')
 
 
@@ -722,7 +722,7 @@ def trackMVPPage(dfSeasonScores,dfSeasonRaceCount,TrackIndex,dfAllTimeScores,dfA
 
     #season
     #for all images.
-    cup_imgs = os.listdir("/home/pat/KartniteStats/Kartnite_Stats/images/cup_emblems")
+    cup_imgs = os.listdir(PATH_EXT+"images/cup_emblems")
     cup_imgs = sorted(cup_imgs)
 
     counter = 0
@@ -828,7 +828,7 @@ def trackMVPPage(dfSeasonScores,dfSeasonRaceCount,TrackIndex,dfAllTimeScores,dfA
     print('<h7> In the event of a tie both players are shown.</h7><br>')
     print('</div>')
     #for all images.
-    cup_imgs = os.listdir("/home/pat/KartniteStats/Kartnite_Stats/images/cup_emblems")
+    cup_imgs = os.listdir(PATH_EXT+"images/cup_emblems")
     cup_imgs = sorted(cup_imgs)
 
     counter = 0
@@ -1716,7 +1716,7 @@ def kartScorePage(dfSeasonOwnedScore,dfSeasonScores,dfSeasonRaceCount,dfSeasonWi
   plt.ylabel("Kart Score")
   plt.legend (["GP Points", "GP Wins Points", "MVP Points", "Blue Shell Points", "Blue Dodge Points","Shock Dodge Points"])
   plt.title("Seasonal Kart Scores")
-  plt.savefig('KartScore.png')
+  plt.savefig('versus_races/KartScore.png')
   
   plt.clf()
   plt.figure(figsize=(8, 5))
@@ -1747,7 +1747,7 @@ def kartScorePage(dfSeasonOwnedScore,dfSeasonScores,dfSeasonRaceCount,dfSeasonWi
   plt.ylabel("Kart Score")
   plt.legend (["GP Points", "GP Wins Points", "MVP Points", "Blue Shell Points", "Blue Dodge Points","Shock Dodge Points"])
   plt.title("Kart Score Gained Per GP")
-  plt.savefig('KartScore_avg.png')
+  plt.savefig('versus_races/KartScore_avg.png')
   
   #display image
   print('<div class =\"center\">')
@@ -1784,18 +1784,18 @@ def convertHTMLtoPDF(filename):
 
   #make two pdfs, one for the stats, one for the events
   merger = PdfWriter()
-  merger.append("player_profile/pre_made_pdf/Kartnite Title Page.pdf")
+  merger.append("versus_races/player_profile/pre_made_pdf/Kartnite Title Page.pdf")
   merger.append(output)
   merger.write('Kartnite Stats - ' + today + '.pdf')
   merger.close()
 
   merger = PdfWriter()
-  merger.append("player_profile/pre_made_pdf/Kartnite Events Title Page.pdf")
-  merger.append("player_profile/pre_made_pdf/Kartnite Events Summary - Living Document.pdf")
-  merger.append("player_profile/pre_made_pdf/Kartnite Championship season 6.pdf")
-  merger.append("player_profile/pre_made_pdf/Okemo Vehicle Elimination Tournament.pdf")
-  merger.append("player_profile/pre_made_pdf/Kartnite knockout tournament.pdf")
-  merger.append("player_profile/pre_made_pdf/Kartnite Season 7 - Championship.pdf")
+  merger.append("versus_races/player_profile/pre_made_pdf/Kartnite Events Title Page.pdf")
+  merger.append("versus_races/player_profile/pre_made_pdf/Kartnite Events Summary - Living Document.pdf")
+  merger.append("versus_races/player_profile/pre_made_pdf/Kartnite Championship season 6.pdf")
+  merger.append("versus_races/player_profile/pre_made_pdf/Okemo Vehicle Elimination Tournament.pdf")
+  merger.append("versus_races/player_profile/pre_made_pdf/Kartnite knockout tournament.pdf")
+  merger.append("versus_races/player_profile/pre_made_pdf/Kartnite Season 7 - Championship.pdf")
   merger.write('Kartnite Events - ' + today + '.pdf')
   merger.close()
 
