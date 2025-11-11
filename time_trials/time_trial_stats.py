@@ -91,7 +91,13 @@ def get_current_leaderboard(all_histories,track, category='open'):
     df['Date'] = df['Date'].apply(lambda x: format_date(x))
     return df
 
-
+#returns the current placement of a player on a track
+def get_placements(all_histories, player, track):
+    #get the current leaderboard and reindex the rows
+    curr_df = get_current_leaderboard(all_histories, track, category='open').reset_index()
+    row = curr_df.loc[curr_df['Name'] == player]
+    #return the value of the index +1 since its zero indexed,
+    return row.index[0] + 1
 
 #generate a line plot of all of the players times over time on the track, since june 1st 2025
 #data of the form time,date
@@ -222,6 +228,57 @@ def get_time_trial_scores(all_histories,track):
         data.append([k,v])
     return pd.DataFrame(data,columns=["Player","Track Score"]).sort_values(by="Track Score", ascending=False)
 
+
+#iterate through all the categories, get the scores from shortcuts and non-shortcuts.
+#if track is in LIST_OF_TRACKS_WITH_SHORT_CUT add nsc time to nsc and sc to sc, otherwise
+#use the sc times.
+#returns nsc,sc totals
+def get_total_time_trial_scores(all_histories_sc, all_histories_nsc):
+    nsc_total_df = None
+    sc_total_df = None
+    for track in LIST_OF_TRACK_NAMES:
+
+        if track in LIST_OF_TRACK_NAMES_SHORTCUT:
+            #tracks that have a short cut
+            #add the scores from nsc to the nsc total
+            #add the scores from sc to sc total
+            if nsc_total_df is None and sc_total_df is None:
+                nsc_total_df = get_time_trial_scores(all_histories_nsc,track)
+                sc_total_df = get_time_trial_scores(all_histories_sc,track)
+            #increment the shortcut
+            elif nsc_total_df is None:
+                nsc_total_df = get_time_trial_scores(all_histories_nsc,track)
+                curr_df = get_time_trial_scores(all_histories_sc,track)
+                for row in curr_df.itertuples():
+                    sc_total_df.loc[sc_total_df['Player'] == row[1],'Track Score'] += row[2]
+            #increment the nsc
+            elif sc_total_df is None:
+                sc_total_df = get_time_trial_scores(all_histories_sc,track)
+                curr_df = get_time_trial_scores(all_histories_nsc,track)
+                for row in curr_df.itertuples():
+                    nsc_total_df.loc[nsc_total_df['Player'] == row[1],'Track Score'] += row[2]
+            #increment both
+            else:
+                #sc first
+                curr_df = get_time_trial_scores(all_histories_sc,track)
+                for row in curr_df.itertuples():
+                    sc_total_df.loc[sc_total_df['Player'] == row[1],'Track Score'] += row[2]
+                #nsc second
+                curr_df = get_time_trial_scores(all_histories_nsc,track)
+                for row in curr_df.itertuples():
+                    nsc_total_df.loc[nsc_total_df['Player'] == row[1],'Track Score'] += row[2]
+        else:
+            #tracks that don't have a shortcut, since theres no shortcut use the times found in
+            #sc, since all categortes are either unrestricted or restricted
+            if nsc_total_df is None:
+                nsc_total_df = get_time_trial_scores(all_histories_sc,track)
+            else:
+                #add to the total
+                curr_df = get_time_trial_scores(all_histories_sc,track)
+                for row in curr_df.itertuples():
+                    nsc_total_df.loc[nsc_total_df['Player'] == row[1],'Track Score'] += row[2]
+
+    return nsc_total_df,sc_total_df
 
 #iterate through all of the days and count who has the best time, make a pie chart
 def get_pie_chart_days_in_first(all_histories,track,extra_txt = ""):
@@ -452,15 +509,16 @@ def get_track_standard_rank(player,all_histories,track,category):
     #print("My standard on", track, "is: ", currStd)
     return currStd
 
-
 if __name__ == "__main__":
     players= ["Pat","Kevin","Chris","Demitri","John","Mike"]
     all_histories = {}
+    all_histories_nsc = {}
 
     #data is now in the format of: 
     #{player : {track: (time, date_set), ...}, ...}
     for player in players:
         all_histories[player] = convert_history_to_dict(player)
+        all_histories_nsc[player] = convert_nsc_history_to_dict(player)
 
     #print(all_histories)
     #print(get_current_leaderboard(all_histories,'GCN DK Mountain'))
@@ -468,18 +526,27 @@ if __name__ == "__main__":
 
     #get_players_line_graph(all_histories,'GCN DK Mountain')
 
-    #track_scores = get_time_trail_scores(all_histories,"GCN DK Mountain")
+    #track_scores = get_time_trial_scores(all_histories,"GCN DK Mountain")
     #print(track_scores)
     #track_scores = get_time_trail_scores(all_histories,"Rainbow Road")
     #print(track_scores)
     #get_pie_chart_days_in_first(all_histories,"Moo Moo Meadows")
     #get_record_line(all_histories,"Moo Moo Meadows")
 
-    get_track_standard_rank("Pat",all_histories,"Moo Moo Meadows","open")
-    get_track_standard_rank("Pat",all_histories,"Grumble Volcano","open")
-    get_track_standard_rank("Pat",all_histories,"GBA Shy Guy Beach","open")
-    get_track_standard_rank("Pat",all_histories,"Moonview Highway","open")
-    get_track_standard_rank("Pat",all_histories,"Toad's Factory","open")
-    get_track_standard_rank("Pat",all_histories,"Coconut Mall","open")
+    #get_track_standard_rank("Pat",all_histories,"Moo Moo Meadows","open")
+    #get_track_standard_rank("Pat",all_histories,"Grumble Volcano","open")
+    #get_track_standard_rank("Pat",all_histories,"GBA Shy Guy Beach","open")
+    #get_track_standard_rank("Pat",all_histories,"Moonview Highway","open")
+    #get_track_standard_rank("Pat",all_histories,"Toad's Factory","open")
+    #get_track_standard_rank("Pat",all_histories,"Coconut Mall","open")
 
-    print(all_histories["Pat"])
+
+    #calculates the total track scores across the categories
+    nsc, sc = get_total_time_trial_scores(all_histories, all_histories_nsc)
+    print(nsc)
+    print("+================+")
+    print(sc)
+
+    #calculates current placements
+    ret = get_placements(all_histories, 'Pat', 'Coconut Mall')
+    print(f"Pat is {ret} on Coconut Mall shortcut")
