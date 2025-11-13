@@ -559,17 +559,17 @@ if __name__ == "__main__":
     #To start open all of the csvs that have the data in it, they will be overwritten during this process
 
     #seasonal Stats since those are what get updated during races
-    dfScores = pd.read_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Total Scores.csv")
-    dfRaceCount =  pd.read_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Race Count.csv")
-    dfKartScore =  pd.read_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Owned Score.csv")
-    dfPlacement =  pd.read_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Placement Stats.csv")
-    dfKVR =  pd.read_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - KVR Stats.csv")
-    dfWins = pd.read_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - GP Wins.csv")
-    dfShock = pd.read_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Shock Dodges.csv")
-    dfBlueShell = pd.read_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Blue Shells.csv")
+    dfScores = pd.read_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Total Scores.csv")
+    dfRaceCount =  pd.read_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Race Count.csv")
+    dfKartScore =  pd.read_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Owned Score.csv")
+    dfPlacement =  pd.read_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Placement Stats.csv")
+    dfKVR =  pd.read_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - KVR Stats.csv")
+    dfWins = pd.read_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - GP Wins.csv")
+    dfShock = pd.read_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Shock Dodges.csv")
+    dfBlueShell = pd.read_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Blue Shells.csv")
 
     #parse the desired input file
-    f = open('recent_inputs/current_inputs.txt','r')
+    f = open('versus_races/recent_inputs/current_inputs.txt','r')
     data,error,info = parser.parse_input(f)
 
     if data == []:
@@ -586,7 +586,7 @@ if __name__ == "__main__":
     #there are no errors so we can input the data
     #store the results in a new file so that the infromation can be saved...
     curr_time = str(time.datetime.now()).replace(" ","_").replace(".","_").replace(":",'_').replace("-","_")
-    out_file = open('recent_inputs/stats_from_' + curr_time + '.txt','w')
+    out_file = open('versus_races/recent_inputs/stats_from_' + curr_time + '.txt','w')
     
     #print(dfScores)
     for d in data:
@@ -637,21 +637,21 @@ if __name__ == "__main__":
     print("Saving Entires.....")
 
     #save everything to csv
-    dfScores.to_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Total Scores.csv",index=False)
-    dfRaceCount.to_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Race Count.csv",index=False)
-    dfKartScore.to_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Owned Score.csv",index=False)
-    dfPlacement.to_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Placement Stats.csv",index=False)
-    dfKVR.to_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - KVR Stats.csv",index=False)
-    dfWins.to_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - GP Wins.csv",index=False)
-    dfShock.to_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Shock Dodges.csv",index=False)
-    dfBlueShell.to_csv("stats_csv/seasonal_stats/Seasonal Kartnite Stats - Blue Shells.csv",index=False)
+    dfScores.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Total Scores.csv",index=False)
+    dfRaceCount.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Race Count.csv",index=False)
+    dfKartScore.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Owned Score.csv",index=False)
+    dfPlacement.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Placement Stats.csv",index=False)
+    dfKVR.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - KVR Stats.csv",index=False)
+    dfWins.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - GP Wins.csv",index=False)
+    dfShock.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Shock Dodges.csv",index=False)
+    dfBlueShell.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Blue Shells.csv",index=False)
 
 
     print("Clearing current_inputs.txt")
 
     #erase the old file
     out_file.close()
-    erase = open('recent_inputs/current_inputs.txt','w')
+    erase = open('versus_races/recent_inputs/current_inputs.txt','w')
     erase.close()
     print('Done!')
 
