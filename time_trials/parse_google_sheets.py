@@ -26,12 +26,20 @@ from googleapiclient.errors import HttpError
 from google.oauth2 import service_account
 
 import pandas as pd
+import datetime
 from datetime import datetime
 from git import Repo
 
 PATH_EXT = "/home/pat/KartniteStats/Kartnite_Stats/"
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
 SAMPLE_SPREADSHEET_ID = "1iTX_znc3otAyS15sWvM-fVH7wk8EAKdrtvQJ8C2ULuo"
+
+#returns today's date in the proper format, will be used if a date failed to be updated
+def todays_date():
+  today = datetime.today()
+  formatted_date = today.strftime("%m/%d/%Y")
+  return formatted_date
+
 
 #this function is responsible for grabbing the data from our google sheet
 def get_player_sc_times(player):
@@ -133,9 +141,15 @@ def update_player_database(player):
             update_count += 1
             print(player+ " decreased their time by: " + str(time2 - time1)[:-3] + " on " + row_read.Tracks + " Shortcut")
             #if we have a new best time, we want to write it to the history at the end... will be useful later
-            history_file.write(str(row_read.Tracks+','+time1.strftime(format_str)[:-3]+','+row_read.Dates+'\n'))   
+            #history_file.write(str(row_read.Tracks+','+time1.strftime(format_str)[:-3]+','+row_read.Dates+'\n'))   
             if (date1 == date2):
-                print("WARNING: date not updated (shortcut), please review manually:", player, str(row_read.Tracks)) 
+                print("WARNING: date not updated (shortcut), please review sheet manually:", player, str(row_read.Tracks))
+                print("WARNING: date inserted with this time will be todays date.")
+                t_date = todays_date()
+                history_file.write(str(row_read.Tracks+','+time1.strftime(format_str)[:-3]+','+t_date+'\n'))
+                row_read.Dates = t_date 
+            else:
+                history_file.write(str(row_read.Tracks+','+time1.strftime(format_str)[:-3]+','+row_read.Dates+'\n'))
         history_file.close()
 
     #overwrite the stored values with the read in values
@@ -157,9 +171,15 @@ def update_player_database(player):
             update_count += 1
             print(player+ " decreased their time by: " + str(time2 - time1)[:-3] + " on " + row_read.Tracks + " Non-Shortcut")
             #if we have a new best time, we want to write it to the history at the end... will be useful later
-            history_file.write(str(row_read.Tracks+','+time1.strftime(format_str)[:-3]+','+row_read.Dates+'\n'))
+            #history_file.write(str(row_read.Tracks+','+time1.strftime(format_str)[:-3]+','+row_read.Dates+'\n'))
             if (date1 == date2):
-                print("WARNING: date not updated (non-shortcut), please review manually:", player, str(row_read.Tracks)) 
+                print("WARNING: date not updated (non-shortcut), please review manually:", player, str(row_read.Tracks))
+                print("WARNING: date inserted with this time will be todays date.")
+                t_date = todays_date()
+                history_file.write(str(row_read.Tracks+','+time1.strftime(format_str)[:-3]+','+t_date+'\n'))
+                row_read.Dates = t_date   
+            else:
+                history_file.write(str(row_read.Tracks+','+time1.strftime(format_str)[:-3]+','+row_read.Dates+'\n'))
         history_file.close()
 
     #overwrite the stored values with the read in values
@@ -168,10 +188,9 @@ def update_player_database(player):
     
     return update_count
 
-  
 
-if __name__ == "__main__":
-    #for all players, update their player databases from the sheet
+def main():
+   #for all players, update their player databases from the sheet
     players= ["Pat","Kevin","Chris","Demitri","John","Mike"]
     update_database = 0
     update_count = 0
@@ -205,4 +224,8 @@ if __name__ == "__main__":
     else:
        print("No updates to report")
 
-  
+    return update_count
+
+#moved to a function so it can be called externally
+if __name__ == "__main__":
+    main()

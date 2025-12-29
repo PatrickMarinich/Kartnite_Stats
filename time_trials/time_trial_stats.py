@@ -158,7 +158,7 @@ def get_players_line_graph(all_histories,track,extra_txt = ""):
 
     plt.legend()
     plt.title("Player History")
-    name = 'time_trials/tmp_imgs/'+track.replace(" ","").replace("'","")+'_history'+ extra_txt + '.png'
+    name = PATH_EXT+'time_trials/tmp_imgs/'+track.replace(" ","").replace("'","")+'_history'+ extra_txt + '.png'
 
     plt.savefig(name)
     plt.close() 
@@ -350,7 +350,7 @@ def get_pie_chart_days_in_first(all_histories,track,extra_txt = ""):
     plt.title("Days in First Place")
     #plt.show()
 
-    name = 'time_trials/tmp_imgs/'+track.replace(" ","").replace("'","")+'_pie' + extra_txt + '.png'
+    name = PATH_EXT+'time_trials/tmp_imgs/'+track.replace(" ","").replace("'","")+'_pie' + extra_txt + '.png'
 
     plt.savefig(name,bbox_inches='tight')
     plt.close() 
@@ -467,7 +467,7 @@ def get_record_line(all_histories, track, extra_txt = ""):
     plt.legend()
     #plt.show()
 
-    name = 'time_trials/tmp_imgs/'+track.replace(" ","").replace("'","")+'_recordline' + extra_txt + '.png'
+    name = PATH_EXT+'time_trials/tmp_imgs/'+track.replace(" ","").replace("'","")+'_recordline' + extra_txt + '.png'
 
     plt.savefig(name)
     plt.close() 

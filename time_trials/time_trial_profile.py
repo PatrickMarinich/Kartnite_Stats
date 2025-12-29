@@ -11,7 +11,11 @@ from datetime import date
 from copy import deepcopy
 from pypdf import PdfWriter
 
-from time_trial_stats import *
+try:
+    from time_trial_stats import *
+except ModuleNotFoundError as e:
+    print(f"trying to import recursively... {e}")
+    from time_trials.time_trial_stats import *
 
 def create_time_trial_profile(player):
     #for output redirection later
@@ -141,7 +145,7 @@ def create_category_page(all_histories,track,category, extra_txt = ""):
     print('<div class =\"center\">')
     #get the embedded HTML for the plot
     path = get_record_line(all_histories,track,extra_txt)
-    print('<img src=', PATH_EXT+path, 'alt=\"'+track+'\" width=\"425\" height=\"350\">' )
+    print('<img src=', path, 'alt=\"'+track+'\" width=\"425\" height=\"350\">' )
     print('</div>')
     print('</div>')
 
@@ -150,7 +154,7 @@ def create_category_page(all_histories,track,category, extra_txt = ""):
     print('<div class =\"center\">')
     #get the embedded HTML for the plot
     path = get_players_line_graph(all_histories,track,extra_txt)
-    print('<img src=', PATH_EXT+path, 'alt=\"'+track+'\" width=\"425\" height=\"350\">' )
+    print('<img src=', path, 'alt=\"'+track+'\" width=\"425\" height=\"350\">' )
     print('</div>')
     print('</div>')
 
@@ -159,7 +163,7 @@ def create_category_page(all_histories,track,category, extra_txt = ""):
     #print('<div class =\"center\">')
     #get the embedded HTML for the plot
     path = get_pie_chart_days_in_first(all_histories,track,extra_txt)
-    print('<img src=', PATH_EXT+path, 'alt=\"'+track+'\" width=\"350\" height=\"350\">' )
+    print('<img src=', path, 'alt=\"'+track+'\" width=\"350\" height=\"350\">' )
     print('</div>')
     print('</div>')
 
@@ -289,7 +293,7 @@ def create_track_box(all_histories, track):
     #get the embedded HTML for the plot
     path = get_players_line_graph(all_histories,track)
     
-    print('<img src=', PATH_EXT+path, 'alt=\"'+track+'\" width=\"400\" height=\"325\">' )
+    print('<img src=', path, 'alt=\"'+track+'\" width=\"400\" height=\"325\">' )
     print('</div>')
 
     print("</div>") #end of box
@@ -330,7 +334,7 @@ def convertHTMLtoPDF(filename):
 
     #make two pdfs, one for the stats, one for the events
     merger = PdfWriter()
-    merger.append("time_trials/pre_made_pdf/Kartnite TT Sheet.pdf")
+    merger.append(PATH_EXT+"time_trials/pre_made_pdf/Kartnite TT Sheet.pdf")
     merger.append(output)
     merger.write('Kartnite TT Stats - ' + today + '.pdf')
     merger.close()
