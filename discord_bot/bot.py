@@ -101,7 +101,5 @@ async def generate_time_trials(ctx, player=None):
         await ctx.send(f"please use !generate_time_trials <player>\n Current Players TT supports: {TIME_TRIAL_PLAYERS}\n Please ensure spelling and capitalization match")
 
 
-import requests
-
 # Run the bot with the token
 bot.run(TOKEN)
