@@ -174,7 +174,7 @@ CHIRS_SCORE_AWARDS = ['Scored 117: x1','Scored 111: x1','Scored 110: x2']
 CHRIS_COMEBACK_AWARDS = ["Win GP with a 12th place: x1","Win a GP with a 6th place: x1", "Win a GP with a 5th place: x1"]
 
 #--TPURNIMENT AWARDS--
-PAT_TOURNIMENT_AWARDS = ["First Kartnite Championship (Season VI) Champion"]
+PAT_TOURNIMENT_AWARDS = ["First Kartnite Championship (Season VI) Champion", "Third Kartnite Championship (Season VIII) Champion"]
 DEMITRI_TOURNIMENT_AWARDS = ["Okemo Vehical Elimination Champion ", "First Kartnite Knockout Tournament Champion"]
 KEVIN_TOURNIMENT_AWARDS = ["Second Kartnite Championship (Season VII) Champion"]
 
