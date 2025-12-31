@@ -149,6 +149,7 @@ def update_player_database(player):
             curr_msg = player+ " decreased their time by: " + str(time2 - time1)[:-3] + " on " + row_read.Tracks + " Shortcut"
             print(curr_msg)
             bot_message.message_post_to_test_server(curr_msg)
+            bot_message.message_post_to_kartnite_server(curr_msg)
             #if we have a new best time, we want to write it to the history at the end... will be useful later
             #history_file.write(str(row_read.Tracks+','+time1.strftime(format_str)[:-3]+','+row_read.Dates+'\n'))   
             if (date1 == date2):
@@ -181,6 +182,7 @@ def update_player_database(player):
             curr_msg = player+ " decreased their time by: " + str(time2 - time1)[:-3] + " on " + row_read.Tracks + " Non-Shortcut"
             print(curr_msg)
             bot_message.message_post_to_test_server(curr_msg)
+            bot_message.message_post_to_kartnite_server(curr_msg)
             #if we have a new best time, we want to write it to the history at the end... will be useful later
             #history_file.write(str(row_read.Tracks+','+time1.strftime(format_str)[:-3]+','+row_read.Dates+'\n'))
             if (date1 == date2):
@@ -202,6 +204,8 @@ def update_player_database(player):
 def main():
    #for all players, update their player databases from the sheet
     bot_message.message_post_to_test_server("Checking for New Time Trial PBs...")
+    bot_message.message_post_to_kartnite_server("Checking for New Time Trial PBs...")
+    
     players= ["Pat","Kevin","Chris","Demitri","John","Mike"]
     update_database = 0
     update_count = 0
@@ -234,7 +238,9 @@ def main():
           print(f"Error: {e}")
     else:
        print("No updates to report")
-       bot_message.message_post_to_test_server("No PBs have been set since the last polling of the sheet!")
+       curr_msg = "No PBs have been set since the last polling of the sheet!"
+       bot_message.message_post_to_test_server(curr_msg)
+       bot_message.message_post_to_kartnite_server(curr_msg)
 
     return update_count
 
