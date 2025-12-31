@@ -102,11 +102,11 @@ PLAYER_RACES_DICT = {"Pat" : PAT_RACES, "Chris": CHRIS_RACES,"Demitri": DEMITRI_
 #SEASON GP WINS -> MANUALLY STORED BY 
 #UPDATE THESE EVERY SEASON 
 #UPDATE IF SOMEBODY NEW WINS A GP
-PLAYER_GP_WINS_PAST_SEASONS = {"Pat" : [11,21,17,10,6,33,53],
-                           "Chirs" : [4,8,5,16,5,11,17],
-                           "Demitri" : [6,16,3,24,3,22,27],
-                           "Kevin" : [10,27,17,37,14,46,60], 
-                            "Shane": [0,0,0,0,1,0,0]}
+PLAYER_GP_WINS_PAST_SEASONS = {"Pat" : [11,21,17,10,6,33,53,49],
+                           "Chirs" : [4,8,5,16,5,11,17,8],
+                           "Demitri" : [6,16,3,24,3,22,27,26],
+                           "Kevin" : [10,27,17,37,14,46,60,5], 
+                            "Shane": [0,0,0,0,1,0,0,0]}
 
 #------------------------
 #longest GP win streaks, manually tracking

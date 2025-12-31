@@ -171,7 +171,7 @@ def RunKartniteStats(version, contributors):
 
     #allows for all players (who are interested) reports to be generated at once
     if players == 'all' or players == 'All' or players == 'ALL':
-      racers = ['Pat', 'Kevin', 'Demitri', 'Chris', 'Joe','Shane','Mike']
+      racers = ['Pat', 'Kevin', 'Demitri', 'Chris', 'Joe','Shane','Mike', 'Danny']
       for player in racers:
         HTML = createPlayerProfile(player,TrackIndex)
         generatedFile,events = convertHTMLtoPDF(HTML)
