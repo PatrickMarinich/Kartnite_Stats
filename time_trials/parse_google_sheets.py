@@ -17,6 +17,7 @@
 
 
 import os.path
+import sys
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -29,6 +30,12 @@ import pandas as pd
 import datetime
 from datetime import datetime
 from git import Repo
+
+#get the discord bot message send
+#to allow imports from discord_bot
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(parent_dir)
+from discord_bot import bot_message
 
 PATH_EXT = "/home/pat/KartniteStats/Kartnite_Stats/"
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
@@ -139,7 +146,9 @@ def update_player_database(player):
         history_file = open(PATH_EXT+"time_trials/player_data/shortcut/"+player+"_history.csv", "a")
         if (time1 < time2):
             update_count += 1
-            print(player+ " decreased their time by: " + str(time2 - time1)[:-3] + " on " + row_read.Tracks + " Shortcut")
+            curr_msg = player+ " decreased their time by: " + str(time2 - time1)[:-3] + " on " + row_read.Tracks + " Shortcut"
+            print(curr_msg)
+            bot_message.message_post_to_test_server(curr_msg)
             #if we have a new best time, we want to write it to the history at the end... will be useful later
             #history_file.write(str(row_read.Tracks+','+time1.strftime(format_str)[:-3]+','+row_read.Dates+'\n'))   
             if (date1 == date2):
@@ -169,7 +178,9 @@ def update_player_database(player):
         history_file = open(PATH_EXT+"time_trials/player_data/non_shortcut/"+player+"_history.csv", "a")
         if (time1 < time2):
             update_count += 1
-            print(player+ " decreased their time by: " + str(time2 - time1)[:-3] + " on " + row_read.Tracks + " Non-Shortcut")
+            curr_msg = player+ " decreased their time by: " + str(time2 - time1)[:-3] + " on " + row_read.Tracks + " Non-Shortcut"
+            print(curr_msg)
+            bot_message.message_post_to_test_server(curr_msg)
             #if we have a new best time, we want to write it to the history at the end... will be useful later
             #history_file.write(str(row_read.Tracks+','+time1.strftime(format_str)[:-3]+','+row_read.Dates+'\n'))
             if (date1 == date2):
@@ -185,12 +196,12 @@ def update_player_database(player):
     #overwrite the stored values with the read in values
     nsc.to_csv(PATH_EXT+"time_trials/player_data/non_shortcut/"+player+".csv",index=False)
     
-    
     return update_count
 
 
 def main():
    #for all players, update their player databases from the sheet
+    bot_message.message_post_to_test_server("Checking for New Time Trial PBs...")
     players= ["Pat","Kevin","Chris","Demitri","John","Mike"]
     update_database = 0
     update_count = 0
@@ -223,6 +234,7 @@ def main():
           print(f"Error: {e}")
     else:
        print("No updates to report")
+       bot_message.message_post_to_test_server("No PBs have been set since the last polling of the sheet!")
 
     return update_count
 

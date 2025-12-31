@@ -23,11 +23,12 @@ from time_trials.time_trial_stats import *
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
+#locks for specific commands
+time_trial_user_lock = 0
+
 # Define the bot and its command prefix
 bot = commands.Bot(command_prefix='!', intents=discord.Intents.all()) # intents=discord.Intents.all() covers all necessary intents
 
-#define an empty set to track active users. ##TODO: more here...
-bot.current_users = set()
 ######
 
 
@@ -44,6 +45,16 @@ async def ping(ctx):
 @bot.command()
 async def generate_time_trials(ctx, player=None):
     """Expects an argument <player>, Generates the Time Trial PDF for <player>"""
+
+    #check if the lock is set, if so return a failure, otherwise take the lock
+    global time_trial_user_lock
+    if time_trial_user_lock == 1:
+        await ctx.send('Somebody else is currently generating a Time Trials PDF, please wait until they are done.')
+        return -1
+    else:
+        #set the lock to 1, remove lock at all exit points
+        time_trial_user_lock = 1
+
     #runs the creation of the TimeTrials
     if player in TIME_TRIAL_PLAYERS:
         await ctx.send('Attempting to update the database, this may take up to a minute...')
@@ -53,6 +64,7 @@ async def generate_time_trials(ctx, player=None):
         except Exception as e:
             print(e)
             await ctx.send("ERROR: Parsing the google sheets produced an error, contact pat")
+            time_trial_user_lock = 0
             return -1
         if updated == 1:
             await ctx.send('Success: database update was successful!')
@@ -68,6 +80,7 @@ async def generate_time_trials(ctx, player=None):
         except Exception as e:
             print(e)
             await ctx.send("ERROR: HTML failed to generate, contact pat") 
+            time_trial_user_lock = 0
             return -1
         
         await ctx.send('Generating the Time Trials PDF, this should be fast!')
@@ -77,6 +90,7 @@ async def generate_time_trials(ctx, player=None):
         except Exception as e:
             print(e)
             await ctx.end("ERROR: PDF failed to generate, contact pat")
+            time_trial_user_lock = 0
             return -1
         
         #if we made it this far, attach the file!
@@ -99,7 +113,9 @@ async def generate_time_trials(ctx, player=None):
 
     else:
         await ctx.send(f"please use !generate_time_trials <player>\n Current Players TT supports: {TIME_TRIAL_PLAYERS}\n Please ensure spelling and capitalization match")
-
+    #remove the lock
+    time_trial_user_lock = 0
+    return 0
 
 # Run the bot with the token
 bot.run(TOKEN)
