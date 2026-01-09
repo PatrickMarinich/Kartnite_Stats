@@ -39,7 +39,7 @@ TF P M D4 J6
 Demitri 100 Win
 
 MC D K C P Pat blue 
-MT P K D C. Pat blue Kevin. Lie
+MT P K D C. Pat blue Kevin blue
 GV C D P K
 MR K D C P
 GCNMC D C P K
