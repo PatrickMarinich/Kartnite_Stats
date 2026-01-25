@@ -178,3 +178,5 @@ TIME_TRIAL_SHORTCUT_TRACKS = [
      "Bowser's Castle",
      "GBA Bowser Castle 3"
 ]
+
+STATS_TXT = "./bot_stats.txt"

@@ -509,6 +509,103 @@ def get_track_standard_rank(player,all_histories,track,category):
     #print("My standard on", track, "is: ", currStd)
     return currStd
 
+#####################PLAYER SPECIFIC STATS#########################
+
+def get_player_current_pb(player, all_histories, track, category = 'open'):
+    """Returns the players current PB on a track"""
+    leaderboard = get_current_leaderboard(all_histories, track,category)
+    player_row = leaderboard[leaderboard['Name'] == player]
+    return str(player_row['Time'].values[0])
+
+def get_player_current_pb_date(player, all_histories, track, category = 'open'):
+    """Returns the date a player set their current PB on a track"""
+    leaderboard = get_current_leaderboard(all_histories, track,category)
+    player_row = leaderboard[leaderboard['Name'] == player]
+    return str(player_row['Date'].values[0])
+
+def get_player_current_standard(player, all_histories, track, category = 'open'):
+    """Returns the players current Standard on a track"""
+    leaderboard = get_current_leaderboard(all_histories, track,category)
+    player_row = leaderboard[leaderboard['Name'] == player]
+    return str(player_row['Standard'].values[0])
+
+def get_player_track_score(player, all_histories, track):
+    """Returns the Player's current score on a track"""
+    scores = get_time_trial_scores(all_histories,track)
+    player_row = scores[scores['Player'] == player]
+    return str(player_row["Track Score"].values[0])
+
+def get_player_line_graph(player, all_histories,track,extra_txt = ""):
+    """Similar to get_players_line_graph, but only does it for 1 player instead of the entire set of players
+       This function is completely identical but includes an additional continue statement, maybe this can be combined
+       with the previous function in an interesting way in the future...
+    """
+    #iterate through the items:
+    players = []
+    data = [] #list of lists
+    i = 0
+
+    for k,v in all_histories.items():
+        players.append(k)
+        if v != {}:
+            if track in v.keys():
+                data.append(v[track])
+            else:
+                data.append([])
+        else:
+            data.append([])
+    
+    #data is in player order, so plot that way
+    #create a new figure object for this graph
+    plt.figure()
+    for i in range(len(players)):
+
+        if players[i] != player:
+            continue
+        
+        #for each set of points, unzip into a list of times and dates
+        unzipped_list =  list(map(list, zip(*data[i])))
+        if unzipped_list != []:      
+            #set any dates before june 1st 2025 to this date
+            j = 0
+            DEFAULT_DATE = datetime(2025, 6, 1, 0, 0, 0) 
+            for x in unzipped_list[1]:
+                if x < DEFAULT_DATE:
+                    unzipped_list[1][j] = DEFAULT_DATE
+                j = j + 1  
+
+            if date.today() not in unzipped_list[1]:
+                #Include an additional point for todays date and the previous time if not set today
+                unzipped_list[1].append(date.today())
+                unzipped_list[0].append(unzipped_list[0][-1]) #reappend the last elem
+            
+            #formatting datetime objects
+            def format_time(x,pos=None):
+
+                dt = mdates.num2date(x)
+                format_string_time = "%M:%S.%f" 
+                label = dt.strftime(format_string_time)
+                return label[:-3]
+            def format_date(x,pos=None):
+                print(x)
+                vals = str(x).split("-")
+                return vals[1]+"/"+vals[2]+"/"+vals[0]
+            
+            y_formatter = FuncFormatter(format_time)
+            x_formatter = FuncFormatter(format_date)
+            plt.gca().yaxis.set_major_formatter(y_formatter)
+            plt.gcf().autofmt_xdate()
+            plt.plot(unzipped_list[1],unzipped_list[0],label=players[i],color=PLAYER_COLORS[players[i]],linewidth=1,drawstyle='steps-post')
+
+    plt.legend()
+    plt.title("Player History")
+    name = PATH_EXT+'time_trials/tmp_imgs/'+track.replace(" ","").replace("'","")+'_history'+ extra_txt + '.png'
+
+    plt.savefig(name)
+    plt.close() 
+    return name
+
+
 if __name__ == "__main__":
     players= ["Pat","Kevin","Chris","Demitri","John","Mike"]
     all_histories = {}
@@ -548,5 +645,14 @@ if __name__ == "__main__":
     print(sc)
 
     #calculates current placements
-    ret = get_placements(all_histories, 'Pat', 'Coconut Mall')
-    print(f"Pat is {ret} on Coconut Mall shortcut")
+    ret = get_placements(all_histories, 'Pat', 'Dry Dry Ruins')
+    print(f"Pat is {ret} on DDR")
+
+    a = get_player_current_pb('Pat', all_histories, 'Coconut Mall')
+    b = get_player_current_pb_date('Pat', all_histories, 'Coconut Mall')
+    c = get_player_current_standard('Pat', all_histories, 'Coconut Mall')
+    d = get_player_track_score('Pat', all_histories, 'Coconut Mall')
+    print(a)
+    print(b)
+    print(c)
+    print(d)
