@@ -161,7 +161,7 @@ DEMITRI_SEASON7_AWARDS = ['Season VII Co-Best Guy Award','Season VII Co-Choke Ar
 MIKE_SEASON7_AWARDS = ['Season VII \"Must get the win, must get the win\" Award - Best Reactions', 'Season VII Rookie of the Year', 'Season VII Co-Best Guy Award','*Season VII Biggest Draft Bust*']
 
 #----------Season 8 here -------
-PAT_SEASON8_AWARDS = ['*UNANIMOUS Season VIII MVP*', 'Season VIII Co-Luckiest Player', 'Season VIII Co-Best Sniper']
+PAT_SEASON8_AWARDS = ['*UNANIMOUS* Season VIII MVP', 'Season VIII Co-Luckiest Player', 'Season VIII Co-Best Sniper']
 CHRIS_SEASON8_AWARDS = ['*UNANIMOUS* Season VIII Best Lines', 'Season VIII Best Shortcuts']
 KEVIN_SEASON8_AWARDS = ['Season VIII Biggest Lacker', 'Season VIII Special Guest']
 DEMITRI_SEASON8_AWARDS = ['Season VIII Best Traps', 'Season VIII Best Guy', 'Season VIII Choke Artist','Season VIII Co-Luckiest Player', 'Season VIII Co-Best Sniper']
