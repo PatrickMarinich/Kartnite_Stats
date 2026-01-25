@@ -43,15 +43,26 @@ async def ping(ctx):
     await ctx.send('Pong!')
 
 @bot.command()
+async def score_help(ctx):
+    """A command to return a string with kartnite score info"""
+    output_str =  "Kartnite Score is defined as:\n"
+    output_str += "     1 Point Per Day in First\n"
+    output_str += "     0.2 Points Per Day in Second\n"
+    output_str += "     0.04 Points Per Day in Third\n"
+    output_str += "Scores are calculated per track\n"
+    output_str += "Scores are updated at 5:15 am\n"
+    await ctx.send(output_str)
+
+@bot.command()
 async def tt_track_stats(ctx,track=None):
     """Expects an argument <track>, provides current TT leaderboards""" 
 
-    if track not in TIME_TRIAL_TRACKS and track not in TRACK_NICKNAME_LIST.keys():
+    if track not in TIME_TRIAL_TRACKS and track not in TT_TRACK_NICKNAME_LIST.keys():
         await ctx.send('Please Provide a valid track')
         return -1
     #if nickname replace
-    if track in TRACK_NICKNAME_LIST.keys():
-        track = TRACK_NICKNAME_LIST[track]
+    if track in TT_TRACK_NICKNAME_LIST.keys():
+        track = TT_TRACK_NICKNAME_LIST[track]
 
     #calculate all the history information
     players= ["Pat","Kevin","Chris","Demitri","John","Mike"]
@@ -69,17 +80,32 @@ async def tt_track_stats(ctx,track=None):
         shortcut = get_current_leaderboard(all_histories, track, category='open')
         non_shortcut = get_current_leaderboard(all_histories_nsc, track)
 
+        sc_scores = get_time_trial_scores(all_histories, track)
+        nsc_scores = get_time_trial_scores(all_histories_nsc, track)
+
         output_str = f'Non-Shortcut Leaderboard for {track}\n'
         output_str += non_shortcut.to_markdown(index=False) + "\n\n"
+
+        output_str += f'NSC Kartnite Score for {track}\n'
+        output_str += nsc_scores.to_markdown(index=False) + "\n\n"
+        
+
         output_str += f'Shortcut Leaderboard for {track}\n'
-        output_str += shortcut.to_markdown(index=False)
+        output_str += shortcut.to_markdown(index=False) + "\n\n"
+
+        output_str += f'SC Kartnite Score for {track}\n'
+        output_str += sc_scores.to_markdown(index=False) + "\n\n"
 
         await ctx.send(output_str)
 
     else:
+        #when a track doesnt have a shortcut, use the open leaderboards...
         non_shortcut = get_current_leaderboard(all_histories, track, category='open')
-        output_str = f'Non-Shortcut Leaderboard for {track}\n\n'
-        output_str += non_shortcut.to_markdown(index=False)
+        nsc_scores = get_time_trial_scores(all_histories, track)
+        output_str = f'Non-Shortcut Leaderboard for {track}\n'
+        output_str += non_shortcut.to_markdown(index=False) + "\n\n"
+        output_str += f'NSC Kartnite Score for {track}\n'
+        output_str += nsc_scores.to_markdown(index=False) + "\n\n"
         await ctx.send(output_str)
 
     
