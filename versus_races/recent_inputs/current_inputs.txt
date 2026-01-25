@@ -4,7 +4,7 @@ DS. C P J.
 WS. C P J. Pat blue Joe blue
 BC3. P J C. 
 GCNMC. C P J. 
-DSBC. C P J. Pat blue Joe blue
+BCDS. C P J. Pat blue Joe blue
 KC. C J P. 
 Chris 107 Win
 
@@ -25,5 +25,5 @@ SS. P J C. Pat blue chris blue
 DKM. P C J. Pat blue
 BCWii. P C J. Pat blue chris blue
 PG. C P J. Chris blue. Pat shock Mike shock
-DSAF. P C J. 
+AF. P C J. 
 Pat 117 Win
