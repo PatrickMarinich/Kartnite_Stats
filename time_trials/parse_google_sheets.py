@@ -204,7 +204,7 @@ def update_player_database(player):
 def main():
    #for all players, update their player databases from the sheet
     bot_message.message_post_to_test_server("Checking for New Time Trial PBs...")
-    bot_message.message_post_to_kartnite_server("Checking for New Time Trial PBs...")
+    #bot_message.message_post_to_kartnite_server("Checking for New Time Trial PBs...")
     
     players= ["Pat","Kevin","Chris","Demitri","John","Mike"]
     update_database = 0
@@ -240,7 +240,7 @@ def main():
        print("No updates to report")
        curr_msg = "No PBs have been set since the last polling of the sheet!"
        bot_message.message_post_to_test_server(curr_msg)
-       bot_message.message_post_to_kartnite_server(curr_msg)
+       #bot_message.message_post_to_kartnite_server(curr_msg)
 
     return update_count
 

@@ -43,6 +43,49 @@ async def ping(ctx):
     await ctx.send('Pong!')
 
 @bot.command()
+async def tt_track_stats(ctx,track=None):
+    """Expects an argument <track>, provides current TT leaderboards""" 
+
+    if track not in TIME_TRIAL_TRACKS and track not in TRACK_NICKNAME_LIST.keys():
+        await ctx.send('Please Provide a valid track')
+        return -1
+    #if nickname replace
+    if track in TRACK_NICKNAME_LIST.keys():
+        track = TRACK_NICKNAME_LIST[track]
+
+    #calculate all the history information
+    players= ["Pat","Kevin","Chris","Demitri","John","Mike"]
+    all_histories = {}
+    all_histories_nsc = {}
+
+    #data is now in the format of: 
+    #{player : {track: (time, date_set), ...}, ...}
+    for player in players:
+        all_histories[player] = convert_history_to_dict(player)
+        all_histories_nsc[player] = convert_nsc_history_to_dict(player)
+
+    #if the track has a sc, print it, otherwise ignore
+    if track in TIME_TRIAL_SHORTCUT_TRACKS:
+        shortcut = get_current_leaderboard(all_histories, track, category='open')
+        non_shortcut = get_current_leaderboard(all_histories_nsc, track)
+
+        output_str = f'Non-Shortcut Leaderboard for {track}\n'
+        output_str += non_shortcut.to_markdown(index=False) + "\n\n"
+        output_str += f'Shortcut Leaderboard for {track}\n'
+        output_str += shortcut.to_markdown(index=False)
+
+        await ctx.send(output_str)
+
+    else:
+        non_shortcut = get_current_leaderboard(all_histories, track, category='open')
+        output_str = f'Non-Shortcut Leaderboard for {track}\n\n'
+        output_str += non_shortcut.to_markdown(index=False)
+        await ctx.send(output_str)
+
+    
+    return 0
+
+@bot.command()
 async def generate_time_trials(ctx, player=None):
     """Expects an argument <player>, Generates the Time Trial PDF for <player>"""
 
