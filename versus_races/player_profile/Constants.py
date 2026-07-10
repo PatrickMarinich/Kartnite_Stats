@@ -106,7 +106,8 @@ PLAYER_GP_WINS_PAST_SEASONS = {"Pat" : [11,21,17,10,6,33,53,49],
                            "Chirs" : [4,8,5,16,5,11,17,8],
                            "Demitri" : [6,16,3,24,3,22,27,26],
                            "Kevin" : [10,27,17,37,14,46,60,5], 
-                            "Shane": [0,0,0,0,1,0,0,0]}
+                            "Shane": [0,0,0,0,1,0,0,0],
+                            "Mike": [0,0,0,0,0,0,0,0]}
 
 #------------------------
 #longest GP win streaks, manually tracking
@@ -177,6 +178,7 @@ CHIRS_SCORE_AWARDS = ['Scored 117: x1','Scored 114: x1','Scored 111: x1','Scored
 
 #----COMEBACK AWARDS-----
 CHRIS_COMEBACK_AWARDS = ["Win GP with a 12th place: x1","Win a GP with a 6th place: x1", "Win a GP with a 5th place: x1"]
+PAT_COMEBACK_AWARDS = ["Win a GP with a 5th place: x1"]
 
 #--TPURNIMENT AWARDS--
 PAT_TOURNIMENT_AWARDS = ["First Kartnite Championship (Season VI) Champion", "Third Kartnite Championship (Season VIII) Champion"]
@@ -184,9 +186,6 @@ DEMITRI_TOURNIMENT_AWARDS = ["Okemo Vehical Elimination Champion ", "First Kartn
 KEVIN_TOURNIMENT_AWARDS = ["Second Kartnite Championship (Season VII) Champion"]
 
 #--------
-
-
-
 
 #A LIST OF ALL PLAYERS SEASONAL AWARDS
 PAT_AWARDS = [PAT_RETRO_AWARDS,PAT_SEASON2_AWARDS,PAT_SEASON3_AWARDS,PAT_SEASON4_AWARDS,PAT_SEASON5_AWARDS,PAT_SEASON6_AWARDS,PAT_SEASON7_AWARDS, PAT_SEASON8_AWARDS]
@@ -206,6 +205,7 @@ CHRIS_AWARDS.append(CHIRS_SCORE_AWARDS)
 
 #append the comback awards
 CHRIS_AWARDS.append(CHRIS_COMEBACK_AWARDS)
+PAT_AWARDS.append(PAT_COMEBACK_AWARDS)
 
 #append the tourniment awards
 PAT_AWARDS.append(PAT_TOURNIMENT_AWARDS)
