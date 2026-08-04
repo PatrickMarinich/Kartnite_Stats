@@ -4,6 +4,7 @@
 import datetime
 from datetime import datetime
 from datetime import date,timedelta
+from matplotlib import ticker
 import pandas as pd
 import matplotlib.pyplot as plt
 from copy import deepcopy
@@ -509,6 +510,41 @@ def get_track_standard_rank(player,all_histories,track,category):
     #print("My standard on", track, "is: ", currStd)
     return currStd
 
+def get_track_standard_rank_before_date(player,all_histories,track,date,category):
+    """Returns the standard rank of a player on a track before a given date"""
+    #if no times or if no times on a given track return newbie
+    if all_histories[player] == {} or track not in all_histories[player].keys():
+        return "Newbie"
+
+    #based on the inputs for track and cetegory, choose the right standards dictionary
+    track_category_standards = None
+    if category != "nsc":
+        track_category_standards = TRACK_TO_STANDARDS[track][0]
+    else: 
+        track_category_standards = TRACK_TO_STANDARDS[track][1]
+
+    #get the current best time of the player on that track before the given date
+    currtime = None
+    for time,date_set in all_histories[player][track]:
+        if date_set <= date:
+            currtime = time
+        else:
+            break
+
+    if currtime is None:
+        return "Newbie"
+
+    #iterate though the list of standards times, if time is greater continue otherwise break, return the standard
+    format_string_time = "%M:%S.%f" 
+    currStd = "Newbie"
+    for k,v in track_category_standards.items():
+        #convert to date time and compare
+        if datetime.strptime(v,format_string_time) > currtime:
+            currStd = k
+            break
+    
+    return currStd
+
 #####################PLAYER SPECIFIC STATS#########################
 
 def get_player_current_pb(player, all_histories, track, category = 'open'):
@@ -605,6 +641,140 @@ def get_player_line_graph(player, all_histories,track,extra_txt = ""):
     plt.close() 
     return name
 
+"""
+Returns a dataframe of all of the players personal bests
+"""
+def get_player_timesheet(all_histories,all_histories_nsc,player):
+    #create a list of lists, each list is a row in the dataframe
+    data = []
+    for track in LIST_OF_TRACK_NAMES:
+        if track in all_histories[player].keys():
+            time = all_histories[player][track][-1][0].strftime("%M:%S.%f")[:-3]
+            date_set = all_histories[player][track][-1][1]
+            standard = get_track_standard_rank(player,all_histories,track,category='open')
+        else:
+            time = datetime.strptime("09:59.999","%M:%S.%f")
+            date_set = datetime.strptime("12/31/9999","%m/%d/%Y")
+            standard = "Newbie"
+
+        data.append([track, time, date_set, standard])
+        
+        if track in LIST_OF_TRACK_NAMES_SHORTCUT:
+            if track in all_histories_nsc[player].keys():
+                time = all_histories_nsc[player][track][-1][0].strftime("%M:%S.%f")[:-3]
+                date_set = all_histories_nsc[player][track][-1][1]
+                standard = get_track_standard_rank(player,all_histories_nsc,track,category='nsc')
+            else:
+                time = datetime.strptime("09:59.999","%M:%S.%f")
+                date_set = datetime.strptime("12/31/9999","%m/%d/%Y")
+                standard = "Newbie"
+            track = track + " (NSC)"
+            data.append([track,time,date_set,standard])
+    
+    df = pd.DataFrame(data,columns=["Category","Time","Date Set","Standard"])
+
+    #itersate through the dataframe and sum the times, return the total time in a nice format
+    total_time_unrestricted = timedelta()
+    total_time_nsc = timedelta()
+    for index, row in df.iterrows():
+        time_str = row["Time"]
+        time_str = time_str.replace(".",":")
+        minutes, seconds, milliseconds = map(float, time_str.split(":"))
+
+        if "(NSC)" in row["Category"]:
+            print(row["Category"], minutes, seconds, milliseconds)
+            total_time_nsc += timedelta(minutes=minutes, seconds=seconds, milliseconds=milliseconds)
+        else:
+            total_time_unrestricted += timedelta(minutes=minutes, seconds=seconds, milliseconds=milliseconds)
+            if row["Category"] not in LIST_OF_TRACK_NAMES_SHORTCUT:
+                total_time_nsc += timedelta(minutes=minutes, seconds=seconds, milliseconds=milliseconds)
+    
+    return df, str(total_time_unrestricted)[:-3], str(total_time_nsc)[:-3]
+
+def get_player_average_standard(all_histories,all_histories_nsc,player):
+    """Returns the average standard of a player across all tracks"""
+    total_standard = 0
+    count = 0
+    for track in LIST_OF_TRACK_NAMES:
+        if track in all_histories[player].keys():
+            standard = get_track_standard_rank(player,all_histories,track,category='open')
+            total_standard += STANDARD_TO_NUM[standard]
+            count += 1
+        
+        if track in LIST_OF_TRACK_NAMES_SHORTCUT:
+            if track in all_histories_nsc[player].keys():
+                standard = get_track_standard_rank(player,all_histories_nsc,track,category='nsc')
+                total_standard += STANDARD_TO_NUM[standard]
+                count += 1
+    
+    if count == 0:
+        return "Newbie"
+    
+    average_standard = total_standard / count
+
+    #find the closest standard to the average
+    print(average_standard)
+    closest_standard = min(STANDARD_TO_NUM.keys(), key=lambda x: abs(STANDARD_TO_NUM[x] - average_standard))
+
+    next_std = int(average_standard)
+    if next_std < 0:
+        next_std = 0
+    next_standard = NUM_TO_STANDARD[next_std]
+    print("Average standard for", player, "is:", average_standard, "which is closest to:", closest_standard, "&",  f"{(average_standard-int(average_standard)) * 100:.3f}% progress to {next_standard}")
+    return closest_standard
+
+
+def get_player_average_standard_line(all_histories,all_histories_nsc,player):
+    """Returns a line graph of the average standard of a player each day since june 1st 2025"""
+
+    start_date = datetime(2025, 6, 1)
+    end_date = datetime.today()
+    delta = timedelta(days=1)
+
+    date_to_avg_standard = {}
+    while start_date <= end_date:
+
+        total_standard = 0
+        count = 0
+        for track in LIST_OF_TRACK_NAMES:
+            if track in all_histories[player].keys():
+                standard = get_track_standard_rank_before_date(player,all_histories,track,start_date,category='open')
+                total_standard += STANDARD_TO_NUM[standard]
+                count += 1
+            
+            if track in LIST_OF_TRACK_NAMES_SHORTCUT:
+                if track in all_histories_nsc[player].keys():
+                    standard = get_track_standard_rank_before_date(player,all_histories_nsc,track,start_date,category='nsc')
+                    total_standard += STANDARD_TO_NUM[standard]
+                    count += 1
+        
+        if count == 0:
+            return "Newbie"
+        
+        average_standard = total_standard / count
+        date_to_avg_standard[start_date] = average_standard
+        start_date += delta
+
+    def format_stdrank(x, pos):
+        return NUM_TO_STANDARD.get(int(x), "")
+
+    #plot the average standard over time
+    x = list(date_to_avg_standard.keys())
+    y = list(date_to_avg_standard.values())
+    plt.figure()
+    plt.gca().yaxis.set_major_formatter(ticker.FuncFormatter(format_stdrank))
+    plt.gca().yaxis.set_major_locator(ticker.MaxNLocator(integer=True))
+    plt.plot(x, y)
+    #put current average integer in a box on the graph
+    current_avg = int(round(y[-1]))
+    plt.title(f"{player}'s Average Standard")
+    plt.xlabel("Date")
+    plt.ylabel("Average Standard")
+    plt.xticks(rotation=90)
+    name = PATH_EXT+'time_trials/tmp_imgs/'+player+'_average_standard_line.png'
+    plt.savefig(name,bbox_inches='tight')
+    plt.close()
+    return name
 
 if __name__ == "__main__":
     players= ["Pat","Kevin","Chris","Demitri","John","Mike"]
@@ -656,3 +826,9 @@ if __name__ == "__main__":
     print(b)
     print(c)
     print(d)
+
+    df, unrestricted, nsc = get_player_timesheet(all_histories,all_histories_nsc,'Pat')
+    print(df)
+
+    print(get_player_average_standard(all_histories,all_histories_nsc,'Pat'))
+    get_player_average_standard_line(all_histories,all_histories_nsc,'Pat')
