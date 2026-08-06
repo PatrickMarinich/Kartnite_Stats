@@ -746,7 +746,7 @@ def get_stacked_area_chart_for_places(all_histories,all_histories_nsc):
     while start_date <= end_date:
 
         i += 1
-        print("start_date:", start_date)
+        #print("start_date:", start_date)
 
         for track in LIST_OF_TRACK_NAMES:
             all_histories_cpy = deepcopy(all_histories)
@@ -799,7 +799,7 @@ def get_stacked_area_chart_for_places(all_histories,all_histories_nsc):
             #increment the player in first by 1
             current_player_to_first_place_count[day_list[0][0]] += 1
 
-        print(current_player_to_first_place_count)
+        #print(current_player_to_first_place_count)
 
         #append the current counts to the list for each player
         for player in current_player_to_first_place_count.keys():
