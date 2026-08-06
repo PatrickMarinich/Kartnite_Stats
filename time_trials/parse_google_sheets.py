@@ -146,7 +146,10 @@ def update_player_database(player):
         history_file = open(PATH_EXT+"time_trials/player_data/shortcut/"+player+"_history.csv", "a")
         if (time1 < time2):
             update_count += 1
-            curr_msg = player+ " decreased their time by: " + str(time2 - time1)[:-3] + " on " + row_read.Tracks + " Shortcut"
+            curr_msg = f"- {player} | {row_read.Tracks} - SC | New PB: {str(time1.strftime(format_str))[:-3]} | Improvement of: {str(time2 - time1)[:-3]}"
+            #decreased their time by: " + str(time2 - time1)[:-3] + " on " + row_read.Tracks + " Shortcut"
+                          
+            #curr_msg = player+ " decreased their time by: " + str(time2 - time1)[:-3] + " on " + row_read.Tracks + " Shortcut"
             print(curr_msg)
             bot_message.message_post_to_test_server(curr_msg)
             bot_message.message_post_to_kartnite_server(curr_msg)
@@ -179,7 +182,7 @@ def update_player_database(player):
         history_file = open(PATH_EXT+"time_trials/player_data/non_shortcut/"+player+"_history.csv", "a")
         if (time1 < time2):
             update_count += 1
-            curr_msg = player+ " decreased their time by: " + str(time2 - time1)[:-3] + " on " + row_read.Tracks + " Non-Shortcut"
+            curr_msg = f"- {player} | {row_read.Tracks} - NSC | New PB: {str(time1.strftime(format_str))[:-3]} | Improvement of: {str(time2 - time1)[:-3]}"
             print(curr_msg)
             bot_message.message_post_to_test_server(curr_msg)
             bot_message.message_post_to_kartnite_server(curr_msg)
