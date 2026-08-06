@@ -724,6 +724,115 @@ def get_player_average_standard(all_histories,all_histories_nsc,player):
     return closest_standard
 
 
+def get_stacked_area_chart_for_places(all_histories,all_histories_nsc):
+    start_date = datetime(2025, 6, 1)
+    end_date = datetime.today()
+    delta = timedelta(days=1)
+
+    #each day count the number of first place finishes for each player and store it in a dictionary
+    player_to_first_place_count = {}
+    current_player_to_first_place_count = {}
+    for player in all_histories.keys():
+        player_to_first_place_count[player] = []
+        current_player_to_first_place_count[player] = 0
+
+    curr_times = {}
+    for k in all_histories.keys():
+        curr_times[k] = datetime(1900, 1, 1, 0, 9, 59, 999000)
+
+    all_histories_nsc_cpy = deepcopy(all_histories_nsc)
+    i = 0
+    dates = []
+    while start_date <= end_date:
+
+        i += 1
+        print("start_date:", start_date)
+
+        for track in LIST_OF_TRACK_NAMES:
+            all_histories_cpy = deepcopy(all_histories)
+            curr_times = {}
+            for player in all_histories_cpy.keys():
+                if track in all_histories_cpy[player].keys():
+                    if all_histories_cpy[player][track]!= []: 
+                        while(all_histories_cpy[player][track][0][1] <= start_date): #doing this in a loop should take care of mapping any pre- 06/01/25 times
+
+                            curr_times[player] = all_histories_cpy[player][track][0][0]
+                            all_histories_cpy[player][track].pop(0)
+
+                            if all_histories_cpy[player][track] == []:
+                                break
+
+            #convert hashmap to a list of lists. sort by time
+            day_list = []
+            for player,time in curr_times.items():
+                day_list.append([player,time])
+           
+            day_list.sort(key=lambda x: x[1])
+            #print(track,":",day_list)
+            
+            #increment the player in first by 1
+            current_player_to_first_place_count[day_list[0][0]] += 1
+
+
+        for track in LIST_OF_TRACK_NAMES_SHORTCUT:
+            all_histories_nsc_cpy = deepcopy(all_histories_nsc)
+            curr_times = {}
+            for player in all_histories_nsc_cpy.keys():
+                if track in all_histories_nsc_cpy[player].keys():
+                    if all_histories_nsc_cpy[player][track]!= []: 
+                        while(all_histories_nsc_cpy[player][track][0][1] <= start_date): #doing this in a loop should take care of mapping any pre- 06/01/25 times
+
+                            curr_times[player] = all_histories_nsc_cpy[player][track][0][0]
+                            all_histories_nsc_cpy[player][track].pop(0)
+
+                            if all_histories_nsc_cpy[player][track] == []:
+                                break
+
+            #convert hashmap to a list of lists. sort by time
+            day_list = []
+            for player,time in curr_times.items():
+                day_list.append([player,time])
+            
+            day_list.sort(key=lambda x: x[1])
+            #print(track,":",day_list)
+            
+            #increment the player in first by 1
+            current_player_to_first_place_count[day_list[0][0]] += 1
+
+        print(current_player_to_first_place_count)
+
+        #append the current counts to the list for each player
+        for player in current_player_to_first_place_count.keys():
+            player_to_first_place_count[player].append(current_player_to_first_place_count[player])
+
+        #reset for the next date
+        for player in current_player_to_first_place_count.keys():
+            current_player_to_first_place_count[player] = 0
+
+        dates.append(start_date)
+        start_date += delta
+
+    #plot the stacked area chart
+    for player in player_to_first_place_count.keys():
+        print(f"PLAYER {player}")
+        print(player_to_first_place_count[player])
+    
+    players = list(player_to_first_place_count.keys())
+    counts = list(player_to_first_place_count.values())
+    plt.gcf().autofmt_xdate()
+    plt.xticks(rotation=45)
+    plt.stackplot(dates, *counts, labels=players, colors=[PLAYER_COLORS[player] for player in players])
+
+    plt.title("Number of Categories in First Place")
+    plt.xlabel("Date")
+    plt.ylabel("Number of First Place Finishes (Max: 38)")
+    plt.legend(bbox_to_anchor=(1.04, 1), loc="upper left")
+    name = PATH_EXT+'time_trials/tmp_imgs/first_place_stacked_area_chart.png'
+    plt.savefig(name,bbox_inches='tight')
+    plt.close()
+    return name
+
+
 def get_player_average_standard_line(all_histories,all_histories_nsc,player):
     """Returns a line graph of the average standard of a player each day since june 1st 2025"""
 
@@ -832,3 +941,5 @@ if __name__ == "__main__":
 
     print(get_player_average_standard(all_histories,all_histories_nsc,'Pat'))
     get_player_average_standard_line(all_histories,all_histories_nsc,'Pat')
+
+    get_stacked_area_chart_for_places(all_histories,all_histories_nsc)
