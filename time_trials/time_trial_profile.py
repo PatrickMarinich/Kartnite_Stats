@@ -46,6 +46,12 @@ def create_time_trial_profile(player):
     #add in the standards page
     create_standards_page(player,all_histories,all_histories_nsc)
 
+    #standards graph
+    create_standards_page_with_graph(player,all_histories,all_histories_nsc)
+
+    #some overall stats
+    create_overall_stats_page(player,all_histories,all_histories_nsc)
+
     #all tracks will have a unrestricted page
     #select tracks with a shortcut will have a non-shortcut page as well
     #Tracks will 'unlock' the non-shortcut page when a player gets a shortcut time, see constants.py for more info
@@ -258,6 +264,48 @@ def create_standards_page(player,all_histories,all_histories_nsc):
     
     #force page break
     #print('<p style= \"page-break-after: always;\"> &nbsp; </p>')
+
+
+def create_standards_page_with_graph(player,all_histories,all_histories_nsc):
+    print('<div class="center">')
+    print(f'<h1> Timesheet Standards </h1>')
+    print('</div>')
+    print('<div class="bar"></div>')
+
+    #get the average line for the player
+    img_path = get_player_average_standard_line(all_histories,all_histories_nsc,player) #box 2
+    print('<div class =\"center\">')
+    print('<img src=', img_path, 'alt=\"standardLine\" width=\"850\" height=\"600\">' )
+    print('</div>')
+
+    #get the average for all players
+    img_path = get_all_players_average_standard_line(all_histories,all_histories_nsc)
+    print('<div class =\"center\">')
+    print('<img src=', img_path, 'alt=\"standardLine2\" width=\"850\" height=\"600\">' )
+    print('</div>')
+
+    #page break
+    #print('<p style= \"page-break-after: always;\"> &nbsp; </p>')
+
+def create_overall_stats_page(player,all_histories,all_histories_nsc):
+    print('<div class="center">')
+    print(f'<h1> Overall Stats </h1>')
+    print('</div>')
+    print('<div class="bar"></div>')
+
+    #Time trial scores
+    #nsc_df, sc_df = get_total_time_trial_scores(all_histories, all_histories_nsc)
+    #print(nsc_df.to_html())
+    #print(sc_df.to_html())
+
+    categories_path = get_stacked_area_chart_for_places(all_histories,all_histories_nsc)
+    print('<div class =\"center\">')
+    print('<img src=', categories_path, 'alt=\"standardLine\" width=\"850\" height=\"600\">' )
+    print('</div>')
+
+    print('<div class="bar"></div>')
+
+    print('<p style= \"page-break-after: always;\"> &nbsp; </p>')
 
 
 

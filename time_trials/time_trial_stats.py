@@ -234,6 +234,7 @@ def get_time_trial_scores(all_histories,track):
 #if track is in LIST_OF_TRACKS_WITH_SHORT_CUT add nsc time to nsc and sc to sc, otherwise
 #use the sc times.
 #returns nsc,sc totals
+import numpy as np
 def get_total_time_trial_scores(all_histories_sc, all_histories_nsc):
     nsc_total_df = None
     sc_total_df = None
@@ -716,7 +717,7 @@ def get_player_average_standard(all_histories,all_histories_nsc,player):
     print(average_standard)
     closest_standard = min(STANDARD_TO_NUM.keys(), key=lambda x: abs(STANDARD_TO_NUM[x] - average_standard))
 
-    next_std = int(average_standard)
+    next_std = int(average_standard) - 1
     if next_std < 0:
         next_std = 0
     next_standard = NUM_TO_STANDARD[next_std]
@@ -813,9 +814,9 @@ def get_stacked_area_chart_for_places(all_histories,all_histories_nsc):
         start_date += delta
 
     #plot the stacked area chart
-    for player in player_to_first_place_count.keys():
-        print(f"PLAYER {player}")
-        print(player_to_first_place_count[player])
+    #for player in player_to_first_place_count.keys():
+        #print(f"PLAYER {player}")
+        #print(player_to_first_place_count[player])
     
     players = list(player_to_first_place_count.keys())
     counts = list(player_to_first_place_count.values())
@@ -873,14 +874,73 @@ def get_player_average_standard_line(all_histories,all_histories_nsc,player):
     plt.figure()
     plt.gca().yaxis.set_major_formatter(ticker.FuncFormatter(format_stdrank))
     plt.gca().yaxis.set_major_locator(ticker.MaxNLocator(integer=True))
-    plt.plot(x, y)
+    plt.plot(x, y,color=PLAYER_COLORS[player],linewidth=1,drawstyle='steps-post')
     #put current average integer in a box on the graph
     current_avg = int(round(y[-1]))
-    plt.title(f"{player}'s Average Standard")
+    plt.title(f"{player}'s Timesheet Average Standard Rank")
     plt.xlabel("Date")
-    plt.ylabel("Average Standard")
-    plt.xticks(rotation=90)
+    #plt.ylabel("Average Standard")
+    plt.xticks(rotation=45)
     name = PATH_EXT+'time_trials/tmp_imgs/'+player+'_average_standard_line.png'
+    plt.savefig(name,bbox_inches='tight')
+    plt.close()
+    return name
+
+def get_all_players_average_standard_line(all_histories,all_histories_nsc):
+    """Returns a line graph of the average standard of all players each day since june 1st 2025"""
+
+    start_date = datetime(2025, 6, 1)
+    end_date = datetime.today()
+    delta = timedelta(days=1)
+
+    date_to_avg_standard = {}
+    while start_date <= end_date:
+        player_to_avg_standard = {}
+        for player in all_histories.keys():
+            total_standard = 0
+            count = 0
+            for track in LIST_OF_TRACK_NAMES:
+                if track in all_histories[player].keys():
+                    standard = get_track_standard_rank_before_date(player,all_histories,track,start_date,category='open')
+                    total_standard += STANDARD_TO_NUM[standard]
+                    count += 1
+                
+                if track in LIST_OF_TRACK_NAMES_SHORTCUT:
+                    if track in all_histories_nsc[player].keys():
+                        standard = get_track_standard_rank_before_date(player,all_histories_nsc,track,start_date,category='nsc')
+                        total_standard += STANDARD_TO_NUM[standard]
+                        count += 1
+            
+            if count == 0:
+                player_to_avg_standard[player] = "Newbie"
+            else:
+                average_standard = total_standard / count
+                player_to_avg_standard[player] = average_standard
+        
+        date_to_avg_standard[start_date] = player_to_avg_standard
+        start_date += delta
+
+    def format_stdrank(x, pos):
+        return NUM_TO_STANDARD.get(int(x), "")
+
+    #plot the average standard over time for each player
+    plt.figure()
+    plt.gca().yaxis.set_major_formatter(ticker.FuncFormatter(format_stdrank))
+    plt.gca().yaxis.set_major_locator(ticker.MaxNLocator(integer=True))
+    
+    for player in all_histories.keys():
+        if player == "Mike" or player == "John":
+            continue
+        x = list(date_to_avg_standard.keys())
+        y = [date_to_avg_standard[date][player] for date in x]
+        plt.plot(x, y,color=PLAYER_COLORS[player],linewidth=1,drawstyle='steps-post',label=player)
+    
+    plt.title(f"All Timesheets Average Standard Rank")
+    plt.xlabel("Date")
+    #plt.ylabel("Average Standard")
+    plt.xticks(rotation=45)
+    plt.legend(loc="upper right")
+    name = PATH_EXT+'time_trials/tmp_imgs/all_players_average_standard_line.png'
     plt.savefig(name,bbox_inches='tight')
     plt.close()
     return name
@@ -919,6 +979,9 @@ if __name__ == "__main__":
 
     #calculates the total track scores across the categories
     nsc, sc = get_total_time_trial_scores(all_histories, all_histories_nsc)
+
+    
+
     print(nsc)
     print("+================+")
     print(sc)
@@ -939,7 +1002,9 @@ if __name__ == "__main__":
     df, unrestricted, nsc = get_player_timesheet(all_histories,all_histories_nsc,'Pat')
     print(df)
 
-    print(get_player_average_standard(all_histories,all_histories_nsc,'Pat'))
-    get_player_average_standard_line(all_histories,all_histories_nsc,'Pat')
+    #print(get_player_average_standard(all_histories,all_histories_nsc,'Pat'))
+    #get_player_average_standard_line(all_histories,all_histories_nsc,'Pat')
 
-    get_stacked_area_chart_for_places(all_histories,all_histories_nsc)
+    #get_stacked_area_chart_for_places(all_histories,all_histories_nsc)
+
+    #get_all_players_average_standard_line(all_histories,all_histories_nsc)
