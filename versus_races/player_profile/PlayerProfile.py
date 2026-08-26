@@ -1327,9 +1327,10 @@ def awardsPage(player):
 
   #all of the players awards
   print('<ul>')
-  for season in AWARD_LIST[player]:
-    for award in season:
-      print('<li>', award, '</li>')
+  if player in AWARD_LIST.keys():
+    for season in AWARD_LIST[player]:
+      for award in season:
+        print('<li>', award, '</li>')
   print('</ul>')
 
   #bar

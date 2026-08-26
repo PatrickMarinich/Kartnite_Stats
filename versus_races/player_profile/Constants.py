@@ -1,14 +1,37 @@
 #this file will contain any constants that are used in other files, typically constants that are not directally used in a singular
 #function will be used here as of now it is just a file to hold the player awards, but other things may be held here in the future
 
+#---Filepath Info---
+# file path extention for images this is needed since wkhtmltopdf needs absolute paths for functionality :(
+#PATH_EXT = "C:\\Users\\patri\\Github_Directories\\Kartnite\\Kartnite_Stats\\player_profile\\"
+PATH_EXT = "/home/pat/KartniteStats/Kartnite_Stats/versus_races/"
+
 #---CREDITS and other info-------
 VERSION = 'v4.2'
 CONTRIBUTORS = 'Patrick Marinich'
 #------------------------------------
 
+PLAYERS = ["PAT","DEMITRI","KEVIN","KEV","CHRIS","JOE","SHANE","MIKE","MATT","JASON","KARLA","CALLUM","JOHN","DANNY","HENRY"]
+PLAYERS_INIT = {
+    "P":"Pat",
+    "D":"Demitri",
+    "K":"Kevin",
+    "C":"Chris",
+    "J":"Joe",
+    "S":"Shane",
+    "M":"Mike",
+    "MA":"Matt",
+    "JA":"Jason",
+    "KA":"Karla",
+    "CA":"Callum",
+    "JW":"John",
+    "DA" : "Danny",
+    "H": "Henry"
+}
+
 #------------TRACK LIST-------------
 #seeds are needed to preform the reset
-TrackIndex = {"Luigi Circuit":0,
+TRACK_INDEX = {"Luigi Circuit":0,
   "Moo Moo Meadows":1,
   "Mushroom Gorge":2,
   "Toad's Factory":3,
@@ -52,6 +75,130 @@ TrackIndex = {"Luigi Circuit":0,
   "Wolf Castlegrounds":41
   }
 
+TRACK_NICKNAMES = {"Luigi":"Luigi Circuit",
+    "LC":"Luigi Circuit",
+    "moo moo": "Moo Moo Meadows",
+    "Moo Moo": "Moo Moo Meadows",
+    "MMM": "Moo Moo Meadows",
+    "Gorge":"Mushroom Gorge",
+    "gorge":"Mushroom Gorge",
+    "MG":"Mushroom Gorge",
+    "toads":"Toad's Factory",
+    "Toads":"Toad's Factory",
+    "TF":"Toad's Factory",
+    "toads factory": "Toad's Factory",
+    "mario circuit": "Mario Circuit",
+    "MC": "Mario Circuit",
+    "coconut mall":"Coconut Mall",
+    "coconut":"Coconut Mall",
+    "CM":"Coconut Mall",
+    "summit":"DK Summit",
+    "Summit":"DK Summit",
+    "DKS":"DK Summit",
+    "gold mine":"Wario's Gold Mine",
+    "Gold Mine":"Wario's Gold Mine",
+    "WGM":"Wario's Gold Mine",
+    "DC" : "Daisy Circuit",
+    "koopa": "Koopa Cape",
+    "Koopa": "Koopa Cape",
+    "KC": "Koopa Cape",
+    "maple":"Maple Treeway",
+    "Maple":"Maple Treeway",
+    "MT":"Maple Treeway",
+    "grumble":"Grumble Volcano",
+    "Grumble":"Grumble Volcano",
+    "GV":"Grumble Volcano",
+    "Dry Dry":"Dry Dry Ruins",
+    "dry dry":"Dry Dry Ruins",
+    "DDR":"Dry Dry Ruins",
+    "Moonview":"Moonview Highway",
+    "moonview":"Moonview Highway",
+    "MH":"Moonview Highway",
+    "BC Wii":"Bowser's Castle",
+    "bc wii":"Bowser's Castle",
+    "BC wii":"Bowser's Castle",
+    "BCWII":"Bowser's Castle",
+    "BCWii":"Bowser's Castle",
+    "BCW":"Bowser's Castle",
+    "rainbow road":"Rainbow Road",
+    "rainbow":"Rainbow Road",
+    "Rainbow":"Rainbow Road",
+    "RR":"Rainbow Road",
+    "Peach Beach":"GCN Peach Beach",
+    "peach beach":"GCN Peach Beach",
+    "PB":"GCN Peach Beach",
+    "yoshi falls":"DS Yoshi Falls",
+    "Yoshi Falls":"DS Yoshi Falls",
+    "YF":"DS Yoshi Falls",
+    "Ghost Valley":"SNES Ghost Valley 2",
+    "ghost valley":"SNES Ghost Valley 2",
+    "GV2":"SNES Ghost Valley 2",
+    "mario raceway":"N64 Mario Raceway",
+    "raceway": "N64 Mario Raceway",
+    "Raceway": "N64 Mario Raceway",
+    "MR":"N64 Mario Raceway",
+    "Sherbet Land":"N64 Sherbet Land",
+    "sherbet land":"N64 Sherbet Land",
+    "SL":"N64 Sherbet Land",
+    "Shy Guy Beach":"GBA Shy Guy Beach",
+    "shy guy beach":"GBA Shy Guy Beach",
+    "Shy Guy":"GBA Shy Guy Beach",
+    "shy guy":"GBA Shy Guy Beach",
+    "SGB":"GBA Shy Guy Beach",
+    "Delfino Square":"DS Delfino Square",
+    "delfino square":"DS Delfino Square",
+    "Delfino":"DS Delfino Square",
+    "delfino":"DS Delfino Square",
+    "DS":"DS Delfino Square",
+    "Waluigi Stadium":"GCN Waluigi Stadium",
+    "waluigi stadium":"GCN Waluigi Stadium",
+    "WS":"GCN Waluigi Stadium",
+    "Waluigi":"GCN Waluigi Stadium",
+    "waluigi":"GCN Waluigi Stadium",
+    "Desert Hills":"DS Desert Hills",
+    "desert hills":"DS Desert Hills",
+    "DH":"DS Desert Hills",
+    "GBA 3":"GBA Bowser's Castle 3",
+    "gba 3":"GBA Bowser's Castle 3",
+    "BC3":"GBA Bowser's Castle 3",
+    "bc3":"GBA Bowser's Castle 3",
+    "Parkway":"N64 DK's Jungle Parkway",
+    "parkway":"N64 DK's Jungle Parkway",
+    "DKJP":"N64 DK's Jungle Parkway",
+    "GCN mario circuit":"GCN Mario Circuit",
+    "GCN mario":"GCN Mario Circuit",
+    "gcn mario":"GCN Mario Circuit",
+    "GCN Mario":"GCN Mario Circuit",
+    "GCNMC":"GCN Mario Circuit",
+    "SNES 3":"SNES Mario Circuit 3",
+    "SNES3":"SNES Mario Circuit 3",
+    "MC3":"SNES Mario Circuit 3",
+    "snes 3":"SNES Mario Circuit 3",
+    "Peach Gardens":"DS Peach Gardens",
+    "peach gardens":"DS Peach Gardens",
+    "PG":"DS Peach Gardens",
+    "DK Mountain": "GCN DK Mountain",
+    "DKM": "GCN DK Mountain",
+    "dk mountain": "GCN DK Mountain",
+    "mountain": "GCN DK Mountain",
+    "Mountain": "GCN DK Mountain",
+    "BC64":"N64 Bowser's Castle",
+    "BCR":"N64 Bowser's Castle",
+    "bc64":"N64 Bowser's Castle",
+    "bc 64":"N64 Bowser's Castle",
+    "N64BC":"N64 Bowser's Castle",
+    "n64bc":"N64 Bowser's Castle",
+    "LL" : "Lava Lake",
+    "SS": "Stargaze Summit",
+    "ES" : "Envenom Snowstorm",
+    "DBG": "Dragon Burial Grounds",
+    "BJCC": "Bowser Jr.'s Crafty Castle",
+    "N64RR" : "N64 Royal Raceway",
+    "AF": "DS Airstrip Fortress",
+    "DKR": "DK Ruins",
+    "BCDS" : "DS Bowser's Castle",
+    "WC" : "Wolf Castlegrounds"}
+
 
 #-----------KART SCORE---------
 #Point Values, constants which can be adjusted for ease of balancing
@@ -64,7 +211,6 @@ BLUE_D_POINTS = 10                 #points for dodging a blue shell
 #---------removed from this calculation-------
 AVERAGE_POINTS = 0                #points for track average, (kart score should be a accumlative stat)
 #--------------------------------------
-
 
 #--------------KART RATING-----------
 #kart rating is a new metric that acts like QBR in football,
@@ -116,10 +262,15 @@ PLAYER_GP_WIN_STREAKS = {
 "Chris" : 3,
 "Kevin" : 6,
 "Demitri" : 3,
-"Shane" : 1
+"Shane" : 1,
+"Mike" : 1
 }
 
-#THESE ARE THE SEASONAL AWARDS
+#-----------------------------------------------------------
+#
+# SEASONAL AWARDS BELOW
+#
+#-----------------------------------------------------------
 
 #---Season 1 (These were retroactive, voted on in season 4) -- 
 PAT_RETRO_AWARDS = ['Season I \'2 Seed\'', 'Season I Best Shortcuts']
@@ -180,7 +331,7 @@ CHIRS_SCORE_AWARDS = ['Scored 117: x1','Scored 114: x1','Scored 111: x1','Scored
 CHRIS_COMEBACK_AWARDS = ["Win GP with a 12th place: x1","Win a GP with a 6th place: x1", "Win a GP with a 5th place: x1"]
 PAT_COMEBACK_AWARDS = ["Win a GP with a 5th place: x1"]
 
-#--TPURNIMENT AWARDS--
+#--TOURNIMENT AWARDS--
 PAT_TOURNIMENT_AWARDS = ["First Kartnite Championship (Season VI) Champion", "Third Kartnite Championship (Season VIII) Champion"]
 DEMITRI_TOURNIMENT_AWARDS = ["Okemo Vehical Elimination Champion ", "First Kartnite Knockout Tournament Champion"]
 KEVIN_TOURNIMENT_AWARDS = ["Second Kartnite Championship (Season VII) Champion"]
@@ -213,9 +364,6 @@ DEMITRI_AWARDS.append(DEMITRI_TOURNIMENT_AWARDS)
 KEVIN_AWARDS.append(KEVIN_TOURNIMENT_AWARDS)
 
 
-
-
-
 #final dictonary
 AWARD_LIST = {'Pat' : PAT_AWARDS,
               'Chris' : CHRIS_AWARDS,
@@ -223,15 +371,4 @@ AWARD_LIST = {'Pat' : PAT_AWARDS,
               'Demitri' : DEMITRI_AWARDS,
               'Joe' : JOE_AWARDS,
               'Shane': SHANE_AWARDS,
-              'Karla': [],
-              'Mike' : MIKE_AWARDS,
-              'Jason' : [],
-              'Matt' : [],
-              'John': [],
-              'Danny' : [],
-              'Henry': []}
-
-#file path extention for images
-#this is needed since wkhtmltopdf needs absolute paths for functionality :(
-#PATH_EXT = "C:\\Users\\patri\\Github_Directories\\Kartnite\\Kartnite_Stats\\player_profile\\"
-PATH_EXT = "/home/pat/KartniteStats/Kartnite_Stats/versus_races/"
+              'Mike' : MIKE_AWARDS}
