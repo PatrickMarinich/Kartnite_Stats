@@ -333,7 +333,7 @@ PAT_COMEBACK_AWARDS = ["Win a GP with a 5th place: x1"]
 
 #--TOURNIMENT AWARDS--
 PAT_TOURNIMENT_AWARDS = ["First Kartnite Championship (Season VI) Champion", "Third Kartnite Championship (Season VIII) Champion"]
-DEMITRI_TOURNIMENT_AWARDS = ["Okemo Vehical Elimination Champion ", "First Kartnite Knockout Tournament Champion"]
+DEMITRI_TOURNIMENT_AWARDS = ["Okemo Vehical Elimination Champion ", "First Kartnite Knockout Tournament Champion", "Fourth Kartnite Championship (Season XI) Champion"]
 KEVIN_TOURNIMENT_AWARDS = ["Second Kartnite Championship (Season VII) Champion"]
 
 #--------
