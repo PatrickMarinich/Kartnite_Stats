@@ -175,7 +175,7 @@ def end_season(TrackIndex):
 
 
 if __name__ == '__main__':
-  newPoints,newRaceCount,newWins,newDodge,newOwned,newShells,newSeeds,oldPoints,oldRaceCount,oldWins,oldDodge,oldOwned,oldShells,newPlacement,oldPlacement = end_season(TrackIndex)
+  newPoints,newRaceCount,newWins,newDodge,newOwned,newShells,newSeeds,oldPoints,oldRaceCount,oldWins,oldDodge,oldOwned,oldShells,newPlacement,oldPlacement = end_season(TRACK_INDEX)
   #make sure these values make sense
   print(oldShells)
   print(newShells)
@@ -185,21 +185,21 @@ if __name__ == '__main__':
     p = input("enter password")
     if p == 'resetseason123':
       #saving all csvs; to reset, uncomment all of these and run; commented out for saftey
-      #oldPoints.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Total Scores.csv",index=False)
-      #oldRaceCount.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Race Count.csv",index=False)
-      #oldOwned.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Owned Score.csv",index=False)
-      #oldPlacement.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Placement Stats.csv",index=False)
-      #oldWins.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - GP Wins.csv",index=False)
-      #oldDodge.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Shock Dodges.csv",index=False)
-      #oldShells.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Blue Shells.csv",index=False)
-      #newOwned.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Owned Score.csv',index=False)
-      #newPoints.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Total Scores.csv',index=False)
-      #newRaceCount.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Race Count.csv',index=False)
-      #newWins.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - GP Wins.csv',index=False)
-      #newDodge.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Shock Dodges.csv',index=False)
-      #newShells.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Blue Shells.csv',index=False)
-      #newSeeds.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - All-Time Seeding.csv',index=False)
-      #newPlacement.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Placement Stats.csv',index=False)
+      oldPoints.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Total Scores.csv",index=False)
+      oldRaceCount.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Race Count.csv",index=False)
+      oldOwned.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Owned Score.csv",index=False)
+      oldPlacement.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Placement Stats.csv",index=False)
+      oldWins.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - GP Wins.csv",index=False)
+      oldDodge.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Shock Dodges.csv",index=False)
+      oldShells.to_csv("versus_races/stats_csv/seasonal_stats/Seasonal Kartnite Stats - Blue Shells.csv",index=False)
+      newOwned.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Owned Score.csv',index=False)
+      newPoints.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Total Scores.csv',index=False)
+      newRaceCount.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Race Count.csv',index=False)
+      newWins.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - GP Wins.csv',index=False)
+      newDodge.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Shock Dodges.csv',index=False)
+      newShells.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Blue Shells.csv',index=False)
+      newSeeds.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - All-Time Seeding.csv',index=False)
+      newPlacement.to_csv('versus_races/stats_csv/all_time/All-Time Kartnite Stats - Placement Stats.csv',index=False)
 
       print("A new season is upon us!!!")
     else:
